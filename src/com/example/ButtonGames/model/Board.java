@@ -8,14 +8,14 @@ import java.util.List;
  */
 public class Board {
 
-    private Player playerR;
-    private Player playerL;
+    private Sprite playerR;
+    private Sprite playerL;
     private final int HEIGHT = 1920;
     private final int WIDTH = 1080;
     private List<Obstacle> obstacles;
 
 
-    public Board(Player playerR, Player playerL){
+    public Board(Sprite playerR, Sprite playerL){
         playerR = this.playerR;
         playerL = this.playerL;
         obstacles = new ArrayList<Obstacle>();
@@ -34,7 +34,7 @@ public class Board {
     }
 
     // Produce true if can move to that x, y coordinate
-    public boolean canMove(Double x, Double y){
+    public boolean canMove(double x, double y){
         boolean insideObstacle = false;
         for (Obstacle o: obstacles){
             if (o.getXRange().contains(x) && o.getYRange().contains(y)){
