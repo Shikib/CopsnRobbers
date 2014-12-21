@@ -75,7 +75,6 @@ public class Board {
 
         if (hasCollision) {
             hunter.updateScore();
-            switchRoles();
 
             int rand;
             if (hunter.equals(playerL))
@@ -89,17 +88,6 @@ public class Board {
 
         return hasCollision;
     }
-
-    public void switchRoles(){
-        if (hunter.equals(playerL))
-            hunter = playerR;
-        else
-            hunter = playerL;
-
-        playerR.setState(playerL.getState());
-        playerL.setState(!playerL.getState());
-    }
-
 
     public void updateBoard(){
         playerL.action();
