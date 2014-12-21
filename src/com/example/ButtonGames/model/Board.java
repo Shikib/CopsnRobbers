@@ -47,6 +47,14 @@ public class Board {
         }
     }
 
+    public Sprite getPlayerL() {
+        return playerL;
+    }
+
+    public Sprite getPlayerR() {
+        return playerR;
+    }
+
     public void addObstacle(Obstacle o){
         obstacles.add(o);
     }
