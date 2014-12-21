@@ -49,7 +49,28 @@ public class Board {
         playerL.setState(!playerL.getState());
         }
 
+    // If there is a collision, update score, and switch roles
+    public boolean checkCollision(){
+        boolean hasCollision = ((playerL.getX() == playerR.getX()) && (playerL.getY() == playerR.getY()));
+
+        if (hasCollision) {
+            updateScore();
+            switchRoles();
+        }
+        return hasCollision;
+    }
+
+    // Maybe should put update score in sprite...
+    public void updateScore(){
+        if (playerR.getState()) {
+            playerR.setScore(playerR.getScore() + 1);
+        } else {
+            playerL.setScore(playerL.getScore() + 1);
+        }
+    }
+
     public void updateBoard(){
+        checkCollision();
         playerL.action();
         playerR.action();
     }
