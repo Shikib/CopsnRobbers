@@ -2,18 +2,14 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/imageButton"
-            android:src="@drawable/ic_launcher"
-            android:layout_alignParentBottom="true" android:layout_centerHorizontal="true"
-            android:layout_marginBottom="110dp"/>
-        <ProgressBar
-                style="?android:attr/progressBarStyleLarge"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/progressBar" android:layout_below="@+id/imageButton"
-                android:layout_alignEnd="@+id/imageButton" android:layout_marginTop="101dp"/>
+        android:layout_height="match_parent" android:id="@+id/home_screen">
+        <Button
+                android:layout_width="300dp"
+                android:layout_height="75dp"
+                android:text="Play"
+                android:id="@+id/button"
+                android:fontFamily="&quot;Georgia&quot;"
+                android:textStyle="bold" android:focusableInTouchMode="false" android:enabled="true"
+                android:clickable="true" android:backgroundTint="#00ff00" android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true" android:layout_marginBottom="39dp"/>
 </RelativeLayout>
