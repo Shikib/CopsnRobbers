@@ -10,6 +10,7 @@ public class Obstacle {
     private Range<Double> xRange;
     private Range<Double> yRange;
 
+    // make sure these obstacles account for radius of sprite as well
     public Obstacle (Double xL, Double xU, Double yL, Double yU){
         xRange = new Range<Double>(xL, xU);
         yRange = new Range<Double>(yL, yU);

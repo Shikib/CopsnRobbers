@@ -4,6 +4,8 @@ import java.util.TimerTask;
 
 public class Sprite {
 
+    public static final double radius = 1; // subject to change
+
     private Board board;   // corresponding board
     private boolean state; // true implies hunter, false implies hunted
 
@@ -19,13 +21,13 @@ public class Sprite {
     private boolean moving;   // is the sprite moving
 
 
-    public Sprite(Board board, boolean state, double x, double y, double direction) {
+    public Sprite(Board board, boolean state, int score, double x, double y, double direction) {
         this.board = board;
         this.state = state;
         this.x = x;
         this.y = y;
         this.direction = direction;
-        this.score = 0;
+        this.score = score;
         this.spinning = true;
         this.moving = false;
     }
@@ -127,8 +129,45 @@ public class Sprite {
             y += amount;
     }
 
-    private void updateScore() {
+    public int updateScore() {
         // add gameOver call here????
-        score++;
+        return score++;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Sprite sprite = (Sprite) o;
+
+        if (Double.compare(sprite.direction, direction) != 0) return false;
+        if (Double.compare(sprite.rspeed, rspeed) != 0) return false;
+        if (Double.compare(sprite.speed, speed) != 0) return false;
+        if (state != sprite.state) return false;
+        if (Double.compare(sprite.x, x) != 0) return false;
+        if (Double.compare(sprite.y, y) != 0) return false;
+        if (!board.equals(sprite.board)) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result;
+        long temp;
+        result = board.hashCode();
+        result = 31 * result + (state ? 1 : 0);
+        temp = Double.doubleToLongBits(x);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(y);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(direction);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(rspeed);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        temp = Double.doubleToLongBits(speed);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        return result;
     }
 }
