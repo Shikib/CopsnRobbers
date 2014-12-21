@@ -11,7 +11,7 @@ public class Board {
 
     private Sprite playerL;
     private Sprite playerR;
-    private Sprite hunter;
+    private boolean hunterState; // true = left is hunter, false = right is hunter
 
     public TimerTask timerTask;
 
@@ -39,11 +39,11 @@ public class Board {
 
         if (rand == 1) {
             playerL.setState(true);
-            hunter = playerL;
+            hunterState = true;
         }
         else {
             playerR.setState(true);
-            hunter = playerR;
+            hunterState = false;
         }
     }
 
@@ -74,19 +74,33 @@ public class Board {
         boolean hasCollision = Math.abs(playerL.getX() - playerR.getX()) <= 2*radius && Math.abs(playerL.getY() - playerR.getY()) <= 2*radius;
 
         if (hasCollision) {
-            hunter.updateScore();
-
-            int rand;
-            if (hunter.equals(playerL))
-                rand = 0;
-            else
-                rand = 1;
-
-            // consider putting delay here
-            initSprites(playerL.getScore(), playerR.getScore(), rand);
+            resetSprites(0);
         }
 
         return hasCollision;
+    }
+
+    // condition is 0 if tag, 1 if time ran out
+    public void resetSprites(int condition) {
+        Sprite hunter;
+        Sprite hunted;
+        if (hunterState) {
+            hunter = playerL;
+            hunted = playerR;
+        }
+        else {
+            hunter = playerR;
+            hunted = playerL;
+        }
+
+        if (condition == 0)
+            hunter.updateScore();
+        else
+            hunted.updateScore();
+
+        // consider putting delay here
+        initSprites(playerL.getScore(), playerR.getScore(), hunterState ? 0 : 1);
+
     }
 
     public void updateBoard(){
