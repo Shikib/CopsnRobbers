@@ -46,21 +46,14 @@ public class SimpleTagActivity extends Activity{
             }
         };
 
-        onStart();
-
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
         timer.scheduleAtFixedRate(timerTask, 1000, 1000);
+
     }
+
 
     @Override
     protected void onResume() {
         super.onResume();
-        timer = new Timer();
-        timer.scheduleAtFixedRate(timerTask, 1000, 1000);
     }
 
     @Override
