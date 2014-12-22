@@ -23,8 +23,6 @@ public class SimpleTagActivity extends Activity{
     private Timer timer;
     private TimerTask timerTask;
     private SimpleTagSurfaceView stSurfaceView;
-    private Button buttonR;
-    private Button buttonL;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +34,7 @@ public class SimpleTagActivity extends Activity{
         stSurfaceView = new SimpleTagSurfaceView(this);
         stSurfaceView.setBoard(board);
 
-        setContentView(stSurfaceView);
+        setContentView(R.layout.game);
 
         addListenerOnButtons();
 
@@ -77,8 +75,8 @@ public class SimpleTagActivity extends Activity{
 
 
     public void addListenerOnButtons(){
-        buttonR = (Button) findViewById(R.id.buttonR);
-        buttonL = (Button) findViewById(R.id.buttonL);
+        Button buttonR = (Button) findViewById(R.id.buttonR);
+        Button buttonL = (Button) findViewById(R.id.buttonL);
 
         buttonR.setOnTouchListener(new View.OnTouchListener() {
             @Override
