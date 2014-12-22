@@ -30,6 +30,16 @@ public class SimpleTagSurfaceView extends SurfaceView implements SurfaceHolder.C
         right.setStyle(Paint.Style.FILL);
     }
 
+    public SimpleTagSurfaceView(Context context, AttributeSet attrs) {
+        super(context, attrs);
+        sh = getHolder();
+        sh.addCallback(this);
+        left.setColor(Color.RED);
+        left.setStyle(Paint.Style.FILL);
+        right.setColor(Color.BLUE);
+        right.setStyle(Paint.Style.FILL);
+    }
+
     public void setBoard(Board board){
         this.board = board;
     }
