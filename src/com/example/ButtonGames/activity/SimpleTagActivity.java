@@ -38,15 +38,7 @@ public class SimpleTagActivity extends Activity{
 
         // addListenerOnButtons();
 
-        timer = new Timer();
-        timerTask = new TimerTask() {
-            @Override
-            public void run() {
-                board.updateBoard();
-            }
-        };
-
-        timer.scheduleAtFixedRate(timerTask, 1000, 1000);
+       startTimerTask();
 
     }
 
@@ -63,11 +55,15 @@ public class SimpleTagActivity extends Activity{
         timer.purge();
     }
 
-    @Override
-    protected void onStop() {
-        super.onStop();
-        timer.cancel();
-        timer.purge();
+
+    public void startTimerTask(){
+        timer = new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                board.updateBoard();
+            }
+        }, 1000, 1000);
     }
 
     public void initMaps(){
