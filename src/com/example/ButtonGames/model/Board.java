@@ -13,7 +13,6 @@ public class Board {
     private Sprite playerR;
     private boolean hunterState; // true = left is hunter, false = right is hunter
 
-    public TimerTask timerTask;
 
     private final int HEIGHT = 1920;
     private final int WIDTH = 1080;
@@ -23,12 +22,6 @@ public class Board {
     public Board(List<Obstacle> obstacles){
         this.obstacles = obstacles;
         initSprites(0,0,(int) Math.random()* 2);
-        timerTask = new TimerTask() {
-            @Override
-            public void run() {
-                updateBoard();
-            }
-        };
     }
 
     public void initSprites(int scoreL, int scoreR, int rand) {
@@ -55,18 +48,6 @@ public class Board {
         return playerR;
     }
 
-    public void addObstacle(Obstacle o){
-        obstacles.add(o);
-    }
-
-    public boolean removeObstacle(Obstacle o){
-        return obstacles.remove(o);
-    }
-
-
-    public List<Obstacle> getObstacles(){
-        return obstacles;
-    }
 
     // Produce true if can move to that x, y coordinate
     public boolean canMove(double x, double y){
