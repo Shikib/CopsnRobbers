@@ -1,6 +1,7 @@
 package com.example.ButtonGames.activity;
 
 import android.app.Activity;
+import android.graphics.Canvas;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.widget.Button;
 import com.example.ButtonGames.R;
 import com.example.ButtonGames.model.Board;
 import com.example.ButtonGames.model.Obstacle;
+import com.example.ButtonGames.model.Sprite;
 import com.example.ButtonGames.view.SimpleTagSurfaceView;
 
 import java.util.ArrayList;
@@ -27,19 +29,12 @@ public class SimpleTagActivity extends Activity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         initMaps();
         board = new Board(maps.get(0));
-
-        stSurfaceView = new SimpleTagSurfaceView(this);
-        stSurfaceView.setBoard(board);
-
-
-        setContentView(R.layout.game);
-
+        stSurfaceView = new SimpleTagSurfaceView(this, board);
+        setContentView(stSurfaceView);
         addListenerOnButtons();
-
-       startTimerTask();
+        startTimerTask();
 
     }
 
@@ -59,12 +54,13 @@ public class SimpleTagActivity extends Activity{
 
     public void startTimerTask(){
         timer = new Timer();
-        timer.schedule(new TimerTask() {
+        timer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
                 board.updateBoard();
+                stSurfaceView.onDraw(new Canvas());
             }
-        }, 1000, 1000);
+        }, 0, 1000 / 60);
     }
 
     public void initMaps(){
@@ -76,43 +72,28 @@ public class SimpleTagActivity extends Activity{
 
 
     public void addListenerOnButtons(){
-        Button buttonR = (Button) findViewById(R.id.buttonR);
-        Button buttonL = (Button) findViewById(R.id.buttonL);
-
-        buttonR.setOnTouchListener(new View.OnTouchListener() {
+        stSurfaceView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
+                int x = (int) motionEvent.getRawX();
+                int y = (int) motionEvent.getRawY();
+                Sprite sprite;
+
+                if (x < 500 && y > 500)
+                    sprite = board.getPlayerL();
+                else if (x > 1480 && y > 500)
+                    sprite = board.getPlayerR();
+                else
+                    return false;
+
                 if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
-                    startRunning();
+                    sprite.startMoving();
                 } else if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
-                    startSpinning();
+                    sprite.startSpinning();
                 }
+
                 return false;
             }
         });
-
-        buttonL.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
-                    startRunning();
-                } else if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
-                    startSpinning();
-                }
-                return false;
-            }
-        });
     }
-
-    public void startRunning(){
-        board.getPlayerR().setMoving(true);
-        board.getPlayerR().setSpinning(false);
-    }
-
-    public void startSpinning(){
-        board.getPlayerR().setMoving(false);
-        board.getPlayerR().setSpinning(true);
-    }
-
-
 }

@@ -30,6 +30,8 @@ public class Sprite {
         this.score = score;
         this.spinning = true;
         this.moving = false;
+        this.speed = 1;
+        this.rspeed = 1.5;
     }
 
     public boolean getState() {
@@ -68,12 +70,14 @@ public class Sprite {
         this.score = score;
     }
 
-    public void setSpinning(boolean spinning) {
-        this.spinning = spinning;
+    public void startSpinning() {
+        this.spinning = true;
+        this.moving = false;
     }
 
-    public void setMoving(boolean moving) {
-        this.moving = moving;
+    public void startMoving() {
+        this.spinning = false;
+        this.moving = true;
     }
 
     public void setX(double x) {
