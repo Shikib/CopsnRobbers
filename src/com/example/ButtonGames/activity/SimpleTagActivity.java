@@ -26,9 +26,6 @@ public class SimpleTagActivity extends Activity{
     private Button buttonR;
     private Button buttonL;
 
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,9 +45,43 @@ public class SimpleTagActivity extends Activity{
                 board.updateBoard();
             }
         };
+
+        onStart();
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
         timer.scheduleAtFixedRate(timerTask, 1000, 1000);
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        timer = new Timer();
+        timer.scheduleAtFixedRate(timerTask, 1000, 1000);
+    }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        timer.cancel();
+        timer.purge();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        timer.cancel();
+        timer.purge();
+    }
+
+    public void initMaps(){
+        List<Obstacle> simpleMap = new ArrayList<Obstacle>();
+        simpleMap.add(new Obstacle(500.00, 800.00, 500.00, 800.00));
+        maps = new ArrayList<List<Obstacle>>();
+        maps.add(simpleMap);
     }
 
     /** Handles the pressing of L and R Buttons. Commented out because buttons do not exist yet.
@@ -94,11 +125,5 @@ public class SimpleTagActivity extends Activity{
     }
     **/
 
-    public void initMaps(){
-        List<Obstacle> simpleMap = new ArrayList<Obstacle>();
-        simpleMap.add(new Obstacle(500.00, 800.00, 500.00, 800.00));
-        maps = new ArrayList<List<Obstacle>>();
-        maps.add(simpleMap);
-    }
 
 }
