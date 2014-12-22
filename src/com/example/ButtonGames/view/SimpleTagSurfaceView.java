@@ -15,7 +15,7 @@ public class SimpleTagSurfaceView extends SurfaceView implements SurfaceHolder.C
     private Board board;
     private final Paint left = new Paint(Paint.ANTI_ALIAS_FLAG);
     private final Paint right = new Paint(Paint.ANTI_ALIAS_FLAG);
-    private Canvas canvas = new Canvas();
+
 
     public SimpleTagSurfaceView(Context context, Board board) {
         super(context);
@@ -28,9 +28,6 @@ public class SimpleTagSurfaceView extends SurfaceView implements SurfaceHolder.C
         right.setStyle(Paint.Style.FILL);
     }
 
-    public void updateDraw(){
-        this.draw(canvas);
-    }
 
     @Override
     public void onDraw(Canvas canvas) {

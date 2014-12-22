@@ -2,8 +2,9 @@ package com.example.ButtonGames.activity;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.view.SurfaceView;
+import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import com.example.ButtonGames.R;
 import com.example.ButtonGames.model.Board;
 import com.example.ButtonGames.model.Obstacle;
@@ -22,6 +23,9 @@ public class SimpleTagActivity extends Activity{
     private Timer timer;
     private TimerTask timerTask;
     private SimpleTagSurfaceView stSurfaceView;
+    private Button buttonR;
+    private Button buttonL;
+
 
 
 
@@ -35,18 +39,60 @@ public class SimpleTagActivity extends Activity{
         stSurfaceView = new SimpleTagSurfaceView(this, board);
         setContentView(stSurfaceView);
 
+        // addListenerOnButtons();
+
         timer = new Timer();
         timerTask = new TimerTask() {
             @Override
             public void run() {
                 board.updateBoard();
-                stSurfaceView.updateDraw();
             }
         };
         timer.scheduleAtFixedRate(timerTask, 1000, 1000);
 
 
     }
+
+    /** Handles the pressing of L and R Buttons. Commented out because buttons do not exist yet.
+    public void addListenerOnButtons(){
+        buttonR = (Button) findViewById(R.id.buttonR);
+        buttonL = (Button) findViewById(R.id.buttonL);
+
+        buttonR.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
+                    startRunning();
+                } else if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
+                    startSpinning();
+                }
+                return false;
+            }
+        });
+
+        buttonL.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
+                    startRunning();
+                } else if (motionEvent.getAction() == MotionEvent.ACTION_UP) {
+                    startSpinning();
+                }
+                return false;
+            }
+        });
+    }
+
+    public void startRunning(){
+        board.getPlayerR().setMoving(true);
+        board.getPlayerR().setSpinning(false);
+    }
+
+    public void startSpinning(){
+        board.getPlayerR().setMoving(false);
+        board.getPlayerR().setSpinning(true);
+    }
+    **/
 
     public void initMaps(){
         List<Obstacle> simpleMap = new ArrayList<Obstacle>();
@@ -55,12 +101,4 @@ public class SimpleTagActivity extends Activity{
         maps.add(simpleMap);
     }
 
-
-    public void onRightButton(View view){
-        // what to put here
-    }
-
-    public void onLeftButton(View view){
-        // what to put here
-    }
 }

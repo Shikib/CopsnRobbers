@@ -4,7 +4,7 @@ import java.util.TimerTask;
 
 public class Sprite {
 
-    public static final double radius = 1; // subject to change
+    public static final double radius = 20; // subject to change
 
     private Board board;   // corresponding board
     private boolean state; // true implies hunter, false implies hunted

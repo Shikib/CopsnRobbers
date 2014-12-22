@@ -14,8 +14,8 @@ public class Board {
     private boolean hunterState; // true = left is hunter, false = right is hunter
 
 
-    private final int HEIGHT = 1920;
-    private final int WIDTH = 1080;
+    private final int HEIGHT = 200;
+    private final int WIDTH = 500;
     private List<Obstacle> obstacles;
 
 
