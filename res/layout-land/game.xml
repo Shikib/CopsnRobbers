@@ -10,7 +10,13 @@
             android:text="Button L"
             android:id="@+id/buttonL" android:layout_centerVertical="true" android:layout_alignParentStart="true"
             android:clickable="true"/>
-
+    <FrameLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+        <com.example.ButtonGames.view.SimpleTagSurfaceView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"/>
+    </FrameLayout>
     <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
