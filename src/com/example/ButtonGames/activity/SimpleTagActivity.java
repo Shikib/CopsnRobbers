@@ -34,6 +34,7 @@ public class SimpleTagActivity extends Activity{
         stSurfaceView = new SimpleTagSurfaceView(this);
         stSurfaceView.setBoard(board);
 
+
         setContentView(R.layout.game);
 
         addListenerOnButtons();
