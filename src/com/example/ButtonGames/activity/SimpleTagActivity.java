@@ -38,7 +38,7 @@ public class SimpleTagActivity extends Activity{
 
         setContentView(stSurfaceView);
 
-        // addListenerOnButtons();
+        addListenerOnButtons();
 
        startTimerTask();
 
@@ -75,8 +75,7 @@ public class SimpleTagActivity extends Activity{
         maps.add(simpleMap);
     }
 
-    /** Handles the pressing of L and R Buttons. Commented out because buttons do not exist yet.
-     *
+
     public void addListenerOnButtons(){
         buttonR = (Button) findViewById(R.id.buttonR);
         buttonL = (Button) findViewById(R.id.buttonL);
@@ -115,7 +114,6 @@ public class SimpleTagActivity extends Activity{
         board.getPlayerR().setMoving(false);
         board.getPlayerR().setSpinning(true);
     }
-    **/
 
 
 }
