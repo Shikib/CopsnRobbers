@@ -26,14 +26,15 @@ public class SimpleTagActivity extends Activity{
         initMaps();
         board = new Board(maps.get(0));
         timer = new Timer();
-        timer.scheduleAtFixedRate(board.getBoardTimerTask(), 1000, 100);
+
 
         setContentView(R.layout.game);
     }
 
     public void initMaps(){
         List<Obstacle> simpleMap = new ArrayList<Obstacle>();
-        simpleMap.add(new Obstacle(800.00, 500.00, 800.00, 500.00));
+        simpleMap.add(new Obstacle(500.00, 800.00, 500.00, 800.00));
+        maps = new ArrayList<List<Obstacle>>();
         maps.add(simpleMap);
     }
 
