@@ -63,6 +63,10 @@ public class Board {
         return obstacles.remove(o);
     }
 
+    public TimerTask getBoardTimerTask(){
+        return timerTask;
+    }
+
     public List<Obstacle> getObstacles(){
         return obstacles;
     }
