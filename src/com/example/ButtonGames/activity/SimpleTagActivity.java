@@ -33,7 +33,8 @@ public class SimpleTagActivity extends Activity{
         initMaps();
         board = new Board(maps.get(0));
 
-        stSurfaceView = new SimpleTagSurfaceView(this, board);
+        stSurfaceView = new SimpleTagSurfaceView(this);
+        stSurfaceView.setBoard(board);
 
         setContentView(stSurfaceView);
 
@@ -75,6 +76,7 @@ public class SimpleTagActivity extends Activity{
     }
 
     /** Handles the pressing of L and R Buttons. Commented out because buttons do not exist yet.
+     *
     public void addListenerOnButtons(){
         buttonR = (Button) findViewById(R.id.buttonR);
         buttonL = (Button) findViewById(R.id.buttonL);

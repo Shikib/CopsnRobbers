@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.util.AttributeSet;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import com.example.ButtonGames.model.Board;
@@ -19,15 +20,18 @@ public class SimpleTagSurfaceView extends SurfaceView implements SurfaceHolder.C
     private final Paint right = new Paint(Paint.ANTI_ALIAS_FLAG);
 
 
-    public SimpleTagSurfaceView(Context context, Board board) {
+    public SimpleTagSurfaceView(Context context) {
         super(context);
         sh = getHolder();
-        this.board = board;
         sh.addCallback(this);
         left.setColor(Color.RED);
         left.setStyle(Paint.Style.FILL);
         right.setColor(Color.BLUE);
         right.setStyle(Paint.Style.FILL);
+    }
+
+    public void setBoard(Board board){
+        this.board = board;
     }
 
 
