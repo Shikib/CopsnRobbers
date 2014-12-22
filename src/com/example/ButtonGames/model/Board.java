@@ -69,6 +69,8 @@ public class Board {
 
     // Produce true if can move to that x, y coordinate
     public boolean canMove(double x, double y){
+        if (x < 0 || x > WIDTH || y < 0 || y > HEIGHT)
+            return false;
         for (Obstacle o: obstacles){
             if (o.getXRange().contains(x) && o.getYRange().contains(y))
                 return false;
