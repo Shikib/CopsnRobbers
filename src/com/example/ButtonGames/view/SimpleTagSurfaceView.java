@@ -9,6 +9,8 @@ import android.view.SurfaceView;
 import com.example.ButtonGames.model.Board;
 import com.example.ButtonGames.model.Sprite;
 
+import java.util.jar.Attributes;
+
 public class SimpleTagSurfaceView extends SurfaceView implements SurfaceHolder.Callback {
 
     private SurfaceHolder sh;
