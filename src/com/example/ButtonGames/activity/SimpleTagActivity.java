@@ -2,7 +2,9 @@ package com.example.ButtonGames.activity;
 
 import android.app.Activity;
 import android.graphics.Canvas;
+import android.graphics.Point;
 import android.os.Bundle;
+import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -30,7 +32,8 @@ public class SimpleTagActivity extends Activity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initMaps();
-        board = new Board(maps.get(0));
+        Display display = getWindowManager().getDefaultDisplay();
+        board = new Board(maps.get(0), display.getWidth(), display.getHeight());
         stSurfaceView = new SimpleTagSurfaceView(this, board);
         setContentView(stSurfaceView);
         addListenerOnButtons();

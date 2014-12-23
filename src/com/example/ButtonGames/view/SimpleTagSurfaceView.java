@@ -25,6 +25,7 @@ public class SimpleTagSurfaceView extends SurfaceView{
     private Bitmap background = BitmapFactory.decodeResource(getResources(), R.drawable.map1);
 
 
+
     public SimpleTagSurfaceView(Context context, Board board) {
         super(context);
         gameLoopThread = new GameLoopThread(this, board);
@@ -71,7 +72,8 @@ public class SimpleTagSurfaceView extends SurfaceView{
     @Override
     public void onDraw(Canvas canvas) {
 
-        canvas.drawBitmap(background, 0f, 0f, null);
+        Rect rect = new Rect(0, 0, board.getWidth(), board.getHeight());
+        canvas.drawBitmap(background, null, rect, null);
 
         canvas.save();
         canvas.translate((float) board.getPlayerL().getX(), (float) board.getPlayerL().getY());

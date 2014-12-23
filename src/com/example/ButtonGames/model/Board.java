@@ -15,21 +15,23 @@ public class Board {
     private boolean hunterState; // true = left is hunter, false = right is hunter
 
 
-    private final int HEIGHT = 370;
-    private final int WIDTH = 800;
+    private int height;
+    private int width;
     private List<Obstacle> obstacles;
 
 
-    public Board(List<Obstacle> obstacles){
+    public Board(List<Obstacle> obstacles, int width, int height){
         this.obstacles = obstacles;
         initSprites(0,0,(int) Math.random()* 2);
+        this.width = width;
+        this.height = height;
     }
 
     public void initSprites(int scoreL, int scoreR, int rand) {
         double radius = Sprite.radius;
 
-        playerL = new Sprite(this, false, scoreL, 0 + radius, HEIGHT/2, 0);
-        playerR = new Sprite(this, false, scoreR, WIDTH - radius, HEIGHT/2, 180);
+        playerL = new Sprite(this, false, scoreL, 0 + radius, height/2, 0);
+        playerR = new Sprite(this, false, scoreR, width - radius, height/2, 180);
 
         if (rand == 1) {
             playerL.setState(true);
@@ -42,11 +44,11 @@ public class Board {
     }
 
     public int getHeight(){
-        return HEIGHT;
+        return height;
     }
 
     public int getWidth(){
-        return WIDTH;
+        return width;
     }
 
     public Sprite getPlayerL() {
@@ -64,7 +66,7 @@ public class Board {
 
     // Produce true if can move to that x, y coordinate
     public boolean canMove(double x, double y){
-        if (x < 0 || x > WIDTH - radius || y < 0 || y > HEIGHT - radius)
+        if (x < 0 || x > width - radius || y < 0 || y > height - radius)
             return false;
         for (Obstacle o: obstacles){
             if (o.getXRange().contains(x) && o.getYRange().contains(y))
