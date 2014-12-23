@@ -101,19 +101,8 @@ public class Sprite {
     }
 
     public void move() {
-        double vDistance = speed*Math.sin(direction);
-        double hDistance = speed*Math.cos(direction);
-
-        if (direction < 90)
-            ;
-        else if (direction < 180)
-            hDistance = -hDistance;
-        else if (direction < 270) {
-            vDistance = -vDistance;
-            hDistance = -hDistance;
-        }
-        else
-            vDistance = -vDistance;
+        double vDistance = speed*Math.sin(direction*2*Math.PI/360);
+        double hDistance = speed*Math.cos(direction*2*Math.PI/360);
 
         moveHorizontal(hDistance);
         moveVertical(vDistance);
