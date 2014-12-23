@@ -8,7 +8,7 @@ public class Sprite {
 
     public static final double radius = 40; // subject to change
 
-    private Board board;   // corresponding board
+    private Board board;   // Corresponding board
     private boolean state; // true implies hunter, false implies hunted
 
     private double x;
@@ -19,7 +19,7 @@ public class Sprite {
     private double rspeed;    // speed of rotation
     private double speed;     // max speed -- change if add acceleration
 
-    private boolean spinning; // is the sprite spinning -- false implies moving
+    private boolean spinning; // true is spinning, false is moving
 
 
     public Sprite(Board board, boolean state, int score, double x, double y, double direction) {
@@ -46,7 +46,6 @@ public class Sprite {
     public boolean getSpinning() {
         return spinning;
     }
-
 
     public double getX() {
         return x;
@@ -88,7 +87,7 @@ public class Sprite {
         this.direction = direction;
     }
 
-    // to use in scheduled task
+    // Called in update board. Ticks the sprite.
     public void action() {
         if (spinning)
             rotate();
@@ -100,6 +99,7 @@ public class Sprite {
         direction = (direction + rspeed) % 360;
     }
 
+    // Some math thing to calculate and move sprite in x,y based on direction
     public void move() {
         double vDistance = speed*Math.sin(direction*2*Math.PI/360);
         double hDistance = speed*Math.cos(direction*2*Math.PI/360);
@@ -118,8 +118,8 @@ public class Sprite {
             y += amount;
     }
 
+    // Add a game over call here?
     public int updateScore() {
-        // add gameOver call here????
         return score++;
     }
 

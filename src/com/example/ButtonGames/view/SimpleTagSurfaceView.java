@@ -18,54 +18,64 @@ public class SimpleTagSurfaceView extends SurfaceView{
 
     private SurfaceHolder sh;
     private Board board;
-    private final Paint text = new Paint(Paint.ANTI_ALIAS_FLAG);
-    private final Paint obstacle = new Paint(Paint.ANTI_ALIAS_FLAG);
     private GameLoopThread gameLoopThread;
+    private final Paint text = new Paint(Paint.ANTI_ALIAS_FLAG); // Color/style of text for score
+    private final Paint obstacle = new Paint(Paint.ANTI_ALIAS_FLAG); // Color/style for obstacle
+    private Rect rect = new Rect(0, 0, board.getWidth(), board.getHeight()); // Rectangle that is size of board
+
+    // Bitmap of background
     private Bitmap background = BitmapFactory.decodeResource(getResources(), R.drawable.map1);
 
+    // Bitmap of green hunted sprite
     private Bitmap spriteGreen1 = BitmapFactory.decodeResource(getResources(), R.drawable.sprite_green_1);
     private Bitmap spriteGreen2 = BitmapFactory.decodeResource(getResources(), R.drawable.sprite_green_2);
     private Bitmap spriteGreen3 = BitmapFactory.decodeResource(getResources(), R.drawable.sprite_green_3);
 
+    // Bitmap of green hunter sprite
     private Bitmap HspriteGreen1 = BitmapFactory.decodeResource(getResources(), R.drawable.hunter_sprite_green_1);
     private Bitmap HspriteGreen2 = BitmapFactory.decodeResource(getResources(), R.drawable.hunter_sprite_green_2);
     private Bitmap HspriteGreen3 = BitmapFactory.decodeResource(getResources(), R.drawable.hunter_sprite_green_3);
 
+    // Bitmap of purple hunted sprite
     private Bitmap spritePurple1 = BitmapFactory.decodeResource(getResources(), R.drawable.sprite_purple_1);
     private Bitmap spritePurple2 = BitmapFactory.decodeResource(getResources(), R.drawable.sprite_purple_2);
     private Bitmap spritePurple3 = BitmapFactory.decodeResource(getResources(), R.drawable.sprite_purple_3);
 
+    // Bitmap of purple hunter sprite
     private Bitmap HspritePurple1 = BitmapFactory.decodeResource(getResources(), R.drawable.hunger_sprite_purple_1);
     private Bitmap HspritePurple2 = BitmapFactory.decodeResource(getResources(), R.drawable.hunger_sprite_purple_2);
     private Bitmap HspritePurple3 = BitmapFactory.decodeResource(getResources(), R.drawable.hunger_sprite_purple_3);
 
 
-
-
     public SimpleTagSurfaceView(Context context, Board board) {
         super(context);
-        gameLoopThread = new GameLoopThread(this, board);
-        sh = getHolder();
-        this.board = board;
+
+        //Set up color/style of score text and obstacles
         text.setColor(Color.WHITE);
         text.setStyle(Paint.Style.FILL);
         text.setTextSize(board.getHeight()/2);
         obstacle.setColor(Color.GRAY);
         obstacle.setStyle(Paint.Style.FILL);
 
+        // Set up stuff
+        gameLoopThread = new GameLoopThread(this, board);
+        sh = getHolder();
+        this.board = board;
 
         sh.addCallback(new SurfaceHolder.Callback() {
+
+            // Called when surface is created
             @Override
             public void surfaceCreated(SurfaceHolder surfaceHolder) {
-                gameLoopThread.setRunning(true);
+                gameLoopThread.setRunning(true); // Start the thread
                 gameLoopThread.start();
             }
 
             @Override
             public void surfaceChanged(SurfaceHolder surfaceHolder, int i, int i1, int i2) {
-                // width - 800, height - 370 : On my nexus one emulator
             }
 
+            // Called when surface is destroyed. Stop the thread. Or something.
             @Override
             public void surfaceDestroyed(SurfaceHolder surfaceHolder) {
                 boolean retry = true;
@@ -77,7 +87,6 @@ public class SimpleTagSurfaceView extends SurfaceView{
                     } catch (InterruptedException e) {
                     }
                 }
-
             }
         });
     }
@@ -87,34 +96,37 @@ public class SimpleTagSurfaceView extends SurfaceView{
     @Override
     public void onDraw(Canvas canvas) {
 
-        Rect rect = new Rect(0, 0, board.getWidth(), board.getHeight());
-
+        // Draw the background
         canvas.drawBitmap(background, null, rect, null);
 
-        // draw left sprite
+
+        // Make a matrix, get the correct left sprite for the frame
         Matrix leftMatrix = new Matrix();
         Bitmap leftBitmap = getCorrectSpriteL();
 
-        leftMatrix.setRotate((float) board.getPlayerL().getDirection(), (float) leftBitmap.getWidth()/2, (float) leftBitmap.getHeight()/2);
+        // Rotate and translate left sprite
+        leftMatrix.setRotate((float) board.getPlayerL().getDirection(), (float) leftBitmap.getWidth() / 2, (float) leftBitmap.getHeight() / 2);
         leftMatrix.postTranslate((float) board.getPlayerL().getX(), (float) board.getPlayerL().getY());
-
+        // Draw left sprite
         canvas.drawBitmap(leftBitmap, leftMatrix, null);
 
-        // draw right sprite
+        // Make a matrix, get the correct right sprite for the frame
         Matrix rightMatrix = new Matrix();
         Bitmap rightBitmap = getCorrectSpriteR();
 
-        rightMatrix.setRotate((float) board.getPlayerR().getDirection(), (float) rightBitmap.getWidth()/2, (float) rightBitmap.getHeight()/2);
+        // Rotate and translate right sprite
+        rightMatrix.setRotate((float) board.getPlayerR().getDirection(), (float) rightBitmap.getWidth() / 2, (float) rightBitmap.getHeight() / 2);
         // bandaid solution here: should set X position of right sprite to correct value
         rightMatrix.postTranslate((float) board.getPlayerR().getX() - 200, (float) board.getPlayerR().getY());
 
+        // Draw right sprite
         canvas.drawBitmap(rightBitmap, rightMatrix, null);
 
-        // draw score
+        // Draw score
         canvas.drawText(Integer.toString(board.getPlayerL().getScore()), 2*board.getWidth()/8, 3*board.getHeight()/4, text);
         canvas.drawText(Integer.toString(board.getPlayerR().getScore()), 5*board.getWidth()/8, 3*board.getHeight()/4, text);
 
-        // draw obstacles
+        // Draw obstacles
         List<Obstacle> obstacles = board.getObstacles();
         for (Obstacle o : obstacles){
             canvas.drawRect((float) o.getXRange().getUpper().doubleValue(), (float) o.getYRange().getUpper().doubleValue(),
@@ -125,11 +137,12 @@ public class SimpleTagSurfaceView extends SurfaceView{
     public Bitmap getCorrectSpriteL(){
         Sprite sprite = board.getPlayerL();
 
+        // getState is true if hunter
         if (sprite.getState()){
             if (sprite.getSpinning()){
-                return HspriteGreen1;
+                return HspriteGreen1; // If spinning keep the same left sprite every frame
             } else {
-                int currentFrame = board.getCurrentFrame() % 4;
+                int currentFrame = board.getCurrentFrame() % 4; // Alternate between left sprites each from
                 if (currentFrame == 0){
                     return HspriteGreen1;
                 } else if (currentFrame == 1){
@@ -141,7 +154,7 @@ public class SimpleTagSurfaceView extends SurfaceView{
                 }
             }
 
-        } else {
+        } else { // is hunted
             if (sprite.getSpinning()){
                 return spriteGreen1;
             } else {
