@@ -17,8 +17,7 @@ public class Sprite {
     private double rspeed;    // speed of rotation
     private double speed;     // max speed -- change if add acceleration
 
-    private boolean spinning; // is the sprite spinning
-    private boolean moving;   // is the sprite moving
+    private boolean spinning; // is the sprite spinning -- false implies spinning
 
 
     public Sprite(Board board, boolean state, int score, double x, double y, double direction) {
@@ -29,8 +28,7 @@ public class Sprite {
         this.direction = direction;
         this.score = score;
         this.spinning = true;
-        this.moving = false;
-        this.speed = 1;
+        this.speed = 10;
         this.rspeed = 1.5;
     }
 
@@ -46,9 +44,6 @@ public class Sprite {
         return spinning;
     }
 
-    public boolean getMoving() {
-        return moving;
-    }
 
     public double getX() {
         return x;
@@ -72,12 +67,10 @@ public class Sprite {
 
     public void startSpinning() {
         this.spinning = true;
-        this.moving = false;
     }
 
     public void startMoving() {
         this.spinning = false;
-        this.moving = true;
     }
 
     public void setX(double x) {
@@ -96,7 +89,7 @@ public class Sprite {
     public void action() {
         if (spinning)
             rotate();
-        else if (moving)
+        else
             move();
     }
 

@@ -78,7 +78,7 @@ public class SimpleTagActivity extends Activity{
                     sprite.startSpinning();
                 }
 
-                return false;
+                return true;
             }
         });
     }
