@@ -90,103 +90,109 @@ public class SimpleTagSurfaceView extends SurfaceView{
         Rect rect = new Rect(0, 0, board.getWidth(), board.getHeight());
         canvas.drawBitmap(background, null, rect, null);
 
-        canvas.save();
-        canvas.translate((float) board.getPlayerL().getX(), (float) board.getPlayerL().getY());
-        canvas.rotate((float) board.getPlayerL().getDirection());
-        drawCorrectSpriteL(canvas, board.getPlayerL());
-        canvas.restore();
+        // draw left sprite
+        Matrix leftMatrix = new Matrix();
+        Bitmap leftBitmap = getCorrectSpriteL();
 
-        canvas.save();
-        canvas.translate((float) board.getPlayerR().getX(), (float) board.getPlayerR().getY());
-        canvas.rotate((float) board.getPlayerR().getDirection());
-        drawCorrectSpriteR(canvas, board.getPlayerR());
-        canvas.restore();
+        leftMatrix.setRotate((float) board.getPlayerL().getDirection(), (float) leftBitmap.getWidth()/2, (float) leftBitmap.getHeight()/2);
+        leftMatrix.postTranslate((float) board.getPlayerL().getX(), (float) board.getPlayerL().getY());
 
+        canvas.drawBitmap(leftBitmap, leftMatrix, null);
+
+        // draw right sprite
+        Matrix rightMatrix = new Matrix();
+        Bitmap rightBitmap = getCorrectSpriteR();
+
+        rightMatrix.setRotate((float) board.getPlayerR().getDirection(), (float) rightBitmap.getWidth()/2, (float) rightBitmap.getHeight()/2);
+        // bandaid solution here: should set X position of right sprite to correct value
+        rightMatrix.postTranslate((float) board.getPlayerR().getX() - 200, (float) board.getPlayerR().getY());
+
+        canvas.drawBitmap(rightBitmap, rightMatrix, null);
+
+        // draw score
         canvas.drawText(Integer.toString(board.getPlayerL().getScore()), 2*board.getWidth()/8, 3*board.getHeight()/4, text);
         canvas.drawText(Integer.toString(board.getPlayerR().getScore()), 5*board.getWidth()/8, 3*board.getHeight()/4, text);
 
+        // draw obstacles
         List<Obstacle> obstacles = board.getObstacles();
         for (Obstacle o : obstacles){
             canvas.drawRect((float) o.getXRange().getUpper().doubleValue(), (float) o.getYRange().getUpper().doubleValue(),
                     (float) o.getXRange().getLower().doubleValue(), (float) o.getYRange().getLower().doubleValue(),obstacle);
         }
-
-
-
     }
 
-    public void drawCorrectSpriteL(Canvas canvas, Sprite sprite){
-        // true is hunter
+    public Bitmap getCorrectSpriteL(){
+        Sprite sprite = board.getPlayerL();
+
         if (sprite.getState()){
             if (sprite.getSpinning()){
-                canvas.drawBitmap(HspriteGreen1, 0f - (float) Sprite.radius, 0f - (float) Sprite.radius, null);
+                return HspriteGreen1;
             } else {
                 int currentFrame = board.getCurrentFrame() % 4;
                 if (currentFrame == 0){
-                    canvas.drawBitmap(HspriteGreen1, 0f - (float) Sprite.radius, 0f - (float) Sprite.radius, null);
+                    return HspriteGreen1;
                 } else if (currentFrame == 1){
-                    canvas.drawBitmap(HspriteGreen2, 0f - (float) Sprite.radius, 0f - (float) Sprite.radius, null);
+                    return HspriteGreen2;
                 } else if (currentFrame == 2){
-                    canvas.drawBitmap(HspriteGreen1, 0f - (float) Sprite.radius, 0f - (float) Sprite.radius, null);
+                    return HspriteGreen1;
                 } else if (currentFrame == 3){
-                    canvas.drawBitmap(HspriteGreen3, 0f - (float) Sprite.radius, 0f - (float) Sprite.radius, null);
+                    return HspriteGreen3;
                 }
             }
 
         } else {
             if (sprite.getSpinning()){
-                canvas.drawBitmap(spriteGreen1, 0f - (float) Sprite.radius, 0f - (float) Sprite.radius, null);
+                return spriteGreen1;
             } else {
                 int currentFrame = board.getCurrentFrame() % 4;
                 if (currentFrame == 0){
-                    canvas.drawBitmap(spriteGreen1, 0f - (float) Sprite.radius, 0f - (float) Sprite.radius, null);
+                    return spriteGreen1;
                 } else if (currentFrame == 1){
-                    canvas.drawBitmap(spriteGreen2, 0f - (float) Sprite.radius, 0f - (float) Sprite.radius, null);
+                    return spriteGreen2;
                 } else if (currentFrame == 2){
-                    canvas.drawBitmap(spriteGreen1, 0f - (float) Sprite.radius, 0f - (float) Sprite.radius, null);
-                } else if (currentFrame == 3){
-                    canvas.drawBitmap(spriteGreen3, 0f - (float) Sprite.radius, 0f - (float) Sprite.radius, null);
+                    return spriteGreen1;
+                } else { // currentFrame == 3
+                    return spriteGreen3;
                 }
             }
         }
+        return null; // will never get here
     }
 
-    public void drawCorrectSpriteR(Canvas canvas, Sprite sprite){
-        // true is hunter
+    public Bitmap getCorrectSpriteR(){
+        Sprite sprite = board.getPlayerR();
+
         if (sprite.getState()){
             if (sprite.getSpinning()){
-                canvas.drawBitmap(HspritePurple1, 0f - (float) Sprite.radius, 0f - (float) Sprite.radius, null);
+                return HspritePurple1;
             } else {
                 int currentFrame = board.getCurrentFrame() % 4;
                 if (currentFrame == 0){
-                    canvas.drawBitmap(HspritePurple1, 0f - (float) Sprite.radius, 0f - (float) Sprite.radius, null);
+                    return HspritePurple1;
                 } else if (currentFrame == 1){
-                    canvas.drawBitmap(HspritePurple2, 0f - (float) Sprite.radius, 0f - (float) Sprite.radius, null);
+                    return HspritePurple2;
                 } else if (currentFrame == 2){
-                    canvas.drawBitmap(HspritePurple1, 0f - (float) Sprite.radius, 0f - (float) Sprite.radius, null);
+                    return HspritePurple1;
                 } else if (currentFrame == 3){
-                    canvas.drawBitmap(HspritePurple3, 0f - (float) Sprite.radius, 0f - (float) Sprite.radius, null);
+                    return HspritePurple3;
                 }
             }
-
         } else {
             if (sprite.getSpinning()){
-                canvas.drawBitmap(spritePurple1, 0f - (float) Sprite.radius, 0f - (float) Sprite.radius, null);
+                return spritePurple1;
             } else {
                 int currentFrame = board.getCurrentFrame() % 4;
                 if (currentFrame == 0){
-                    canvas.drawBitmap(spritePurple1, 0f - (float) Sprite.radius, 0f - (float) Sprite.radius, null);
+                    return spritePurple1;
                 } else if (currentFrame == 1){
-                    canvas.drawBitmap(spritePurple2, 0f - (float) Sprite.radius, 0f - (float) Sprite.radius, null);
+                    return spritePurple2;
                 } else if (currentFrame == 2){
-                    canvas.drawBitmap(spritePurple1, 0f - (float) Sprite.radius, 0f - (float) Sprite.radius, null);
-                } else if (currentFrame == 3){
-                    canvas.drawBitmap(spritePurple3, 0f - (float) Sprite.radius, 0f - (float) Sprite.radius, null);
+                    return spritePurple1;
+                } else { // currentFrame == 3
+                    return spritePurple3;
                 }
             }
         }
+        return null; // will never get here
     }
-
-
-
 }
