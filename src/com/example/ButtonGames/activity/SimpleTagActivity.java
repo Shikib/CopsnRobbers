@@ -51,7 +51,8 @@ public class SimpleTagActivity extends Activity{
 
     public void initMaps(){
         List<Obstacle> simpleMap = new ArrayList<Obstacle>();
-        simpleMap.add(new Obstacle(500.00, 800.00, 500.00, 800.00));
+        simpleMap.add(new Obstacle(200.00, 400.00, 100.00, 125.00));
+        simpleMap.add (new Obstacle(300.00, 750.00, 200.00, 225.00));
         maps = new ArrayList<List<Obstacle>>();
         maps.add(simpleMap);
     }

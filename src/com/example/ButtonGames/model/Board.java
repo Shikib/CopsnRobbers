@@ -11,6 +11,7 @@ public class Board {
 
     private Sprite playerL;
     private Sprite playerR;
+    private double radius = playerL.radius;
     private boolean hunterState; // true = left is hunter, false = right is hunter
 
 
@@ -48,14 +49,18 @@ public class Board {
         return playerR;
     }
 
+    public List<Obstacle> getObstacles(){
+        return obstacles;
+    }
+
 
     // Produce true if can move to that x, y coordinate
     public boolean canMove(double x, double y){
-        if (x < 0 || x > WIDTH || y < 0 || y > HEIGHT)
+        if (x < 0 || x > WIDTH - radius || y < 0 || y > HEIGHT - radius)
             return false;
         for (Obstacle o: obstacles){
             if (o.getXRange().contains(x) && o.getYRange().contains(y))
-                return false;
+            return false;
         }
         return true;
     }

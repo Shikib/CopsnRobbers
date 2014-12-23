@@ -9,8 +9,10 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import com.example.ButtonGames.activity.GameLoopThread;
 import com.example.ButtonGames.model.Board;
+import com.example.ButtonGames.model.Obstacle;
 import com.example.ButtonGames.model.Sprite;
 
+import java.util.List;
 import java.util.jar.Attributes;
 
 public class SimpleTagSurfaceView extends SurfaceView{
@@ -19,6 +21,7 @@ public class SimpleTagSurfaceView extends SurfaceView{
     private Board board;
     private final Paint left = new Paint(Paint.ANTI_ALIAS_FLAG);
     private final Paint right = new Paint(Paint.ANTI_ALIAS_FLAG);
+    private final Paint obstacle = new Paint(Paint.ANTI_ALIAS_FLAG);
     private GameLoopThread gameLoopThread;
 
 
@@ -31,6 +34,8 @@ public class SimpleTagSurfaceView extends SurfaceView{
         left.setStyle(Paint.Style.FILL);
         right.setColor(Color.BLUE);
         right.setStyle(Paint.Style.FILL);
+        obstacle.setColor(Color.GRAY);
+        obstacle.setStyle(Paint.Style.FILL);
 
 
         sh.addCallback(new SurfaceHolder.Callback() {
@@ -78,6 +83,15 @@ public class SimpleTagSurfaceView extends SurfaceView{
         canvas.rotate((float) board.getPlayerR().getDirection());
         canvas.drawRect(0f - (float) Sprite.radius, 0f - (float) Sprite.radius,  (float) Sprite.radius, (float) Sprite.radius, right);
         canvas.restore();
+
+        List<Obstacle> obstacles = board.getObstacles();
+        for (Obstacle o : obstacles){
+            canvas.drawRect((float) o.getXRange().getUpper().doubleValue(), (float) o.getYRange().getUpper().doubleValue(),
+                    (float) o.getXRange().getLower().doubleValue(), (float) o.getYRange().getLower().doubleValue(),obstacle);
+        }
+
     }
+
+
 
 }
