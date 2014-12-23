@@ -41,6 +41,14 @@ public class Board {
         }
     }
 
+    public int getHeight(){
+        return HEIGHT;
+    }
+
+    public int getWidth(){
+        return WIDTH;
+    }
+
     public Sprite getPlayerL() {
         return playerL;
     }

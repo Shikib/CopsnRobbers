@@ -1,12 +1,11 @@
 package com.example.ButtonGames.view;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
+import android.graphics.*;
 import android.util.AttributeSet;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import com.example.ButtonGames.R;
 import com.example.ButtonGames.activity.GameLoopThread;
 import com.example.ButtonGames.model.Board;
 import com.example.ButtonGames.model.Obstacle;
@@ -23,6 +22,7 @@ public class SimpleTagSurfaceView extends SurfaceView{
     private final Paint right = new Paint(Paint.ANTI_ALIAS_FLAG);
     private final Paint obstacle = new Paint(Paint.ANTI_ALIAS_FLAG);
     private GameLoopThread gameLoopThread;
+    private Bitmap background = BitmapFactory.decodeResource(getResources(), R.drawable.map1);
 
 
     public SimpleTagSurfaceView(Context context, Board board) {
@@ -70,7 +70,8 @@ public class SimpleTagSurfaceView extends SurfaceView{
 
     @Override
     public void onDraw(Canvas canvas) {
-        canvas.drawColor(Color.WHITE);
+
+        canvas.drawBitmap(background, 0f, 0f, null);
 
         canvas.save();
         canvas.translate((float) board.getPlayerL().getX(), (float) board.getPlayerL().getY());
