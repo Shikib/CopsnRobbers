@@ -21,7 +21,6 @@ public class SimpleTagSurfaceView extends SurfaceView{
     private GameLoopThread gameLoopThread;
     private final Paint text = new Paint(Paint.ANTI_ALIAS_FLAG); // Color/style of text for score
     private final Paint obstacle = new Paint(Paint.ANTI_ALIAS_FLAG); // Color/style for obstacle
-    private Rect rect = new Rect(0, 0, board.getWidth(), board.getHeight()); // Rectangle that is size of board
 
     // Bitmap of background
     private Bitmap background = BitmapFactory.decodeResource(getResources(), R.drawable.map1);
@@ -96,6 +95,7 @@ public class SimpleTagSurfaceView extends SurfaceView{
     @Override
     public void onDraw(Canvas canvas) {
 
+        Rect rect = new Rect(0, 0, board.getWidth(), board.getHeight()); // Rectangle that is size of board
         // Draw the background
         canvas.drawBitmap(background, null, rect, null);
 

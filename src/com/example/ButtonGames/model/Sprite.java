@@ -30,8 +30,8 @@ public class Sprite {
         this.direction = direction;
         this.score = score;
         this.spinning = true;
-        this.speed = 50;
-        this.rspeed = 4;
+        this.speed = 30;
+        this.rspeed = 10;
 
     }
 
