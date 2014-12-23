@@ -49,7 +49,7 @@ public class SimpleTagSurfaceView extends SurfaceView{
         this.board = board;
         text.setColor(Color.WHITE);
         text.setStyle(Paint.Style.FILL);
-        text.setTextSize(500);
+        text.setTextSize(board.getHeight()/2);
         obstacle.setColor(Color.GRAY);
         obstacle.setStyle(Paint.Style.FILL);
 
