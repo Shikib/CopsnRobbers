@@ -1,5 +1,7 @@
 package com.example.ButtonGames.model;
 
+import android.content.Intent;
+import com.example.ButtonGames.activity.MyActivity;
 import com.example.ButtonGames.activity.SimpleTagActivity;
 
 import java.util.ArrayList;
@@ -16,27 +18,31 @@ public class Board {
     private int height;
     private int width;
     private List<Obstacle> obstacles;
+    private SimpleTagActivity context;
     private double radius = playerL.radius; // Radius of sprite
     private boolean hunterState; // true = left is hunter, false = right is hunter
 
     private int currentFrame = 0; // What frame the game is on right now
-    private int switchRoleTime = 300; // Number of frames before sprites switch roles
+    private int switchRoleTime = 30; // Number of frames before sprites switch roles
 
 
 
 
-    public Board(List<Obstacle> obstacles, int width, int height){
+    public Board(List<Obstacle> obstacles, int width, int height, SimpleTagActivity context){
         this.obstacles = obstacles;
         this.width = width;
         this.height = height;
+        this.context = context;
         initSprites(0,0,(int) (Math.random()* 2)); // Makes sprites with random sprite as hunter/hunted
     }
 
     public void initSprites(int scoreL, int scoreR, int rand) {
         double radius = Sprite.radius;
 
-        playerL = new Sprite(this, false, scoreL, 0 + radius, height/2, 0); // Set left sprite on left side of board
-        playerR = new Sprite(this, false, scoreR, width - radius, height/2, 180); // Set right sprite on right side of board
+        playerL = new Sprite(this, false, scoreL, 0 + radius, height/2, 0,
+                (playerL == null)? false : playerL.getGameOver()); // Set left sprite on left side of board
+        playerR = new Sprite(this, false, scoreR, width - radius, height/2, 180,
+                (playerR == null)? false : playerR.getGameOver()); // Set right sprite on right side of board
 
         // If 0 set left sprite as hunter
         if (rand == 0) {
@@ -135,11 +141,19 @@ public class Board {
 
     }
 
+    public void checkGameOver(){
+        if (playerL.getGameOver() || playerR.getGameOver()){
+            Intent mainMenu = new Intent(context, MyActivity.class);
+            context.startActivity(mainMenu);
+        }
+    }
+
     public void updateBoard(){
         playerL.action(); // Move left sprite
         playerR.action(); // Move right sprite
         checkCollision();
         checkSwitchRoles();
+        checkGameOver();
         currentFrame++;
     }
 
