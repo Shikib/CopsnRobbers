@@ -6,7 +6,7 @@ import com.example.ButtonGames.model.Board;
 import com.example.ButtonGames.view.SimpleTagSurfaceView;
 
 public class GameLoopThread extends Thread {
-    static final long FPS = 10;
+    static final long FPS = 30;
     private SimpleTagSurfaceView view;
     private Board board;
     private boolean running = false;
@@ -46,7 +46,9 @@ public class GameLoopThread extends Thread {
                     sleep(sleepTime);
                 else
                     sleep(10);
-            } catch (Exception e) {}
+            } catch (InterruptedException ex) {
+                Thread.currentThread().interrupt();
+            } catch (Exception ex) {} // i believe this is unnecessary
         }
     }
 }
