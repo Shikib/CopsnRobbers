@@ -6,6 +6,7 @@ import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.View;
 
+import android.view.Window;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
@@ -28,6 +29,7 @@ public class SimpleTagActivity extends Activity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         initMaps();
         DisplayMetrics metrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
@@ -53,7 +55,8 @@ public class SimpleTagActivity extends Activity{
 
     public void initMaps(){
         List<Obstacle> simpleMap = new ArrayList<Obstacle>();
-        simpleMap.add(new Obstacle(500.00, 800.00, 500.00, 800.00));
+        simpleMap.add(new Obstacle(100.00, 500.00, 100.00, 115.00));
+        simpleMap.add(new Obstacle(300.00, 315.00, 200.00, 350.00));
         maps = new ArrayList<List<Obstacle>>();
         maps.add(simpleMap);
     }

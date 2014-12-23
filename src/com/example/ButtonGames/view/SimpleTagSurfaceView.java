@@ -28,6 +28,10 @@ public class SimpleTagSurfaceView extends SurfaceView{
     private Bitmap spriteGreen2 = BitmapFactory.decodeResource(getResources(), R.drawable.sprite_green_2);
     private Bitmap spriteGreen3 = BitmapFactory.decodeResource(getResources(), R.drawable.sprite_green_3);
 
+    private Bitmap HspriteGreen1 = BitmapFactory.decodeResource(getResources(), R.drawable.hunter_sprite_green_1);
+    private Bitmap HspriteGreen2 = BitmapFactory.decodeResource(getResources(), R.drawable.hunter_sprite_green_2);
+    private Bitmap HspriteGreen3 = BitmapFactory.decodeResource(getResources(), R.drawable.hunter_sprite_green_3);
+
 
 
 
@@ -104,9 +108,18 @@ public class SimpleTagSurfaceView extends SurfaceView{
         // true is hunter
         if (sprite.getState()){
             if (sprite.getSpinning()){
-                canvas.drawRect(0f - (float) Sprite.radius, 0f - (float) Sprite.radius, (float) Sprite.radius, (float) Sprite.radius, left);
+                canvas.drawBitmap(HspriteGreen1, 0f - (float) Sprite.radius, 0f - (float) Sprite.radius, null);
             } else {
-                canvas.drawRect(0f - (float) Sprite.radius, 0f - (float) Sprite.radius, (float) Sprite.radius, (float) Sprite.radius, left);
+                int currentFrame = board.getCurrentFrame() % 4;
+                if (currentFrame == 0){
+                    canvas.drawBitmap(HspriteGreen1, 0f - (float) Sprite.radius, 0f - (float) Sprite.radius, null);
+                } else if (currentFrame == 1){
+                    canvas.drawBitmap(HspriteGreen2, 0f - (float) Sprite.radius, 0f - (float) Sprite.radius, null);
+                } else if (currentFrame == 2){
+                    canvas.drawBitmap(HspriteGreen1, 0f - (float) Sprite.radius, 0f - (float) Sprite.radius, null);
+                } else if (currentFrame == 3){
+                    canvas.drawBitmap(HspriteGreen3, 0f - (float) Sprite.radius, 0f - (float) Sprite.radius, null);
+                }
             }
 
         } else {
