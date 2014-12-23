@@ -1,5 +1,7 @@
 package com.example.ButtonGames.model;
 
+import com.example.ButtonGames.activity.SimpleTagActivity;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.TimerTask;
@@ -13,6 +15,8 @@ public class Board {
     private Sprite playerR;
     private double radius = playerL.radius;
     private boolean hunterState; // true = left is hunter, false = right is hunter
+    private int switchRoleTime = 300;
+
 
 
     private int height;
@@ -115,10 +119,25 @@ public class Board {
 
     }
 
+    public void checkSwitchRoles(){
+        if ((currentFrame % switchRoleTime) == 0){
+            hunterState = !hunterState;
+            if (hunterState){
+                playerL.setState(true);
+                playerR.setState(false);
+            } else {
+                playerL.setState(false);
+                playerR.setState(true);
+            }
+        }
+
+    }
+
     public void updateBoard(){
         playerL.action();
         playerR.action();
         checkCollision();
+        checkSwitchRoles();
         currentFrame++;
     }
 

@@ -30,6 +30,7 @@ public class GameLoopThread extends Thread {
             startTime = System.currentTimeMillis();
 
             board.updateBoard();
+
             try {
                 c = view.getHolder().lockCanvas();
                 synchronized (view.getHolder()) {

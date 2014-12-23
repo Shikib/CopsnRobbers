@@ -1,6 +1,7 @@
 package com.example.ButtonGames.activity;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.MotionEvent;
@@ -10,10 +11,12 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import com.example.ButtonGames.model.Board;
 import com.example.ButtonGames.model.Obstacle;
 import com.example.ButtonGames.model.Sprite;
 import com.example.ButtonGames.view.SimpleTagSurfaceView;
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -92,6 +95,19 @@ public class SimpleTagActivity extends Activity{
             }
         });
 
+        TextView scoreL = new TextView(this);
+        scoreL.setText("" + board.getPlayerL().getScore());
+        scoreL.setTextColor(Color.GREEN);
+        scoreL.setTextSize(30f);
+        scoreL.setId(654321);
+
+
+        TextView scoreR = new TextView(this);
+        scoreR.setText("" + board.getPlayerR().getScore());
+        scoreR.setTextColor(Color.MAGENTA);
+        scoreR.setTextSize(30f);
+        scoreR.setId(754321);
+
         RelativeLayout.LayoutParams leftRules = new RelativeLayout.LayoutParams(
                 RelativeLayout.LayoutParams.WRAP_CONTENT,
                 RelativeLayout.LayoutParams.WRAP_CONTENT);
@@ -104,17 +120,37 @@ public class SimpleTagActivity extends Activity{
                 RelativeLayout.LayoutParams.MATCH_PARENT,
                 RelativeLayout.LayoutParams.MATCH_PARENT);
 
+        RelativeLayout.LayoutParams rightRulesScore = new RelativeLayout.LayoutParams(
+                RelativeLayout.LayoutParams.WRAP_CONTENT,
+                RelativeLayout.LayoutParams.WRAP_CONTENT);
+
+        RelativeLayout.LayoutParams leftRulesScore = new RelativeLayout.LayoutParams(
+                RelativeLayout.LayoutParams.WRAP_CONTENT,
+                RelativeLayout.LayoutParams.WRAP_CONTENT);
+
         buttons.setLayoutParams(params);
         buttons.addView(left);
         buttons.addView(right);
+        buttons.addView(scoreL);
+        buttons.addView(scoreR);
 
         leftRules.addRule(RelativeLayout.ALIGN_PARENT_LEFT, RelativeLayout.TRUE);
         leftRules.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, RelativeLayout.TRUE);
         left.setLayoutParams(leftRules);
 
+        leftRulesScore.addRule(RelativeLayout.RIGHT_OF, left.getId());
+        leftRulesScore.addRule(RelativeLayout.ALIGN_TOP, left.getId());
+        leftRulesScore.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, RelativeLayout.TRUE);
+        scoreL.setLayoutParams(leftRulesScore);
+
         rightRules.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, RelativeLayout.TRUE);
         rightRules.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, RelativeLayout.TRUE);
         right.setLayoutParams(rightRules);
+
+        rightRulesScore.addRule(RelativeLayout.LEFT_OF, right.getId());
+        rightRulesScore.addRule(RelativeLayout.ALIGN_TOP, right.getId());
+        rightRulesScore.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, RelativeLayout.TRUE);
+        scoreR.setLayoutParams(rightRulesScore);
 
         holder.addView(stSurfaceView);
         holder.addView(buttons);
