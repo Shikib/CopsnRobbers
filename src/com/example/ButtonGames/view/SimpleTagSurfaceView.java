@@ -32,6 +32,14 @@ public class SimpleTagSurfaceView extends SurfaceView{
     private Bitmap HspriteGreen2 = BitmapFactory.decodeResource(getResources(), R.drawable.hunter_sprite_green_2);
     private Bitmap HspriteGreen3 = BitmapFactory.decodeResource(getResources(), R.drawable.hunter_sprite_green_3);
 
+    private Bitmap spritePurple1 = BitmapFactory.decodeResource(getResources(), R.drawable.sprite_purple_1);
+    private Bitmap spritePurple2 = BitmapFactory.decodeResource(getResources(), R.drawable.sprite_purple_2);
+    private Bitmap spritePurple3 = BitmapFactory.decodeResource(getResources(), R.drawable.sprite_purple_3);
+
+    private Bitmap HspritePurple1 = BitmapFactory.decodeResource(getResources(), R.drawable.hunger_sprite_purple_1);
+    private Bitmap HspritePurple2 = BitmapFactory.decodeResource(getResources(), R.drawable.hunger_sprite_purple_2);
+    private Bitmap HspritePurple3 = BitmapFactory.decodeResource(getResources(), R.drawable.hunger_sprite_purple_3);
+
 
 
 
@@ -87,13 +95,13 @@ public class SimpleTagSurfaceView extends SurfaceView{
         canvas.save();
         canvas.translate((float) board.getPlayerL().getX(), (float) board.getPlayerL().getY());
         canvas.rotate((float) board.getPlayerL().getDirection());
-        drawCorrectSprite(canvas, board.getPlayerL());
+        drawCorrectSpriteL(canvas, board.getPlayerL());
         canvas.restore();
 
         canvas.save();
         canvas.translate((float) board.getPlayerR().getX(), (float) board.getPlayerR().getY());
         canvas.rotate((float) board.getPlayerR().getDirection());
-        drawCorrectSprite(canvas, board.getPlayerR());
+        drawCorrectSpriteR(canvas, board.getPlayerR());
         canvas.restore();
 
         List<Obstacle> obstacles = board.getObstacles();
@@ -104,7 +112,7 @@ public class SimpleTagSurfaceView extends SurfaceView{
 
     }
 
-    public void drawCorrectSprite(Canvas canvas, Sprite sprite){
+    public void drawCorrectSpriteL(Canvas canvas, Sprite sprite){
         // true is hunter
         if (sprite.getState()){
             if (sprite.getSpinning()){
@@ -135,6 +143,42 @@ public class SimpleTagSurfaceView extends SurfaceView{
                     canvas.drawBitmap(spriteGreen1, 0f - (float) Sprite.radius, 0f - (float) Sprite.radius, null);
                 } else if (currentFrame == 3){
                     canvas.drawBitmap(spriteGreen3, 0f - (float) Sprite.radius, 0f - (float) Sprite.radius, null);
+                }
+            }
+        }
+    }
+
+    public void drawCorrectSpriteR(Canvas canvas, Sprite sprite){
+        // true is hunter
+        if (sprite.getState()){
+            if (sprite.getSpinning()){
+                canvas.drawBitmap(HspritePurple1, 0f - (float) Sprite.radius, 0f - (float) Sprite.radius, null);
+            } else {
+                int currentFrame = board.getCurrentFrame() % 4;
+                if (currentFrame == 0){
+                    canvas.drawBitmap(HspritePurple1, 0f - (float) Sprite.radius, 0f - (float) Sprite.radius, null);
+                } else if (currentFrame == 1){
+                    canvas.drawBitmap(HspritePurple2, 0f - (float) Sprite.radius, 0f - (float) Sprite.radius, null);
+                } else if (currentFrame == 2){
+                    canvas.drawBitmap(HspritePurple1, 0f - (float) Sprite.radius, 0f - (float) Sprite.radius, null);
+                } else if (currentFrame == 3){
+                    canvas.drawBitmap(HspritePurple3, 0f - (float) Sprite.radius, 0f - (float) Sprite.radius, null);
+                }
+            }
+
+        } else {
+            if (sprite.getSpinning()){
+                canvas.drawBitmap(spritePurple1, 0f - (float) Sprite.radius, 0f - (float) Sprite.radius, null);
+            } else {
+                int currentFrame = board.getCurrentFrame() % 4;
+                if (currentFrame == 0){
+                    canvas.drawBitmap(spritePurple1, 0f - (float) Sprite.radius, 0f - (float) Sprite.radius, null);
+                } else if (currentFrame == 1){
+                    canvas.drawBitmap(spritePurple2, 0f - (float) Sprite.radius, 0f - (float) Sprite.radius, null);
+                } else if (currentFrame == 2){
+                    canvas.drawBitmap(spritePurple1, 0f - (float) Sprite.radius, 0f - (float) Sprite.radius, null);
+                } else if (currentFrame == 3){
+                    canvas.drawBitmap(spritePurple3, 0f - (float) Sprite.radius, 0f - (float) Sprite.radius, null);
                 }
             }
         }
