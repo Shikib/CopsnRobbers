@@ -111,24 +111,16 @@ public class Board {
 
         if (condition == 0)
             hunter.updateScore();
-        else
-            hunted.updateScore();
 
         // consider putting delay here
-        initSprites(playerL.getScore(), playerR.getScore(), hunterState ? 0 : 1);
+        initSprites(playerL.getScore(), playerR.getScore(), hunterState ?  1 : 0);
 
     }
 
     public void checkSwitchRoles(){
         if ((currentFrame % switchRoleTime) == 0){
+            resetSprites(0);
             hunterState = !hunterState;
-            if (hunterState){
-                playerL.setState(true);
-                playerR.setState(false);
-            } else {
-                playerL.setState(false);
-                playerR.setState(true);
-            }
         }
 
     }
