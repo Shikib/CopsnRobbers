@@ -18,8 +18,7 @@ public class SimpleTagSurfaceView extends SurfaceView{
 
     private SurfaceHolder sh;
     private Board board;
-    private final Paint left = new Paint(Paint.ANTI_ALIAS_FLAG);
-    private final Paint right = new Paint(Paint.ANTI_ALIAS_FLAG);
+    private final Paint text = new Paint(Paint.ANTI_ALIAS_FLAG);
     private final Paint obstacle = new Paint(Paint.ANTI_ALIAS_FLAG);
     private GameLoopThread gameLoopThread;
     private Bitmap background = BitmapFactory.decodeResource(getResources(), R.drawable.map1);
@@ -48,10 +47,9 @@ public class SimpleTagSurfaceView extends SurfaceView{
         gameLoopThread = new GameLoopThread(this, board);
         sh = getHolder();
         this.board = board;
-        left.setColor(Color.RED);
-        left.setStyle(Paint.Style.FILL);
-        right.setColor(Color.BLUE);
-        right.setStyle(Paint.Style.FILL);
+        text.setColor(Color.WHITE);
+        text.setStyle(Paint.Style.FILL);
+        text.setTextSize(500);
         obstacle.setColor(Color.GRAY);
         obstacle.setStyle(Paint.Style.FILL);
 
@@ -104,11 +102,16 @@ public class SimpleTagSurfaceView extends SurfaceView{
         drawCorrectSpriteR(canvas, board.getPlayerR());
         canvas.restore();
 
+        canvas.drawText(Integer.toString(board.getPlayerL().getScore()), 600, 800, text);
+        canvas.drawText(Integer.toString(board.getPlayerR().getScore()), 1000, 800, text);
+
         List<Obstacle> obstacles = board.getObstacles();
         for (Obstacle o : obstacles){
             canvas.drawRect((float) o.getXRange().getUpper().doubleValue(), (float) o.getYRange().getUpper().doubleValue(),
                     (float) o.getXRange().getLower().doubleValue(), (float) o.getYRange().getLower().doubleValue(),obstacle);
         }
+
+
 
     }
 

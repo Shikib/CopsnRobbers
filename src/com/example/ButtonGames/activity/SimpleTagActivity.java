@@ -16,7 +16,6 @@ import com.example.ButtonGames.model.Board;
 import com.example.ButtonGames.model.Obstacle;
 import com.example.ButtonGames.model.Sprite;
 import com.example.ButtonGames.view.SimpleTagSurfaceView;
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -120,14 +119,6 @@ public class SimpleTagActivity extends Activity{
                 RelativeLayout.LayoutParams.MATCH_PARENT,
                 RelativeLayout.LayoutParams.MATCH_PARENT);
 
-        RelativeLayout.LayoutParams rightRulesScore = new RelativeLayout.LayoutParams(
-                RelativeLayout.LayoutParams.WRAP_CONTENT,
-                RelativeLayout.LayoutParams.WRAP_CONTENT);
-
-        RelativeLayout.LayoutParams leftRulesScore = new RelativeLayout.LayoutParams(
-                RelativeLayout.LayoutParams.WRAP_CONTENT,
-                RelativeLayout.LayoutParams.WRAP_CONTENT);
-
         buttons.setLayoutParams(params);
         buttons.addView(left);
         buttons.addView(right);
@@ -138,19 +129,9 @@ public class SimpleTagActivity extends Activity{
         leftRules.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, RelativeLayout.TRUE);
         left.setLayoutParams(leftRules);
 
-        leftRulesScore.addRule(RelativeLayout.RIGHT_OF, left.getId());
-        leftRulesScore.addRule(RelativeLayout.ALIGN_TOP, left.getId());
-        leftRulesScore.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, RelativeLayout.TRUE);
-        scoreL.setLayoutParams(leftRulesScore);
-
         rightRules.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, RelativeLayout.TRUE);
         rightRules.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, RelativeLayout.TRUE);
         right.setLayoutParams(rightRules);
-
-        rightRulesScore.addRule(RelativeLayout.LEFT_OF, right.getId());
-        rightRulesScore.addRule(RelativeLayout.ALIGN_TOP, right.getId());
-        rightRulesScore.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, RelativeLayout.TRUE);
-        scoreR.setLayoutParams(rightRulesScore);
 
         holder.addView(stSurfaceView);
         holder.addView(buttons);
