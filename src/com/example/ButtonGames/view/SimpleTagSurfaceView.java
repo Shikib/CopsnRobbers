@@ -66,9 +66,18 @@ public class SimpleTagSurfaceView extends SurfaceView{
     @Override
     public void onDraw(Canvas canvas) {
         canvas.drawColor(Color.WHITE);
-        canvas.drawRect((float) board.getPlayerL().getX(), (float) board.getPlayerL().getY(),
-                (float) board.getPlayerL().getX() + (float) Sprite.radius, (float) board.getPlayerL().getY() + (float) Sprite.radius, left);
-        canvas.drawCircle((float) board.getPlayerR().getX(), (float) board.getPlayerR().getY(), (float) Sprite.radius, right);
+
+        canvas.save();
+        canvas.translate((float) board.getPlayerL().getX(), (float) board.getPlayerL().getY());
+        canvas.rotate((float) board.getPlayerL().getDirection());
+        canvas.drawRect(0f - (float) Sprite.radius, 0f - (float) Sprite.radius,  (float) Sprite.radius, (float) Sprite.radius, left);
+        canvas.restore();
+
+        canvas.save();
+        canvas.translate((float) board.getPlayerR().getX(), (float) board.getPlayerR().getY());
+        canvas.rotate((float) board.getPlayerR().getDirection());
+        canvas.drawRect(0f - (float) Sprite.radius, 0f - (float) Sprite.radius,  (float) Sprite.radius, (float) Sprite.radius, right);
+        canvas.restore();
     }
 
 }

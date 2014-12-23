@@ -28,8 +28,8 @@ public class Sprite {
         this.direction = direction;
         this.score = score;
         this.spinning = true;
-        this.speed = 10;
-        this.rspeed = 1.5;
+        this.speed = 5;
+        this.rspeed = 4;
     }
 
     public boolean getState() {
