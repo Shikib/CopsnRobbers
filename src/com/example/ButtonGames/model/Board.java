@@ -13,36 +13,37 @@ public class Board {
 
     private Sprite playerL;
     private Sprite playerR;
-    private double radius = playerL.radius;
-    private boolean hunterState; // true = left is hunter, false = right is hunter
-    private int switchRoleTime = 300;
-
-
-
     private int height;
     private int width;
     private List<Obstacle> obstacles;
-    private int currentFrame = 0;
+    private double radius = playerL.radius; // Radius of sprite
+    private boolean hunterState; // true = left is hunter, false = right is hunter
+
+    private int currentFrame = 0; // What frame the game is on right now
+    private int switchRoleTime = 300; // Number of frames before sprites switch roles
+
+
 
 
     public Board(List<Obstacle> obstacles, int width, int height){
         this.obstacles = obstacles;
         this.width = width;
         this.height = height;
-        initSprites(0,0,(int) Math.random()* 2);
+        initSprites(0,0,(int) (Math.random()* 2)); // Makes sprites with random sprite as hunter/hunted
     }
 
     public void initSprites(int scoreL, int scoreR, int rand) {
         double radius = Sprite.radius;
 
-        playerL = new Sprite(this, false, scoreL, 0 + radius, height/2, 0);
-        playerR = new Sprite(this, false, scoreR, width - radius, height/2, 180);
+        playerL = new Sprite(this, false, scoreL, 0 + radius, height/2, 0); // Set left sprite on left side of board
+        playerR = new Sprite(this, false, scoreR, width - radius, height/2, 180); // Set right sprite on right side of board
 
-        if (rand == 1) {
+        // If 0 set left sprite as hunter
+        if (rand == 0) {
             playerL.setState(true);
             hunterState = true;
         }
-        else {
+        else if (rand == 1){ // If 1 set right sprite as hunter
             playerR.setState(true);
             hunterState = false;
         }
@@ -73,10 +74,12 @@ public class Board {
     }
 
 
-    // Produce true if can move to that x, y coordinate
+    // Produce true if can move to that x, y coordinate - need to be fixed
     public boolean canMove(double x, double y){
+        // Check if hit borders
         if (x < 0 || x > width - radius || y < 0 || y > height - radius)
             return false;
+        // Check of hit obstacles
         for (Obstacle o: obstacles){
             if (o.getXRange().contains(x) && o.getYRange().contains(y))
             return false;
@@ -84,23 +87,25 @@ public class Board {
         return true;
     }
 
-    // If there is a collision, update score, and switch roles
+    // If there is a collision, update score, and reset sprites
     public boolean checkCollision(){
         double radius = Sprite.radius;
         boolean hasCollision = Math.abs(playerL.getX() - playerR.getX()) <= 2*radius && Math.abs(playerL.getY() - playerR.getY()) <= 2*radius;
 
         if (hasCollision) {
-            resetSprites(0);
+            resetSprites(0); // Condition 0 means hunter updates score
         }
 
         return hasCollision;
     }
 
-    // condition is 0 if tag, 1 if time ran out
+    // Reset sprites to opposite ends of board, update score based on condition, switch roles
+    // Condition is 0 if tag (hunter get point), 1 if time ran out (hunted get point)
     public void resetSprites(int condition) {
         Sprite hunter;
         Sprite hunted;
-        if (hunterState) {
+
+        if (hunterState) { // True means left is hunter, false means right is hunter
             hunter = playerL;
             hunted = playerR;
         }
@@ -114,22 +119,25 @@ public class Board {
         else if (condition == 1)
             hunted.updateScore();
 
-        // consider putting delay here
-        initSprites(playerL.getScore(), playerR.getScore(), hunterState ?  0: 1);
+        // Switch roles
+        // If hunterState is true (left is hunter), make right hunter (1 = right is hunter, 0 = left is hunter)
+        // Consider putting a delay here
+        initSprites(playerL.getScore(), playerR.getScore(), hunterState ?  1 : 0);
 
     }
 
+    // Check to see if time has run out
     public void checkSwitchRoles(){
+        // If the current frame is not 0, and is a multiple of switchRoleTime
         if ((currentFrame != 0 && (currentFrame % switchRoleTime) == 0)){
-            resetSprites(1);
-            hunterState = !hunterState;
+            resetSprites(1); // (Condition 1 = time has run out, hunted gets point)
         }
 
     }
 
     public void updateBoard(){
-        playerL.action();
-        playerR.action();
+        playerL.action(); // Move left sprite
+        playerR.action(); // Move right sprite
         checkCollision();
         checkSwitchRoles();
         currentFrame++;

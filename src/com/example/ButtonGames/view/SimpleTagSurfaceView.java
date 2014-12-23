@@ -88,6 +88,7 @@ public class SimpleTagSurfaceView extends SurfaceView{
     public void onDraw(Canvas canvas) {
 
         Rect rect = new Rect(0, 0, board.getWidth(), board.getHeight());
+
         canvas.drawBitmap(background, null, rect, null);
 
         canvas.save();

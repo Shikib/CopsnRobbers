@@ -15,7 +15,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import com.example.ButtonGames.model.Board;
 import com.example.ButtonGames.model.Obstacle;
-import com.example.ButtonGames.model.Sprite;
 import com.example.ButtonGames.view.SimpleTagSurfaceView;
 
 import java.util.ArrayList;
@@ -32,19 +31,26 @@ public class SimpleTagActivity extends Activity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Get rid of banner, set as full screen
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        initMaps();
+        initMaps(); // Set up map options to use
+
+        // Get width and height of board from display
         DisplayMetrics metrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
+
+        // Make new board with width and height of display, and first map in list maps
         board = new Board(maps.get(0), metrics.widthPixels,metrics.heightPixels);
+
 
         holder = new FrameLayout(this);
         stSurfaceView = new SimpleTagSurfaceView(this, board);
         buttons = new RelativeLayout(this);
-        initView();
+        initView(); // Set up left and right buttons
     }
 
 
@@ -60,9 +66,10 @@ public class SimpleTagActivity extends Activity{
 
 
     public void initMaps(){
-        List<Obstacle> simpleMap = new ArrayList<Obstacle>();
+        List<Obstacle> simpleMap = new ArrayList<Obstacle>(); // Example map
         simpleMap.add(new Obstacle(100.00, 500.00, 100.00, 115.00));
         simpleMap.add(new Obstacle(300.00, 315.00, 200.00, 350.00));
+
         maps = new ArrayList<List<Obstacle>>();
         maps.add(simpleMap);
     }
@@ -71,12 +78,15 @@ public class SimpleTagActivity extends Activity{
         Button left = new Button(this);
         left.setId(123456);
 
+        // Set left button so it can deal with touch events
         left.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 int action = event.getAction();
+                // Start moving left sprite if button is pressed
                 if (action == MotionEvent.ACTION_DOWN || action == MotionEvent.ACTION_POINTER_DOWN)
                     board.getPlayerL().startMoving();
+                // Start spinning left sprite when button is let go
                 else if (action == MotionEvent.ACTION_UP || action == MotionEvent.ACTION_POINTER_UP || action == MotionEvent.ACTION_CANCEL)
                     board.getPlayerL().startSpinning();
                 return true;
@@ -86,31 +96,22 @@ public class SimpleTagActivity extends Activity{
         Button right = new Button(this);
         right.setId(123457);
 
+        // Set right button so it can deal with touch events
         right.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 int action = event.getAction();
+                // Start moving right sprite if button is pressed
                 if (action == MotionEvent.ACTION_DOWN || action == MotionEvent.ACTION_POINTER_DOWN)
                     board.getPlayerR().startMoving();
+                // Start spinning right sprite if buttons is let go
                 else if (action == MotionEvent.ACTION_UP || action == MotionEvent.ACTION_POINTER_UP || action == MotionEvent.ACTION_CANCEL)
                     board.getPlayerR().startSpinning();
                 return true;
             }
         });
 
-        TextView scoreL = new TextView(this);
-        scoreL.setText("" + board.getPlayerL().getScore());
-        scoreL.setTextColor(Color.GREEN);
-        scoreL.setTextSize(30f);
-        scoreL.setId(654321);
-
-
-        TextView scoreR = new TextView(this);
-        scoreR.setText("" + board.getPlayerR().getScore());
-        scoreR.setTextColor(Color.MAGENTA);
-        scoreR.setTextSize(30f);
-        scoreR.setId(754321);
-
+        // Rules for how buttons are placed on screen
         RelativeLayout.LayoutParams leftRules = new RelativeLayout.LayoutParams(
                 RelativeLayout.LayoutParams.WRAP_CONTENT,
                 RelativeLayout.LayoutParams.WRAP_CONTENT);
@@ -123,95 +124,27 @@ public class SimpleTagActivity extends Activity{
                 RelativeLayout.LayoutParams.MATCH_PARENT,
                 RelativeLayout.LayoutParams.MATCH_PARENT);
 
+        // Add the buttons to the holder for buttons
         buttons.setLayoutParams(params);
         buttons.addView(left);
         buttons.addView(right);
-        buttons.addView(scoreL);
-        buttons.addView(scoreR);
 
+        // Rule to place button on botton left of screen
         leftRules.addRule(RelativeLayout.ALIGN_PARENT_LEFT, RelativeLayout.TRUE);
         leftRules.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, RelativeLayout.TRUE);
         left.setLayoutParams(leftRules);
 
+        // Rule to place button on bottom right of screen
         rightRules.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, RelativeLayout.TRUE);
         rightRules.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, RelativeLayout.TRUE);
         right.setLayoutParams(rightRules);
 
+        // Add SimpleTagSurfaceView to holder
         holder.addView(stSurfaceView);
+        // Add buttons to holder
         holder.addView(buttons);
+        // Set holder to what is shown on display
         setContentView(holder);
     }
 
-    /*public void addListenerOnButtons(){
-        stSurfaceView.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                int action = motionEvent.getActionMasked();
-                int x = (int) motionEvent.getRawX();
-                int y = (int) motionEvent.getRawY();
-                boolean state; // completely unnecessary to put there, but intelliJ won't let me compile otherwise
-
-                switch(action) {
-                    case MotionEvent.ACTION_DOWN:
-                        if (x < 500 && y > 200)
-                            board.getPlayerL().startMoving();
-                        else if (x > 500 && y > 200)
-                            board.getPlayerR().startMoving();
-                        else
-                            return false;
-                        return true;
-                    case MotionEvent.ACTION_POINTER_DOWN:
-                        state = false;
-                        for (int i = 0; i < motionEvent.getPointerCount(); i++) {
-                            x = (int) motionEvent.getX(i);
-                            y = (int) motionEvent.getY(i);
-
-                            if (x < 500 && y > 200) {
-                                board.getPlayerL().startMoving();
-                                state = true;
-                            }
-                            else if (x > 500 && y > 200) {
-                                board.getPlayerR().startMoving();
-                                state = true;
-                            }
-                        }
-                        return state;
-                    case MotionEvent.ACTION_UP:
-                        if (x < 500 && y > 200)
-                            board.getPlayerL().startSpinning();
-                        else if (x > 500 && y > 200)
-                            board.getPlayerR().startSpinning();
-                        else
-                            return false;
-                        return true;
-                    case MotionEvent.ACTION_CANCEL:
-                        if (x < 500 && y > 200)
-                            board.getPlayerL().startSpinning();
-                        else if (x > 500 && y > 200)
-                            board.getPlayerR().startSpinning();
-                        else
-                            return false;
-                        return true;
-                    case MotionEvent.ACTION_POINTER_UP:
-                        state = false;
-                        for (int i = 0; i < motionEvent.getPointerCount(); i++) {
-                            x = (int) motionEvent.getX(i);
-                            y = (int) motionEvent.getY(i);
-
-                            if (x < 500 && y > 200) {
-                                board.getPlayerL().startSpinning();
-                                state = true;
-                            }
-                            else if (x > 500 && y > 200) {
-                                board.getPlayerR().startSpinning();
-                                state = true;
-                            }
-                        }
-                        return state;
-                    default:
-                        return true;
-                }
-            }
-        });
-    }*/
 }
