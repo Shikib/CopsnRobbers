@@ -27,9 +27,9 @@ public class Board {
 
     public Board(List<Obstacle> obstacles, int width, int height){
         this.obstacles = obstacles;
-        initSprites(0,0,(int) Math.random()* 2);
         this.width = width;
         this.height = height;
+        initSprites(0,0,(int) Math.random()* 2);
     }
 
     public void initSprites(int scoreL, int scoreR, int rand) {
