@@ -34,7 +34,6 @@ public class SimpleTagActivity extends Activity{
         stSurfaceView = new SimpleTagSurfaceView(this, board);
         setContentView(stSurfaceView);
         addListenerOnButtons();
-        startTimerTask();
 
     }
 
@@ -47,21 +46,8 @@ public class SimpleTagActivity extends Activity{
     @Override
     protected void onPause() {
         super.onPause();
-        timer.cancel();
-        timer.purge();
     }
 
-
-    public void startTimerTask(){
-        timer = new Timer();
-        timer.scheduleAtFixedRate(new TimerTask() {
-            @Override
-            public void run() {
-                board.updateBoard();
-                stSurfaceView.onDraw(new Canvas());
-            }
-        }, 0, 1000 / 60);
-    }
 
     public void initMaps(){
         List<Obstacle> simpleMap = new ArrayList<Obstacle>();
@@ -79,9 +65,9 @@ public class SimpleTagActivity extends Activity{
                 int y = (int) motionEvent.getRawY();
                 Sprite sprite;
 
-                if (x < 500 && y > 500)
+                if (x < 400 && y > 185)
                     sprite = board.getPlayerL();
-                else if (x > 1480 && y > 500)
+                else if (x > 400 && y > 185)
                     sprite = board.getPlayerR();
                 else
                     return false;
