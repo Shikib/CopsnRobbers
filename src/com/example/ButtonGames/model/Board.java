@@ -18,6 +18,7 @@ public class Board {
     private int height;
     private int width;
     private List<Obstacle> obstacles;
+    private int currentFrame = 0;
 
 
     public Board(List<Obstacle> obstacles, int width, int height){
@@ -49,6 +50,10 @@ public class Board {
 
     public int getWidth(){
         return width;
+    }
+
+    public int getCurrentFrame(){
+        return currentFrame;
     }
 
     public Sprite getPlayerL() {
@@ -114,6 +119,7 @@ public class Board {
         playerL.action();
         playerR.action();
         checkCollision();
+        currentFrame++;
     }
 
 

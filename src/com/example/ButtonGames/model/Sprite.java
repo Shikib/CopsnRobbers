@@ -1,5 +1,7 @@
 package com.example.ButtonGames.model;
 
+import android.graphics.Bitmap;
+
 import java.util.TimerTask;
 
 public class Sprite {
@@ -17,7 +19,7 @@ public class Sprite {
     private double rspeed;    // speed of rotation
     private double speed;     // max speed -- change if add acceleration
 
-    private boolean spinning; // is the sprite spinning -- false implies spinning
+    private boolean spinning; // is the sprite spinning -- false implies moving
 
 
     public Sprite(Board board, boolean state, int score, double x, double y, double direction) {
@@ -30,6 +32,7 @@ public class Sprite {
         this.spinning = true;
         this.speed = 5;
         this.rspeed = 4;
+
     }
 
     public boolean getState() {

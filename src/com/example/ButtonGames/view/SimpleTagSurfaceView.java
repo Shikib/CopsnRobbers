@@ -24,6 +24,11 @@ public class SimpleTagSurfaceView extends SurfaceView{
     private GameLoopThread gameLoopThread;
     private Bitmap background = BitmapFactory.decodeResource(getResources(), R.drawable.map1);
 
+    private Bitmap spriteGreen1 = BitmapFactory.decodeResource(getResources(), R.drawable.sprite_green_1);
+    private Bitmap spriteGreen2 = BitmapFactory.decodeResource(getResources(), R.drawable.sprite_green_2);
+    private Bitmap spriteGreen3 = BitmapFactory.decodeResource(getResources(), R.drawable.sprite_green_3);
+
+
 
 
     public SimpleTagSurfaceView(Context context, Board board) {
@@ -78,13 +83,13 @@ public class SimpleTagSurfaceView extends SurfaceView{
         canvas.save();
         canvas.translate((float) board.getPlayerL().getX(), (float) board.getPlayerL().getY());
         canvas.rotate((float) board.getPlayerL().getDirection());
-        canvas.drawRect(0f - (float) Sprite.radius, 0f - (float) Sprite.radius,  (float) Sprite.radius, (float) Sprite.radius, left);
+        drawCorrectSprite(canvas, board.getPlayerL());
         canvas.restore();
 
         canvas.save();
         canvas.translate((float) board.getPlayerR().getX(), (float) board.getPlayerR().getY());
         canvas.rotate((float) board.getPlayerR().getDirection());
-        canvas.drawRect(0f - (float) Sprite.radius, 0f - (float) Sprite.radius,  (float) Sprite.radius, (float) Sprite.radius, right);
+        drawCorrectSprite(canvas, board.getPlayerR());
         canvas.restore();
 
         List<Obstacle> obstacles = board.getObstacles();
@@ -93,6 +98,33 @@ public class SimpleTagSurfaceView extends SurfaceView{
                     (float) o.getXRange().getLower().doubleValue(), (float) o.getYRange().getLower().doubleValue(),obstacle);
         }
 
+    }
+
+    public void drawCorrectSprite(Canvas canvas, Sprite sprite){
+        // true is hunter
+        if (sprite.getState()){
+            if (sprite.getSpinning()){
+                canvas.drawRect(0f - (float) Sprite.radius, 0f - (float) Sprite.radius, (float) Sprite.radius, (float) Sprite.radius, left);
+            } else {
+                canvas.drawRect(0f - (float) Sprite.radius, 0f - (float) Sprite.radius, (float) Sprite.radius, (float) Sprite.radius, left);
+            }
+
+        } else {
+            if (sprite.getSpinning()){
+                canvas.drawBitmap(spriteGreen1, 0f - (float) Sprite.radius, 0f - (float) Sprite.radius, null);
+            } else {
+                int currentFrame = board.getCurrentFrame() % 4;
+                if (currentFrame == 0){
+                    canvas.drawBitmap(spriteGreen1, 0f - (float) Sprite.radius, 0f - (float) Sprite.radius, null);
+                } else if (currentFrame == 1){
+                    canvas.drawBitmap(spriteGreen2, 0f - (float) Sprite.radius, 0f - (float) Sprite.radius, null);
+                } else if (currentFrame == 2){
+                    canvas.drawBitmap(spriteGreen1, 0f - (float) Sprite.radius, 0f - (float) Sprite.radius, null);
+                } else if (currentFrame == 3){
+                    canvas.drawBitmap(spriteGreen3, 0f - (float) Sprite.radius, 0f - (float) Sprite.radius, null);
+                }
+            }
+        }
     }
 
 
