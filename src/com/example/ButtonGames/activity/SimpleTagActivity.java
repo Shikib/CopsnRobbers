@@ -3,10 +3,13 @@ package com.example.ButtonGames.activity;
 import android.app.Activity;
 import android.graphics.Canvas;
 import android.graphics.Point;
+import android.hardware.display.DisplayManager;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import com.example.ButtonGames.R;
 import com.example.ButtonGames.model.Board;
@@ -31,9 +34,12 @@ public class SimpleTagActivity extends Activity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         initMaps();
-        Display display = getWindowManager().getDefaultDisplay();
-        board = new Board(maps.get(0), display.getWidth(), display.getHeight());
+
+        DisplayMetrics metrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        board = new Board(maps.get(0), metrics.widthPixels,metrics.heightPixels);
         stSurfaceView = new SimpleTagSurfaceView(this, board);
         setContentView(stSurfaceView);
         addListenerOnButtons();
