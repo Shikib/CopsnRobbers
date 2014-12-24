@@ -28,7 +28,7 @@ public class Sprite {
         this.direction = direction;
         this.score = score;
         this.spinning = true;
-        this.speed = 30;
+        this.speed = board.getHeight()/ 20;
         this.rspeed = 10;
 
     }
