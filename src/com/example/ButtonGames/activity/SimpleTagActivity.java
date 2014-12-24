@@ -86,6 +86,8 @@ public class SimpleTagActivity extends Activity{
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 hideSystemUI();
+                if (board.getCurrentFrame() < 0)
+                    return false;
                 int action = event.getAction();
                 // Start moving left sprite if button is pressed
                 if (action == MotionEvent.ACTION_DOWN || action == MotionEvent.ACTION_POINTER_DOWN)
@@ -105,6 +107,8 @@ public class SimpleTagActivity extends Activity{
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 hideSystemUI();
+                if (board.getCurrentFrame() < 0)
+                    return false;
                 int action = event.getAction();
                 // Start moving right sprite if button is pressed
                 if (action == MotionEvent.ACTION_DOWN || action == MotionEvent.ACTION_POINTER_DOWN)

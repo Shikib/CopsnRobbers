@@ -204,7 +204,7 @@ public class SimpleTagSurfaceView extends SurfaceView{
                 }
             }
         }
-        return null; // will never get here
+        return spriteGreen1; // return generic if in doubt
     }
 
     public Bitmap getCorrectSpriteR(){
@@ -241,6 +241,6 @@ public class SimpleTagSurfaceView extends SurfaceView{
                 }
             }
         }
-        return null; // will never get here
+        return spritePurple1; // if in doubt return generic sprite
     }
 }
