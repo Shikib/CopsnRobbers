@@ -119,7 +119,6 @@ public class SimpleTagSurfaceView extends SurfaceView{
         // Draw the background
         canvas.drawBitmap(background, null, rect, null);
 
-
         // Make a matrix, get the correct left sprite for the frame
         Matrix leftMatrix = new Matrix();
         Bitmap leftBitmap = getCorrectSpriteL();
@@ -154,14 +153,19 @@ public class SimpleTagSurfaceView extends SurfaceView{
                     (float) o.getXRange().getUpper().doubleValue(), (float) o.getYRange().getUpper().doubleValue(),obstacle);
         }
 
-        // Calculate time on timer based on currentFrame 
-        int timeOnTimer = (board.getSwitchRoleTime() / 10) - ((board.getCurrentFrame() % board.getSwitchRoleTime()) / 10); // <-- Frames per second
-
-        //Draws the timer
-        canvas.drawText( Integer.toString(timeOnTimer), board.getWidth()/2, 35*board.getHeight() / 36, textT);
-
-
-
+        if (board.getCurrentFrame() < 0) {
+            int loadingTime = board.getCurrentFrame()/10;
+            if (loadingTime != 0)
+                canvas.drawText(Integer.toString(-1*loadingTime), board.getWidth() / 2, 35 * board.getHeight() / 36, textT);
+            else
+                canvas.drawText("BEGIN!", 3*board.getWidth()/5, 35 * board.getHeight() / 36, textT);
+        }
+        else {
+            // Calculate time on timer based on currentFrame
+            int timeOnTimer = (board.getSwitchRoleTime() / 10) - ((board.getCurrentFrame() % board.getSwitchRoleTime()) / 10); // <-- Frames per second
+            //Draws the timer
+            canvas.drawText(Integer.toString(timeOnTimer), board.getWidth() / 2, 35 * board.getHeight() / 36, textT);
+        }
     }
 
     public Bitmap getCorrectSpriteL(){

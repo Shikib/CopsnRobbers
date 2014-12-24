@@ -131,7 +131,7 @@ public class Board {
         // Consider putting a delay here
         initSprites(playerL.getScore(), playerR.getScore(), hunterState ?  1 : 0);
 
-        currentFrame = 0;
+        currentFrame = -40;
     }
 
     // Check to see if time has run out
