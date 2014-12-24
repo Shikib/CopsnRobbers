@@ -7,7 +7,7 @@ import com.example.ButtonGames.model.Board;
 import com.example.ButtonGames.view.SimpleTagSurfaceView;
 
 public class GameLoopThread extends Thread {
-    static final long FPS = 10; // Frames per second
+    static final long FPS = 10; // Frames per second --> IF CHANGE THIS MUST CHANGE DRAW TIMER
     private SimpleTagSurfaceView view;
     private Board board;
     private boolean running = false;

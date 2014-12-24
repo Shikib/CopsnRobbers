@@ -21,6 +21,7 @@ public class SimpleTagSurfaceView extends SurfaceView{
     private GameLoopThread gameLoopThread;
     private final Paint textL = new Paint(Paint.ANTI_ALIAS_FLAG); // Color/style/size/alignment of text for Lscore
     private final Paint textR = new Paint(Paint.ANTI_ALIAS_FLAG); // Color/style/size/alignment of text for Rscore
+    private final Paint textT = new Paint(Paint.ANTI_ALIAS_FLAG); // Color/style/size/alignment of text for timer
     private final Paint obstacle = new Paint(Paint.ANTI_ALIAS_FLAG); // Color/style for obstacle
 
     // Bitmap of background
@@ -50,17 +51,21 @@ public class SimpleTagSurfaceView extends SurfaceView{
     public SimpleTagSurfaceView(Context context, final Board board) {
         super(context);
 
-        //Set up color/style of score text and obstacles
+        //Set up color/style of score text timer and obstacles
         textL.setColor(Color.GREEN);
         textL.setStyle(Paint.Style.FILL);
         textL.setTextSize(board.getHeight() / 6);
         textL.setTextAlign(Paint.Align.LEFT);
 
-
         textR.setColor(Color.MAGENTA);
         textR.setStyle(Paint.Style.FILL);
         textR.setTextSize(board.getHeight() / 6);
         textR.setTextAlign(Paint.Align.RIGHT);
+
+        textT.setColor(Color.BLACK);
+        textT.setStyle(Paint.Style.FILL);
+        textT.setTextSize(board.getHeight() / 8);
+        textT.setTextAlign(Paint.Align.RIGHT);
 
         obstacle.setColor(Color.GRAY);
         obstacle.setStyle(Paint.Style.FILL);
@@ -148,6 +153,13 @@ public class SimpleTagSurfaceView extends SurfaceView{
             canvas.drawRect((float) o.getXRange().getLower().doubleValue(), (float) o.getYRange().getLower().doubleValue(),
                     (float) o.getXRange().getUpper().doubleValue(), (float) o.getYRange().getUpper().doubleValue(),obstacle);
         }
+
+        int timeOnTimer = (board.getSwitchRoleTime() / 10) - ((board.getCurrentFrame() % board.getSwitchRoleTime()) / 10); // <-- Frames per second
+
+        canvas.drawText( Integer.toString(timeOnTimer), 1*board.getWidth()/2, 35*board.getHeight() / 36, textT);
+
+
+
     }
 
     public Bitmap getCorrectSpriteL(){

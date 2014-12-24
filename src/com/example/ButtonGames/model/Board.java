@@ -24,7 +24,7 @@ public class Board {
     public static final int winningScore = 5;
 
     private int currentFrame = 0; // What frame the game is on right now
-    private int switchRoleTime = 3000; // Number of frames before sprites switch roles
+    private int switchRoleTime = 150; // Number of frames before sprites switch roles
 
 
 
@@ -76,6 +76,10 @@ public class Board {
         return obstacles;
     }
 
+    public int getSwitchRoleTime(){
+        return switchRoleTime;
+    }
+
 
     // Produce true if can move to that x, y coordinate - need to be fixed
     public boolean canMove(double x, double y){
@@ -125,6 +129,7 @@ public class Board {
         // Switch roles
         // If hunterState is true (left is hunter), make right hunter (1 = right is hunter, 0 = left is hunter)
         // Consider putting a delay here
+
         initSprites(playerL.getScore(), playerR.getScore(), hunterState ?  1 : 0);
 
     }
