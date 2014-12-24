@@ -37,7 +37,6 @@ public class Board {
     }
 
     public void initSprites(int scoreL, int scoreR, int rand) {
-        double radius = Sprite.radius;
 
         playerL = new Sprite(this, false, scoreL, 0 + radius, height/2, 0); // Set left sprite on left side of board
         playerR = new Sprite(this, false, scoreR, width - radius, height/2, 180); // Set right sprite on right side of board
@@ -81,11 +80,11 @@ public class Board {
     // Produce true if can move to that x, y coordinate - need to be fixed
     public boolean canMove(double x, double y){
         // Check if hit borders
-        if (x < 0 || x > width - radius || y < 0 || y > height - radius)
+        if (x < 0 || x > width || y < 0 || y > height)
             return false;
         // Check of hit obstacles
         for (Obstacle o: obstacles){
-            if ((o.getXRange().contains(x + radius) || o.getXRange().contains(x - radius)) && (o.getYRange().contains(y + radius) || o.getYRange().contains(y - radius)))
+            if (o.getXRange().contains(x) && o.getYRange().contains(y))
                 return false;
         }
         return true;

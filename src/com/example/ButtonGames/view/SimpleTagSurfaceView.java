@@ -107,7 +107,8 @@ public class SimpleTagSurfaceView extends SurfaceView{
 
         // Rotate and translate left sprite
         leftMatrix.setRotate((float) board.getPlayerL().getDirection(), (float) leftBitmap.getWidth() / 2, (float) leftBitmap.getHeight() / 2);
-        leftMatrix.postTranslate((float) board.getPlayerL().getX(), (float) board.getPlayerL().getY());
+        leftMatrix.postTranslate((float) board.getPlayerL().getX() - ((float) leftBitmap.getWidth() / 2),
+                (float) board.getPlayerL().getY() - ((float) leftBitmap.getHeight() / 2));
         // Draw left sprite
         canvas.drawBitmap(leftBitmap, leftMatrix, null);
 
@@ -118,7 +119,8 @@ public class SimpleTagSurfaceView extends SurfaceView{
         // Rotate and translate right sprite
         rightMatrix.setRotate((float) board.getPlayerR().getDirection(), (float) rightBitmap.getWidth() / 2, (float) rightBitmap.getHeight() / 2);
         // bandaid solution here: should set X position of right sprite to correct value
-        rightMatrix.postTranslate((float) board.getPlayerR().getX() - 200, (float) board.getPlayerR().getY());
+        rightMatrix.postTranslate((float) board.getPlayerR().getX() - ((float) rightBitmap.getWidth() / 2),
+                (float) board.getPlayerR().getY() - ((float) rightBitmap.getHeight() / 2));
 
         // Draw right sprite
         canvas.drawBitmap(rightBitmap, rightMatrix, null);
