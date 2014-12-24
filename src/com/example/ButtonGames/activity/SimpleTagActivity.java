@@ -1,14 +1,13 @@
 package com.example.ButtonGames.activity;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.graphics.Point;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
-import android.view.MotionEvent;
-import android.view.View;
+import android.view.*;
 
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
@@ -27,6 +26,9 @@ public class SimpleTagActivity extends Activity{
     private FrameLayout holder;     // holder for everything
     private RelativeLayout buttons; // holder for the buttons
 
+    private int screenWidth;
+    private int screenHeight;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,8 +43,8 @@ public class SimpleTagActivity extends Activity{
         // Get width and height of board from display
         Point size = new Point();
             this.getWindowManager().getDefaultDisplay().getRealSize(size);
-            int screenWidth = size.x;
-            int screenHeight = size.y;
+            screenWidth = size.x;
+            screenHeight = size.y;
 
         // Make new board with width and height of display, and first map in list maps
         board = new Board(maps.get(0), screenWidth, screenHeight);
@@ -68,8 +70,6 @@ public class SimpleTagActivity extends Activity{
 
     public void initMaps(){
         List<Obstacle> simpleMap = new ArrayList<Obstacle>(); // Example map
-        simpleMap.add(new Obstacle(100.00, 500.00, 100.00, 500.00));
-        simpleMap.add(new Obstacle(300.00, 500.00, 200.00, 350.00));
 
         maps = new ArrayList<List<Obstacle>>();
         maps.add(simpleMap);
@@ -132,15 +132,25 @@ public class SimpleTagActivity extends Activity{
         buttons.addView(left);
         buttons.addView(right);
 
-        // Rule to place button on botton left of screen
+        // Rule to place button on bottom left of screen
         leftRules.addRule(RelativeLayout.ALIGN_PARENT_LEFT, RelativeLayout.TRUE);
         leftRules.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, RelativeLayout.TRUE);
+
+        // Set height, color of left button
+        leftRules.height = screenHeight / 6;
+        leftRules.width = screenWidth / 6;
         left.setLayoutParams(leftRules);
+        left.getBackground().setColorFilter(Color.GREEN, PorterDuff.Mode.MULTIPLY);
 
         // Rule to place button on bottom right of screen
         rightRules.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, RelativeLayout.TRUE);
         rightRules.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, RelativeLayout.TRUE);
+
+        // Set height, color of right button
+        rightRules.height = screenHeight / 6;
+        rightRules.width = screenWidth / 6;
         right.setLayoutParams(rightRules);
+        right.getBackground().setColorFilter(Color.MAGENTA, PorterDuff.Mode.MULTIPLY);
 
         // Add SimpleTagSurfaceView to holder
         holder.addView(stSurfaceView);
