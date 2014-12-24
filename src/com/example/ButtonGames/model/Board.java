@@ -21,6 +21,7 @@ public class Board {
     private double radius = Sprite.radius; // Radius of sprite
     private boolean hunterState; // true = left is hunter, false = right is hunter
     private boolean winMethod; // true = win by collision, hunter wins, false = win my time runs out, hunted wins
+    private boolean timeToSwitch;// true = time to switch
 
     public static final int winningScore = 5;
 
@@ -36,6 +37,7 @@ public class Board {
         this.height = height;
         initSprites(0,0,(int) (Math.random()* 2)); // Makes sprites with random sprite as hunter/hunted
         winMethod = false; // (do we need this? idk scared of null pointers)
+        timeToSwitch = false;
     }
 
     public void initSprites(int scoreL, int scoreR, int rand) {
@@ -150,19 +152,23 @@ public class Board {
     // Check to see if time has run out
     public void checkSwitchRoles(){
         // If the current frame is not 0, and is a multiple of switchRoleTime
-        if ((currentFrame != 0 && (currentFrame % switchRoleTime) == 0)){
+        if (timeToSwitch){
             if (currentFrame > 0) {
                 winMethod = false;
                 currentFrame = -50;
             }
             if (currentFrame >= -40) {
                 resetSprites(1);  // (Condition 1 = time has run out, hunted gets point)
+                timeToSwitch = false;
             }
         }
 
     }
 
     public void updateBoard(){
+        if (currentFrame != 0 && (currentFrame % switchRoleTime) == 0){
+            timeToSwitch = true;
+        }
         playerL.action(); // Move left sprite
         playerR.action(); // Move right sprite
         checkCollision();
