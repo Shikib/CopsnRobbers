@@ -1,6 +1,5 @@
 package com.example.ButtonGames.model;
 
-import android.content.Intent;
 
 public class Sprite {
 
@@ -19,10 +18,9 @@ public class Sprite {
 
     private boolean spinning; // true is spinning, false is moving
 
-    private boolean gameOver; // true if game is over
 
 
-    public Sprite(Board board, boolean state, int score, double x, double y, double direction, boolean gameOver) {
+    public Sprite(Board board, boolean state, int score, double x, double y, double direction) {
         this.board = board;
         this.state = state;
         this.x = x;
@@ -32,7 +30,6 @@ public class Sprite {
         this.spinning = true;
         this.speed = 30;
         this.rspeed = 10;
-        this.gameOver = gameOver;
 
     }
 
@@ -58,10 +55,6 @@ public class Sprite {
 
     public double getDirection() {
         return direction;
-    }
-
-    public boolean getGameOver(){
-        return gameOver;
     }
 
     public void setState(boolean state) {
@@ -125,9 +118,6 @@ public class Sprite {
 
     // Add a game over call here?
     public int updateScore() {
-        if (score >= 5){
-            gameOver = true;
-        }
         return score++;
     }
 

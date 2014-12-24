@@ -42,7 +42,7 @@ public class SimpleTagActivity extends Activity{
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
 
         // Make new board with width and height of display, and first map in list maps
-        board = new Board(maps.get(0), metrics.widthPixels, metrics.heightPixels, this);
+        board = new Board(maps.get(0), metrics.widthPixels, metrics.heightPixels);
 
 
         holder = new FrameLayout(this);

@@ -1,6 +1,7 @@
 package com.example.ButtonGames.activity;
 
 
+import android.app.Activity;
 import android.graphics.Canvas;
 import com.example.ButtonGames.model.Board;
 import com.example.ButtonGames.view.SimpleTagSurfaceView;
@@ -28,6 +29,12 @@ public class GameLoopThread extends Thread {
         while (running) {
             Canvas c = null;
             startTime = System.currentTimeMillis(); // Record when the loop starts
+
+            int score = Board.winningScore; // get the static winning score
+
+            // check whether game is over
+            if (board.getPlayerL().getScore() >= score || board.getPlayerR().getScore() >= score)
+                ((Activity) view.getContext()).finish();
 
             board.updateBoard(); // Tick the board
 
