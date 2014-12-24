@@ -35,10 +35,10 @@ public class GameLoopThread extends Thread {
 
             // check whether game is over
             if (board.getPlayerL().getScore() >= score || board.getPlayerR().getScore() >= score) {
-                ((Activity) view.getContext()).finish();
-
                 Intent gameOverScreen = new Intent((view.getContext()), GameOverActivity.class);
                 view.getContext().startActivity(gameOverScreen);
+                ((Activity) view.getContext()).finish();
+                return;
             }
 
             board.updateBoard(); // Tick the board

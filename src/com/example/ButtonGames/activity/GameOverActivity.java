@@ -29,7 +29,6 @@ public class GameOverActivity extends Activity {
                         | View.SYSTEM_UI_FLAG_FULLSCREEN
                         | View.SYSTEM_UI_FLAG_IMMERSIVE);
 
-        // Set what is displayed to main.xml in layout-land
         setContentView(R.layout.game_over);
     }
 
