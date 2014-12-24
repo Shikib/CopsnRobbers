@@ -8,12 +8,12 @@ import android.view.Window;
 import android.view.WindowManager;
 import com.example.ButtonGames.R;
 
-public class MyActivity extends Activity {
-    /**
-     * Called when the activity is first created.
-     */
+/**
+ * Created by Sarah on 2014-12-24.
+ */
+public class GameOverActivity extends Activity {
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         // Get rid of banner, fill screens the app
@@ -30,12 +30,16 @@ public class MyActivity extends Activity {
                         | View.SYSTEM_UI_FLAG_IMMERSIVE);
 
         // Set what is displayed to main.xml in layout-land
-        setContentView(R.layout.main);
+        setContentView(R.layout.game_over);
     }
 
-    // When play button is pressed, start new SimpleTagActivity
-    public void onPlayButton(View view){
+    public void onRetryButton(View view){
         startActivity(new Intent(this, SimpleTagActivity.class));
+        finish();
+    }
+
+    public void onMainMenuButton(View view){
+        startActivity(new Intent(this, MyActivity.class));
         finish();
     }
 }

@@ -25,6 +25,7 @@ public class SimpleTagActivity extends Activity{
     private SimpleTagSurfaceView stSurfaceView;
     private FrameLayout holder;     // holder for everything
     private RelativeLayout buttons; // holder for the buttons
+    public static Activity simpleTag;
 
     private int screenWidth;
     private int screenHeight;
@@ -32,6 +33,7 @@ public class SimpleTagActivity extends Activity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        simpleTag = this;
 
         // Get rid of banner, set as full screen
         requestWindowFeature(Window.FEATURE_NO_TITLE);

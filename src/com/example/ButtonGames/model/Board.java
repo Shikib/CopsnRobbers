@@ -24,7 +24,7 @@ public class Board {
     public static final int winningScore = 5;
 
     private int currentFrame = 0; // What frame the game is on right now
-    private int switchRoleTime = 150; // Number of frames before sprites switch roles
+    private int switchRoleTime = 10; // Number of frames before sprites switch roles
 
 
 
