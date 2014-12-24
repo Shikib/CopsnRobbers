@@ -154,11 +154,11 @@ public class SimpleTagSurfaceView extends SurfaceView{
                     (float) o.getXRange().getUpper().doubleValue(), (float) o.getYRange().getUpper().doubleValue(),obstacle);
         }
 
-        // Calculate time on timer based on currentFrame -- DOES NOT RESET WHEN COLLISION OCCURS :-(
+        // Calculate time on timer based on currentFrame 
         int timeOnTimer = (board.getSwitchRoleTime() / 10) - ((board.getCurrentFrame() % board.getSwitchRoleTime()) / 10); // <-- Frames per second
 
         //Draws the timer
-        canvas.drawText( Integer.toString(timeOnTimer), 1*board.getWidth()/2, 35*board.getHeight() / 36, textT);
+        canvas.drawText( Integer.toString(timeOnTimer), board.getWidth()/2, 35*board.getHeight() / 36, textT);
 
 
 

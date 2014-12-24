@@ -24,7 +24,7 @@ public class Board {
     public static final int winningScore = 5;
 
     private int currentFrame = 0; // What frame the game is on right now
-    private int switchRoleTime = 10; // Number of frames before sprites switch roles
+    private int switchRoleTime = 300; // Number of frames before sprites switch roles
 
 
 
@@ -129,9 +129,9 @@ public class Board {
         // Switch roles
         // If hunterState is true (left is hunter), make right hunter (1 = right is hunter, 0 = left is hunter)
         // Consider putting a delay here
-
         initSprites(playerL.getScore(), playerR.getScore(), hunterState ?  1 : 0);
 
+        currentFrame = 0;
     }
 
     // Check to see if time has run out
