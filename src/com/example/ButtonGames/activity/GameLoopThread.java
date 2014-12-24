@@ -43,6 +43,8 @@ public class GameLoopThread extends Thread {
                 synchronized (view.getHolder()) {
                     view.onDraw(c); // Draw the board on the canvas gotten from view
                 }
+            } catch(NullPointerException ex) {
+                ex.printStackTrace();
             } finally {
                 if (c != null) {
                     view.getHolder().unlockCanvasAndPost(c); // Save and post canvas
