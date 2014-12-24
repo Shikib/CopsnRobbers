@@ -19,7 +19,8 @@ public class SimpleTagSurfaceView extends SurfaceView{
     private SurfaceHolder sh;
     private Board board;
     private GameLoopThread gameLoopThread;
-    private final Paint text = new Paint(Paint.ANTI_ALIAS_FLAG); // Color/style of text for score
+    private final Paint textL = new Paint(Paint.ANTI_ALIAS_FLAG); // Color/style/size/alignment of text for Lscore
+    private final Paint textR = new Paint(Paint.ANTI_ALIAS_FLAG); // Color/style/size/alignment of text for Rscore
     private final Paint obstacle = new Paint(Paint.ANTI_ALIAS_FLAG); // Color/style for obstacle
 
     // Bitmap of background
@@ -50,9 +51,17 @@ public class SimpleTagSurfaceView extends SurfaceView{
         super(context);
 
         //Set up color/style of score text and obstacles
-        text.setColor(Color.WHITE);
-        text.setStyle(Paint.Style.FILL);
-        text.setTextSize(board.getHeight()/2);
+        textL.setColor(Color.GREEN);
+        textL.setStyle(Paint.Style.FILL);
+        textL.setTextSize(board.getHeight() / 6);
+        textL.setTextAlign(Paint.Align.LEFT);
+
+
+        textR.setColor(Color.MAGENTA);
+        textR.setStyle(Paint.Style.FILL);
+        textR.setTextSize(board.getHeight() / 6);
+        textR.setTextAlign(Paint.Align.RIGHT);
+
         obstacle.setColor(Color.GRAY);
         obstacle.setStyle(Paint.Style.FILL);
 
@@ -131,8 +140,8 @@ public class SimpleTagSurfaceView extends SurfaceView{
         canvas.drawBitmap(rightBitmap, rightMatrix, null);
 
         // Draw score
-        canvas.drawText(Integer.toString(board.getPlayerL().getScore()), 2*board.getWidth()/8, 3*board.getHeight()/4, text);
-        canvas.drawText(Integer.toString(board.getPlayerR().getScore()), 5*board.getWidth()/8, 3*board.getHeight()/4, text);
+        canvas.drawText(Integer.toString(board.getPlayerL().getScore()), 1*board.getWidth()/6, 35*board.getHeight() / 36, textL);
+        canvas.drawText(Integer.toString(board.getPlayerR().getScore()), 5*board.getWidth()/6, 35*board.getHeight() / 36, textR);
 
         // Draw obstacles
         List<Obstacle> obstacles = board.getObstacles();
