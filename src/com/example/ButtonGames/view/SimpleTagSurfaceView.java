@@ -66,7 +66,7 @@ public class SimpleTagSurfaceView extends SurfaceView{
         textT.setColor(Color.BLACK);
         textT.setStyle(Paint.Style.FILL);
         textT.setTextSize(board.getHeight() / 8);
-        textT.setTextAlign(Paint.Align.RIGHT);
+        textT.setTextAlign(Paint.Align.CENTER);
 
         textM.setColor(Color.RED);
         textM.setStyle(Paint.Style.FILL);
@@ -127,6 +127,7 @@ public class SimpleTagSurfaceView extends SurfaceView{
 
         // Make a matrix, get the correct left sprite for the frame
         Matrix leftMatrix = new Matrix();
+        // Resize the sprite -- MUST CHANGE RADIUS AND SPEED
         Bitmap leftBitmap = Bitmap.createScaledBitmap(getCorrectSpriteL(),
                 getCorrectSpriteL().getWidth() * (board.getHeight() / 12) / getCorrectSpriteL().getHeight(), board.getHeight() / 12, false);
 
@@ -138,6 +139,7 @@ public class SimpleTagSurfaceView extends SurfaceView{
 
         // Make a matrix, get the correct right sprite for the frame
         Matrix rightMatrix = new Matrix();
+        // Resize the sprite -- MUST CHANGE RADIUS AND SPEED
         Bitmap rightBitmap = Bitmap.createScaledBitmap(getCorrectSpriteR(),
                 getCorrectSpriteR().getWidth() * (board.getHeight() / 12) / getCorrectSpriteR().getHeight(), board.getHeight() / 12, false);
 
@@ -145,7 +147,6 @@ public class SimpleTagSurfaceView extends SurfaceView{
         rightMatrix.setRotate((float) board.getPlayerR().getDirection(), (float) rightBitmap.getWidth() / 2, (float) rightBitmap.getHeight() / 2);
         rightMatrix.postTranslate((float) board.getPlayerR().getX() - ((float) rightBitmap.getWidth() / 2),
                 (float) board.getPlayerR().getY() - ((float) rightBitmap.getHeight() / 2));
-
 
 
         // Draw score
@@ -163,15 +164,16 @@ public class SimpleTagSurfaceView extends SurfaceView{
         if (board.getCurrentFrame() <= -40){
             if ((-50 <= board.getCurrentFrame() && board.getCurrentFrame()<= -48) ||
                     (-45 <= board.getCurrentFrame() && board.getCurrentFrame() <= -43)) {
+                // Draw left sprite
+                canvas.drawBitmap(leftBitmap, leftMatrix, null);
+                // Draw right sprite
+                canvas.drawBitmap(rightBitmap, rightMatrix, null);
+
                 if (board.getWinMethod()) {
                     canvas.drawText("Hunter Wins!", board.getWidth() / 2, board.getHeight() / 2, textM);
                 } else {
                     canvas.drawText("Prey got away!", board.getWidth() / 2, board.getHeight() / 2, textM);
                 }
-                // Draw left sprite
-                canvas.drawBitmap(leftBitmap, leftMatrix, null);
-                // Draw right sprite
-                canvas.drawBitmap(rightBitmap, rightMatrix, null);
 
             }
         } else {
@@ -179,13 +181,13 @@ public class SimpleTagSurfaceView extends SurfaceView{
             canvas.drawBitmap(leftBitmap, leftMatrix, null);
             // Draw right sprite
             canvas.drawBitmap(rightBitmap, rightMatrix, null);
-            
+
              if (board.getCurrentFrame() < 0) {
                  int loadingTime = board.getCurrentFrame() / 10;
                  if (loadingTime != 0)
-                     canvas.drawText(Integer.toString(-1 * loadingTime), board.getWidth() / 2, 35 * board.getHeight() / 36, textT);
+                     canvas.drawText(Integer.toString(-1 * loadingTime), board.getWidth() / 2, board.getHeight() / 2, textT);
                  else
-                     canvas.drawText("BEGIN!", 3 * board.getWidth() / 5, 35 * board.getHeight() / 36, textT);
+                     canvas.drawText("BEGIN!", board.getWidth() / 2, board.getHeight() / 2, textT);
              } else {
                  // Calculate time on timer based on currentFrame
                  int timeOnTimer = (board.getSwitchRoleTime() / 10) - ((board.getCurrentFrame() % board.getSwitchRoleTime()) / 10); // <-- Frames per second

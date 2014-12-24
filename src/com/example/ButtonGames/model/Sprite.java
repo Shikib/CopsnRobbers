@@ -1,9 +1,12 @@
 package com.example.ButtonGames.model;
 
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import com.example.ButtonGames.R;
+
 public class Sprite {
 
-    public static final double radius = 40; // subject to change
 
     private Board board;   // Corresponding board
     private boolean state; // true implies hunter, false implies hunted
@@ -30,7 +33,6 @@ public class Sprite {
         this.spinning = true;
         this.speed = board.getHeight()/ 20;
         this.rspeed = 10;
-
     }
 
     public boolean getState() {

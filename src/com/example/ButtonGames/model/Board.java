@@ -18,10 +18,10 @@ public class Board {
     private int height;
     private int width;
     private List<Obstacle> obstacles;
-    private double radius = Sprite.radius; // Radius of sprite
     private boolean hunterState; // true = left is hunter, false = right is hunter
     private boolean winMethod; // true = win by collision, hunter wins, false = win my time runs out, hunted wins
     private boolean timeToSwitch;// true = time to switch
+    private int spriteRadius;
 
     public static final int winningScore = 5;
 
@@ -35,6 +35,7 @@ public class Board {
         this.obstacles = obstacles;
         this.width = width;
         this.height = height;
+        this.spriteRadius = height / 24; // Based on resize of sprite in surface view
         initSprites(0,0,(int) (Math.random()* 2)); // Makes sprites with random sprite as hunter/hunted
         winMethod = false; // (do we need this? idk scared of null pointers)
         timeToSwitch = false;
@@ -42,8 +43,8 @@ public class Board {
 
     public void initSprites(int scoreL, int scoreR, int rand) {
 
-        playerL = new Sprite(this, false, scoreL, 0 + radius, height/2, 0); // Set left sprite on left side of board
-        playerR = new Sprite(this, false, scoreR, width - radius, height/2, 180); // Set right sprite on right side of board
+        playerL = new Sprite(this, false, scoreL, 0 + 2*spriteRadius, height/2, 0); // Set left sprite on left side of board
+        playerR = new Sprite(this, false, scoreR, width - 2*spriteRadius, height/2, 180); // Set right sprite on right side of board
 
         // If 0 set left sprite as hunter
         if (rand == 0) {
@@ -97,7 +98,8 @@ public class Board {
             return false;
         // Check of hit obstacles
         for (Obstacle o: obstacles){
-            if ((o.getXRange().contains(x + radius) || o.getXRange().contains(x - radius)) && (o.getYRange().contains(y + radius) || o.getYRange().contains(y - radius)))
+            if ((o.getXRange().contains(x + spriteRadius) || o.getXRange().contains(x - spriteRadius)) &&
+                    (o.getYRange().contains(y + spriteRadius) || o.getYRange().contains(y - spriteRadius)))
                 return false;
         }
         return true;
@@ -105,8 +107,7 @@ public class Board {
 
     // If there is a collision, update score, and reset sprites
     public boolean checkCollision(){
-        double radius = Sprite.radius;
-        boolean hasCollision = Math.abs(playerL.getX() - playerR.getX()) <= 2*radius && Math.abs(playerL.getY() - playerR.getY()) <= 2*radius;
+        boolean hasCollision = Math.abs(playerL.getX() - playerR.getX()) <= 2*spriteRadius && Math.abs(playerL.getY() - playerR.getY()) <= 2*spriteRadius;
 
         if (hasCollision) {
             if (currentFrame > 0) {
