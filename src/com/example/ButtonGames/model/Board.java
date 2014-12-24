@@ -18,13 +18,13 @@ public class Board {
     private int height;
     private int width;
     private List<Obstacle> obstacles;
-    private double radius = playerL.radius; // Radius of sprite
+    private double radius = Sprite.radius; // Radius of sprite
     private boolean hunterState; // true = left is hunter, false = right is hunter
 
     public static final int winningScore = 5;
 
     private int currentFrame = 0; // What frame the game is on right now
-    private int switchRoleTime = 30; // Number of frames before sprites switch roles
+    private int switchRoleTime = 3000; // Number of frames before sprites switch roles
 
 
 
@@ -85,8 +85,8 @@ public class Board {
             return false;
         // Check of hit obstacles
         for (Obstacle o: obstacles){
-            if (o.getXRange().contains(x) && o.getYRange().contains(y))
-            return false;
+            if ((o.getXRange().contains(x + radius) || o.getXRange().contains(x - radius)) && (o.getYRange().contains(y + radius) || o.getYRange().contains(y - radius)))
+                return false;
         }
         return true;
     }
