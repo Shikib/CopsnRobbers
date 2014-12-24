@@ -20,6 +20,7 @@ public class Board {
     private List<Obstacle> obstacles;
     private double radius = Sprite.radius; // Radius of sprite
     private boolean hunterState; // true = left is hunter, false = right is hunter
+    private boolean winMethod; // true = win by collision, hunter wins, false = win my time runs out, hunted wins
 
     public static final int winningScore = 5;
 
@@ -34,6 +35,7 @@ public class Board {
         this.width = width;
         this.height = height;
         initSprites(0,0,(int) (Math.random()* 2)); // Makes sprites with random sprite as hunter/hunted
+        winMethod = false; // (do we need this? idk scared of null pointers)
     }
 
     public void initSprites(int scoreL, int scoreR, int rand) {
@@ -80,6 +82,11 @@ public class Board {
         return switchRoleTime;
     }
 
+    public boolean getWinMethod(){
+        return winMethod;
+    }
+
+
 
     // Produce true if can move to that x, y coordinate - need to be fixed
     public boolean canMove(double x, double y){
@@ -100,7 +107,13 @@ public class Board {
         boolean hasCollision = Math.abs(playerL.getX() - playerR.getX()) <= 2*radius && Math.abs(playerL.getY() - playerR.getY()) <= 2*radius;
 
         if (hasCollision) {
-            resetSprites(0); // Condition 0 means hunter updates score
+            if (currentFrame > 0) {
+                winMethod = true;
+                currentFrame = -50;
+            }
+            if (currentFrame >= -40) {
+                resetSprites(0); // Condition 0 means hunter updates score
+            }
         }
 
         return hasCollision;
@@ -131,14 +144,20 @@ public class Board {
         // Consider putting a delay here
         initSprites(playerL.getScore(), playerR.getScore(), hunterState ?  1 : 0);
 
-        currentFrame = -40;
+
     }
 
     // Check to see if time has run out
     public void checkSwitchRoles(){
         // If the current frame is not 0, and is a multiple of switchRoleTime
         if ((currentFrame != 0 && (currentFrame % switchRoleTime) == 0)){
-            resetSprites(1); // (Condition 1 = time has run out, hunted gets point)
+            if (currentFrame > 0) {
+                winMethod = false;
+                currentFrame = -50;
+            }
+            if (currentFrame >= -40) {
+                resetSprites(1);  // (Condition 1 = time has run out, hunted gets point)
+            }
         }
 
     }

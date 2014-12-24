@@ -87,10 +87,12 @@ public class Sprite {
 
     // Called in update board. Ticks the sprite.
     public void action() {
-        if (spinning)
-            rotate();
-        else
-            move();
+        if (!(board.getCurrentFrame() <= -40)) {
+            if (spinning)
+                rotate();
+            else
+                move();
+        }
     }
 
     public void rotate() {
