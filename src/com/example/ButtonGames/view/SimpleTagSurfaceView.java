@@ -132,7 +132,6 @@ public class SimpleTagSurfaceView extends SurfaceView{
 
         // Rotate and translate right sprite
         rightMatrix.setRotate((float) board.getPlayerR().getDirection(), (float) rightBitmap.getWidth() / 2, (float) rightBitmap.getHeight() / 2);
-        // bandaid solution here: should set X position of right sprite to correct value
         rightMatrix.postTranslate((float) board.getPlayerR().getX() - ((float) rightBitmap.getWidth() / 2),
                 (float) board.getPlayerR().getY() - ((float) rightBitmap.getHeight() / 2));
 

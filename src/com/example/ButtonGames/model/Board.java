@@ -80,7 +80,7 @@ public class Board {
     // Produce true if can move to that x, y coordinate - need to be fixed
     public boolean canMove(double x, double y){
         // Check if hit borders
-        if (x < 0 || x > width || y < 0 || y > height)
+        if (x < 0 || x > width || y < 0 || y > 5*height / 6)
             return false;
         // Check of hit obstacles
         for (Obstacle o: obstacles){
