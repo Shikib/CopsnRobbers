@@ -84,6 +84,7 @@ public class SimpleTagSurfaceView extends SurfaceView{
                         gameLoopThread.join();
                         retry = false;
                     } catch (InterruptedException e) {
+                        Thread.currentThread().interrupt();
                     }
                 }
             }
