@@ -127,7 +127,8 @@ public class SimpleTagSurfaceView extends SurfaceView{
 
         // Make a matrix, get the correct left sprite for the frame
         Matrix leftMatrix = new Matrix();
-        Bitmap leftBitmap = getCorrectSpriteL();
+        Bitmap leftBitmap = Bitmap.createScaledBitmap(getCorrectSpriteL(),
+                getCorrectSpriteL().getWidth() * (board.getHeight() / 12) / getCorrectSpriteL().getHeight(), board.getHeight() / 12, false);
 
         // Rotate and translate left sprite
         leftMatrix.setRotate((float) board.getPlayerL().getDirection(), (float) leftBitmap.getWidth() / 2, (float) leftBitmap.getHeight() / 2);
@@ -138,7 +139,8 @@ public class SimpleTagSurfaceView extends SurfaceView{
 
         // Make a matrix, get the correct right sprite for the frame
         Matrix rightMatrix = new Matrix();
-        Bitmap rightBitmap = getCorrectSpriteR();
+        Bitmap rightBitmap = Bitmap.createScaledBitmap(getCorrectSpriteR(),
+                getCorrectSpriteR().getWidth() * (board.getHeight() / 12) / getCorrectSpriteR().getHeight(), board.getHeight() / 12, false);
 
         // Rotate and translate right sprite
         rightMatrix.setRotate((float) board.getPlayerR().getDirection(), (float) rightBitmap.getWidth() / 2, (float) rightBitmap.getHeight() / 2);
