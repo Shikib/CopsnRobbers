@@ -134,8 +134,7 @@ public class SimpleTagSurfaceView extends SurfaceView{
         leftMatrix.setRotate((float) board.getPlayerL().getDirection(), (float) leftBitmap.getWidth() / 2, (float) leftBitmap.getHeight() / 2);
         leftMatrix.postTranslate((float) board.getPlayerL().getX() - ((float) leftBitmap.getWidth() / 2),
                 (float) board.getPlayerL().getY() - ((float) leftBitmap.getHeight() / 2));
-        // Draw left sprite
-        canvas.drawBitmap(leftBitmap, leftMatrix, null);
+
 
         // Make a matrix, get the correct right sprite for the frame
         Matrix rightMatrix = new Matrix();
@@ -147,8 +146,7 @@ public class SimpleTagSurfaceView extends SurfaceView{
         rightMatrix.postTranslate((float) board.getPlayerR().getX() - ((float) rightBitmap.getWidth() / 2),
                 (float) board.getPlayerR().getY() - ((float) rightBitmap.getHeight() / 2));
 
-        // Draw right sprite
-        canvas.drawBitmap(rightBitmap, rightMatrix, null);
+
 
         // Draw score
         canvas.drawText(Integer.toString(board.getPlayerL().getScore()), 1*board.getWidth()/6, 35*board.getHeight() / 36, textL);
@@ -163,23 +161,37 @@ public class SimpleTagSurfaceView extends SurfaceView{
 
         // Draw the countdown after resetting roles
         if (board.getCurrentFrame() <= -40){
-            if (board.getWinMethod()){
-                canvas.drawText("Hunter Wins!", board.getWidth()/2, board.getHeight() / 2, textM);
-            } else {
-                canvas.drawText("Prey got away!", board.getWidth()/2, board.getHeight() / 2, textM);
+            if ((-50 <= board.getCurrentFrame() && board.getCurrentFrame()<= -48) ||
+                    (-45 <= board.getCurrentFrame() && board.getCurrentFrame() <= -43)) {
+                if (board.getWinMethod()) {
+                    canvas.drawText("Hunter Wins!", board.getWidth() / 2, board.getHeight() / 2, textM);
+                } else {
+                    canvas.drawText("Prey got away!", board.getWidth() / 2, board.getHeight() / 2, textM);
+                }
+                // Draw left sprite
+                canvas.drawBitmap(leftBitmap, leftMatrix, null);
+                // Draw right sprite
+                canvas.drawBitmap(rightBitmap, rightMatrix, null);
+
             }
-        } else if (board.getCurrentFrame() < 0) {
-            int loadingTime = board.getCurrentFrame()/10;
-            if (loadingTime != 0)
-                canvas.drawText(Integer.toString(-1*loadingTime), board.getWidth() / 2, 35 * board.getHeight() / 36, textT);
-            else
-                canvas.drawText("BEGIN!", 3*board.getWidth()/5, 35 * board.getHeight() / 36, textT);
-        }
-        else {
-            // Calculate time on timer based on currentFrame
-            int timeOnTimer = (board.getSwitchRoleTime() / 10) - ((board.getCurrentFrame() % board.getSwitchRoleTime()) / 10); // <-- Frames per second
-            //Draws the timer
-            canvas.drawText(Integer.toString(timeOnTimer), board.getWidth() / 2, 35 * board.getHeight() / 36, textT);
+        } else {
+            // Draw left sprite
+            canvas.drawBitmap(leftBitmap, leftMatrix, null);
+            // Draw right sprite
+            canvas.drawBitmap(rightBitmap, rightMatrix, null);
+            
+             if (board.getCurrentFrame() < 0) {
+                 int loadingTime = board.getCurrentFrame() / 10;
+                 if (loadingTime != 0)
+                     canvas.drawText(Integer.toString(-1 * loadingTime), board.getWidth() / 2, 35 * board.getHeight() / 36, textT);
+                 else
+                     canvas.drawText("BEGIN!", 3 * board.getWidth() / 5, 35 * board.getHeight() / 36, textT);
+             } else {
+                 // Calculate time on timer based on currentFrame
+                 int timeOnTimer = (board.getSwitchRoleTime() / 10) - ((board.getCurrentFrame() % board.getSwitchRoleTime()) / 10); // <-- Frames per second
+                 //Draws the timer
+                 canvas.drawText(Integer.toString(timeOnTimer), board.getWidth() / 2, 35 * board.getHeight() / 36, textT);
+             }
         }
     }
 
