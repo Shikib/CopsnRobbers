@@ -46,7 +46,7 @@ public class SimpleTagSurfaceView extends SurfaceView{
     private Bitmap HspritePurple3 = BitmapFactory.decodeResource(getResources(), R.drawable.hunger_sprite_purple_3);
 
 
-    public SimpleTagSurfaceView(Context context, Board board) {
+    public SimpleTagSurfaceView(Context context, final Board board) {
         super(context);
 
         //Set up color/style of score text and obstacles
@@ -57,17 +57,22 @@ public class SimpleTagSurfaceView extends SurfaceView{
         obstacle.setStyle(Paint.Style.FILL);
 
         // Set up stuff
-        gameLoopThread = new GameLoopThread(this, board);
         sh = getHolder();
         this.board = board;
+        final SimpleTagSurfaceView view = this;
 
         sh.addCallback(new SurfaceHolder.Callback() {
 
             // Called when surface is created
             @Override
             public void surfaceCreated(SurfaceHolder surfaceHolder) {
+                gameLoopThread = new GameLoopThread(view, board);
                 gameLoopThread.setRunning(true); // Start the thread
-                gameLoopThread.start();
+                try {
+                    gameLoopThread.start();
+                } catch (IllegalThreadStateException e) {
+                    e.printStackTrace();
+                }
             }
 
             @Override
