@@ -84,7 +84,7 @@ public class Board {
             return false;
         // Check of hit obstacles
         for (Obstacle o: obstacles){
-            if (o.getXRange().contains(x) && o.getYRange().contains(y))
+            if ((o.getXRange().contains(x + radius) || o.getXRange().contains(x - radius)) && (o.getYRange().contains(y + radius) || o.getYRange().contains(y - radius)))
                 return false;
         }
         return true;
