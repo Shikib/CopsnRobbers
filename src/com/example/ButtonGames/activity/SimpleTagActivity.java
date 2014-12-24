@@ -1,6 +1,7 @@
 package com.example.ButtonGames.activity;
 
 import android.app.Activity;
+import android.graphics.Point;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.MotionEvent;
@@ -38,11 +39,13 @@ public class SimpleTagActivity extends Activity{
         initMaps(); // Set up map options to use
 
         // Get width and height of board from display
-        DisplayMetrics metrics = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        Point size = new Point();
+            this.getWindowManager().getDefaultDisplay().getRealSize(size);
+            int screenWidth = size.x;
+            int screenHeight = size.y;
 
         // Make new board with width and height of display, and first map in list maps
-        board = new Board(maps.get(0), metrics.widthPixels, metrics.heightPixels);
+        board = new Board(maps.get(0), screenWidth, screenHeight);
 
 
         holder = new FrameLayout(this);
