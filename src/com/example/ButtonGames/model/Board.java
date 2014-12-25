@@ -25,7 +25,7 @@ public class Board {
 
     public static final int winningScore = 5;
 
-    private int currentFrame = 0; // What frame the game is on right now
+    private int currentFrame = -40; // What frame the game is on right now
     private int switchRoleTime = 300; // Number of frames before sprites switch roles
 
 
@@ -94,20 +94,25 @@ public class Board {
     // Produce true if can move to that x, y coordinate - need to be fixed
     public boolean canMove(double x, double y){
         // Check if hit borders
-        if (x < 0 || x > width || y < 0 || y > 5*height / 6)
+        if (x - spriteRadius < 0 || x + spriteRadius > width || y - spriteRadius < 0 || y + spriteRadius > 5*height / 6)
             return false;
         // Check of hit obstacles
-        for (Obstacle o: obstacles){
-            if ((o.getXRange().contains(x + spriteRadius) || o.getXRange().contains(x - spriteRadius)) &&
-                    (o.getYRange().contains(y + spriteRadius) || o.getYRange().contains(y - spriteRadius)))
+        for (Obstacle o: obstacles) {
+
+            //if ((o.getXRange().contains(x + spriteRadius) || o.getXRange().contains(x - spriteRadius)) &&
+            //      (o.getYRange().contains(y + spriteRadius) || o.getYRange().contains(y - spriteRadius)))
+
+            if ((o.getXRange().getLower() <= x + spriteRadius) && (o.getXRange().getUpper() >= x -  spriteRadius)
+                    && (o.getYRange().getLower() <= y + spriteRadius) && (o.getYRange().getUpper() >= y - spriteRadius)) {
                 return false;
+            }
         }
         return true;
     }
 
     // If there is a collision, update score, and reset sprites
     public boolean checkCollision(){
-        boolean hasCollision = Math.abs(playerL.getX() - playerR.getX()) <= 2*spriteRadius && Math.abs(playerL.getY() - playerR.getY()) <= 2*spriteRadius;
+        boolean hasCollision = Math.abs(playerL.getX() - playerR.getX()) <= spriteRadius && Math.abs(playerL.getY() - playerR.getY()) <= spriteRadius;
 
         if (hasCollision) {
             if (currentFrame > 0) {

@@ -40,13 +40,13 @@ public class SimpleTagActivity extends Activity{
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        initMaps(); // Set up map options to use
-
         // Get width and height of board from display
         Point size = new Point();
             this.getWindowManager().getDefaultDisplay().getRealSize(size);
             screenWidth = size.x;
             screenHeight = size.y;
+
+        initMaps(); // Set up map options to use
 
         // Make new board with width and height of display, and first map in list maps
         board = new Board(maps.get(0), screenWidth, screenHeight);
@@ -56,6 +56,8 @@ public class SimpleTagActivity extends Activity{
         stSurfaceView = new SimpleTagSurfaceView(this, board);
         buttons = new RelativeLayout(this);
         initView(); // Set up left and right buttons
+
+
     }
 
 
@@ -72,6 +74,10 @@ public class SimpleTagActivity extends Activity{
 
     public void initMaps(){
         List<Obstacle> simpleMap = new ArrayList<Obstacle>(); // Example map
+        simpleMap.add(new Obstacle((double)screenWidth / 5,
+                (double) 2*screenWidth/ 5, (double) 10* screenHeight / 20, (double)11* screenHeight / 20));
+        simpleMap.add(new Obstacle((double) 15*screenWidth/ 20, (double) 16* screenWidth / 20,
+                (double) 2*screenHeight / 7, (double) 4*screenHeight / 7));
 
         maps = new ArrayList<List<Obstacle>>();
         maps.add(simpleMap);
