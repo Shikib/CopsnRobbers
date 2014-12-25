@@ -24,7 +24,7 @@ public class SimpleTagSurfaceView extends SurfaceView{
     private final Paint obstacle = new Paint(Paint.ANTI_ALIAS_FLAG); // Color/style for obstacle
 
     // Bitmap of background
-    private Bitmap background = BitmapFactory.decodeResource(getResources(), R.drawable.map1);
+    private Bitmap background;
 
     // Bitmap of green hunted sprite
     private Bitmap spriteGreen1 = BitmapFactory.decodeResource(getResources(), R.drawable.sprite_green_1);
@@ -49,7 +49,7 @@ public class SimpleTagSurfaceView extends SurfaceView{
     private Bitmap deadSprite = BitmapFactory.decodeResource(getResources(), R.drawable.dead_sprite);
 
 
-    public SimpleTagSurfaceView(Context context, final Board board) {
+    public SimpleTagSurfaceView(Context context, final Board board, Bitmap background) {
         super(context);
 
         //Set up color/style of score text timer and obstacles
@@ -76,10 +76,10 @@ public class SimpleTagSurfaceView extends SurfaceView{
         textM.setTextSize(board.getHeight() / 6);
         textM.setTextAlign(Paint.Align.CENTER);
 
-
-
         obstacle.setColor(Color.GRAY);
         obstacle.setStyle(Paint.Style.FILL);
+
+        this.background = background;
 
         // Set up stuff
         sh = getHolder();
@@ -323,4 +323,5 @@ public class SimpleTagSurfaceView extends SurfaceView{
         }
         return spritePurple1; // if in doubt return generic sprite
     }
+
 }

@@ -1,15 +1,14 @@
 package com.example.ButtonGames.activity;
 
 import android.app.Activity;
-import android.graphics.Color;
-import android.graphics.Point;
-import android.graphics.PorterDuff;
+import android.graphics.*;
 import android.os.Bundle;
 import android.view.*;
 
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
+import com.example.ButtonGames.R;
 import com.example.ButtonGames.model.Board;
 import com.example.ButtonGames.model.Obstacle;
 import com.example.ButtonGames.view.SimpleTagSurfaceView;
@@ -20,19 +19,20 @@ import java.util.List;
 public class SimpleTagActivity extends Activity{
 
     private Board board;
-    private List<List<Obstacle>> maps;
+    private List<List<Obstacle>> obstacles;
+    private List<Bitmap> backgrounds;
     private SimpleTagSurfaceView stSurfaceView;
     private FrameLayout holder;     // holder for everything
     private RelativeLayout buttons; // holder for the buttons
-    public static Activity simpleTag;
 
     private int screenWidth;
     private int screenHeight;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        simpleTag = this;
 
         // Get rid of banner, set as full screen
         requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -45,20 +45,22 @@ public class SimpleTagActivity extends Activity{
             screenWidth = size.x;
             screenHeight = size.y;
 
-        initMaps(); // Set up map options to use
+        initObstacles(); // Set up obstacle options to use
+        initBackground(); // Set up background options to use
 
-        // Make new board with width and height of display, and first map in list maps
-        board = new Board(maps.get(0), screenWidth, screenHeight);
+        // Make new board with width and height of display, and correct obstacles
+        List<Obstacle> map = obstacles.get(getIntent().getIntExtra("com.example.ButtonGames.obstacle", 0));
+        board = new Board(map, screenWidth, screenHeight);
 
+        // Make new surface view with correct background
+        Bitmap backgroundType = backgrounds.get(getIntent().getIntExtra("con.example.ButtonGames.background", 0));
+        stSurfaceView = new SimpleTagSurfaceView(this, board, backgroundType);
 
         holder = new FrameLayout(this);
-        stSurfaceView = new SimpleTagSurfaceView(this, board);
         buttons = new RelativeLayout(this);
         initView(); // Set up left and right buttons
 
-
     }
-
 
 
     @Override
@@ -72,15 +74,27 @@ public class SimpleTagActivity extends Activity{
     }
 
 
-    public void initMaps(){
-        List<Obstacle> simpleMap = new ArrayList<Obstacle>(); // Example map
-        simpleMap.add(new Obstacle((double)screenWidth / 5,
+    public void initObstacles(){
+        List<Obstacle> obstacles0 = new ArrayList<Obstacle>(); // Example map
+        obstacles0.add(new Obstacle((double)screenWidth / 5,
                 (double) 2*screenWidth/ 5, (double) 10* screenHeight / 20, (double)11* screenHeight / 20));
-        simpleMap.add(new Obstacle((double) 15*screenWidth/ 20, (double) 16* screenWidth / 20,
+
+        List<Obstacle> obstacles1 = new ArrayList<Obstacle>();
+        obstacles1.add(new Obstacle((double) 15*screenWidth/ 20, (double) 16* screenWidth / 20,
                 (double) 2*screenHeight / 7, (double) 4*screenHeight / 7));
 
-        maps = new ArrayList<List<Obstacle>>();
-        maps.add(simpleMap);
+        obstacles = new ArrayList<List<Obstacle>>();
+        obstacles.add(obstacles0);
+        obstacles.add(obstacles1);
+    }
+
+    public void initBackground(){
+        Bitmap background0 = BitmapFactory.decodeResource(getResources(), R.drawable.map1);
+        Bitmap background1 = BitmapFactory.decodeResource(getResources(), R.drawable.blank);
+
+        backgrounds = new ArrayList<Bitmap>();
+        backgrounds.add(background0);
+        backgrounds.add(background1);
     }
 
     public void initView() {
