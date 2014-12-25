@@ -8,8 +8,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/button"
-                android:layout_marginBottom="50dp" android:layout_gravity="center"
-                android:clickable="true" android:width="160dp"
-                android:layout_alignParentBottom="true" android:layout_centerHorizontal="true" android:height="55dp"
-                android:onClick="onPlayButton"/>
+                android:layout_marginBottom="78dp" android:layout_gravity="center"
+                android:clickable="true" android:width="200dp"
+                android:height="75dp"
+                android:onClick="onPlayButton"
+                android:layout_alignParentBottom="true" android:layout_centerHorizontal="true"/>
 </RelativeLayout>

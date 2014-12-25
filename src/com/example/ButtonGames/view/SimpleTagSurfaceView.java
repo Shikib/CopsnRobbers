@@ -57,21 +57,26 @@ public class SimpleTagSurfaceView extends SurfaceView{
         textL.setStyle(Paint.Style.FILL);
         textL.setTextSize(board.getHeight() / 6);
         textL.setTextAlign(Paint.Align.LEFT);
+        textL.setTypeface(Typeface.createFromAsset(getContext().getAssets(), "DS-DIGIB.TTF"));
 
         textR.setColor(Color.MAGENTA);
         textR.setStyle(Paint.Style.FILL);
         textR.setTextSize(board.getHeight() / 6);
         textR.setTextAlign(Paint.Align.RIGHT);
+        textR.setTypeface(Typeface.createFromAsset(getContext().getAssets(), "DS-DIGIB.TTF"));
 
         textT.setColor(Color.BLACK);
         textT.setStyle(Paint.Style.FILL);
-        textT.setTextSize(board.getHeight() / 8);
+        textT.setTextSize(board.getHeight() / 6);
         textT.setTextAlign(Paint.Align.CENTER);
+        textT.setTypeface(Typeface.createFromAsset(getContext().getAssets(), "DS-DIGIB.TTF"));
 
         textM.setColor(Color.RED);
         textM.setStyle(Paint.Style.FILL);
-        textM.setTextSize(board.getHeight() / 8);
+        textM.setTextSize(board.getHeight() / 6);
         textM.setTextAlign(Paint.Align.CENTER);
+
+
 
         obstacle.setColor(Color.GRAY);
         obstacle.setStyle(Paint.Style.FILL);
@@ -172,7 +177,7 @@ public class SimpleTagSurfaceView extends SurfaceView{
                 if (board.getWinMethod()) {
                     canvas.drawText("Hunter Wins!", board.getWidth() / 2, board.getHeight() / 2, textM);
                 } else {
-                    canvas.drawText("Prey got away!", board.getWidth() / 2, board.getHeight() / 2, textM);
+                    canvas.drawText("Prey Escaped!", board.getWidth() / 2, board.getHeight() / 2, textM);
                 }
 
             }
@@ -187,12 +192,12 @@ public class SimpleTagSurfaceView extends SurfaceView{
                  if (loadingTime != 0)
                      canvas.drawText(Integer.toString(-1 * loadingTime), board.getWidth() / 2, board.getHeight() / 2, textT);
                  else
-                     canvas.drawText("BEGIN!", board.getWidth() / 2, board.getHeight() / 2, textT);
+                     canvas.drawText("GO!", board.getWidth() / 2, board.getHeight() / 2, textT);
              } else {
                  // Calculate time on timer based on currentFrame
                  int timeOnTimer = (board.getSwitchRoleTime() / 10) - ((board.getCurrentFrame() % board.getSwitchRoleTime()) / 10); // <-- Frames per second
                  //Draws the timer
-                 canvas.drawText(Integer.toString(timeOnTimer), board.getWidth() / 2, 35 * board.getHeight() / 36, textT);
+                 canvas.drawText("Time:" + Integer.toString(timeOnTimer), board.getWidth() / 2, 35 * board.getHeight() / 36, textT);
              }
         }
     }
