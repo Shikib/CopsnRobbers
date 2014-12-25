@@ -2,7 +2,6 @@ package com.example.ButtonGames.view;
 
 import android.content.Context;
 import android.graphics.*;
-import android.util.AttributeSet;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import com.example.ButtonGames.R;
@@ -12,7 +11,6 @@ import com.example.ButtonGames.model.Obstacle;
 import com.example.ButtonGames.model.Sprite;
 
 import java.util.List;
-import java.util.jar.Attributes;
 
 public class SimpleTagSurfaceView extends SurfaceView{
 
@@ -47,6 +45,8 @@ public class SimpleTagSurfaceView extends SurfaceView{
     private Bitmap HspritePurple1 = BitmapFactory.decodeResource(getResources(), R.drawable.hunger_sprite_purple_1);
     private Bitmap HspritePurple2 = BitmapFactory.decodeResource(getResources(), R.drawable.hunger_sprite_purple_2);
     private Bitmap HspritePurple3 = BitmapFactory.decodeResource(getResources(), R.drawable.hunger_sprite_purple_3);
+
+    private Bitmap deadSprite = BitmapFactory.decodeResource(getResources(), R.drawable.dead_sprite);
 
 
     public SimpleTagSurfaceView(Context context, final Board board) {
@@ -167,12 +167,23 @@ public class SimpleTagSurfaceView extends SurfaceView{
 
         // Draw the countdown after resetting roles
         if (board.getCurrentFrame() <= -40){
-            if ((-50 <= board.getCurrentFrame() && board.getCurrentFrame()<= -48) ||
-                    (-45 <= board.getCurrentFrame() && board.getCurrentFrame() <= -43)) {
-                // Draw left sprite
-                canvas.drawBitmap(leftBitmap, leftMatrix, null);
-                // Draw right sprite
-                canvas.drawBitmap(rightBitmap, rightMatrix, null);
+            if ((-55 <= board.getCurrentFrame() && board.getCurrentFrame()<= -51) ||
+                    (-47 <= board.getCurrentFrame() && board.getCurrentFrame() <= -43)) {
+
+                // Draw the winning sprite on top
+                if ((board.getWinMethod() && board.getHunterState()) ||
+                        (!board.getWinMethod() && !board.getHunterState())){
+                    // Draw right sprite
+                    canvas.drawBitmap(rightBitmap, rightMatrix, null);
+                    // Draw left sprite
+                    canvas.drawBitmap(leftBitmap, leftMatrix, null);
+
+                } else {
+                    // Draw left sprite
+                    canvas.drawBitmap(leftBitmap, leftMatrix, null);
+                    // Draw right sprite
+                    canvas.drawBitmap(rightBitmap, rightMatrix, null);
+                }
 
                 if (board.getWinMethod()) {
                     canvas.drawText("Hunter Wins!", board.getWidth() / 2, board.getHeight() / 2, textM);
@@ -205,24 +216,33 @@ public class SimpleTagSurfaceView extends SurfaceView{
     public Bitmap getCorrectSpriteL(){
         Sprite sprite = board.getPlayerL();
 
-        // getState is true if hunter
-        if (sprite.getState()){
-            if (sprite.getSpinning()){
+
+        if (board.getCurrentFrame() <= -40) {
+            // Hunter and win by collision
+            if (sprite.getState() && board.getWinMethod()){
+                return HspriteGreen1;
+            // Hunted and win by collision
+            } else if (!sprite.getState() && board.getWinMethod()){
+                return deadSprite;
+                // Hunter and win by times up
+            } else if (sprite.getState()){
+                return deadSprite;
+            } else {
+                return spriteGreen1;
+            }
+        } else if (sprite.getState()) { // getState is true if hunter
+            if (sprite.getSpinning()) {
                 return HspriteGreen1; // If spinning keep the same left sprite every frame
             } else {
-                if (board.getCurrentFrame() <= -40) { // freeze frame -- Can change to something else
+                int currentFrame = board.getCurrentFrame() % 4; // Alternate between left sprites each from
+                if (currentFrame == 0) {
+                    return HspriteGreen1;
+                } else if (currentFrame == 1) {
                     return HspriteGreen2;
-                } else {
-                    int currentFrame = board.getCurrentFrame() % 4; // Alternate between left sprites each from
-                    if (currentFrame == 0) {
-                        return HspriteGreen1;
-                    } else if (currentFrame == 1) {
-                        return HspriteGreen2;
-                    } else if (currentFrame == 2) {
-                        return HspriteGreen1;
-                    } else if (currentFrame == 3) {
-                        return HspriteGreen3;
-                    }
+                } else if (currentFrame == 2) {
+                    return HspriteGreen1;
+                } else if (currentFrame == 3) {
+                    return HspriteGreen3;
                 }
             }
 
@@ -231,7 +251,7 @@ public class SimpleTagSurfaceView extends SurfaceView{
                 return spriteGreen1;
             } else {
                 if (board.getCurrentFrame() <= -40) {
-                    return spriteGreen1;
+                    return deadSprite;
                 } else {
                     int currentFrame = board.getCurrentFrame() % 4;
                     if (currentFrame == 0) {
@@ -252,23 +272,32 @@ public class SimpleTagSurfaceView extends SurfaceView{
     public Bitmap getCorrectSpriteR(){
         Sprite sprite = board.getPlayerR();
 
-        if (sprite.getState()){
+        if (board.getCurrentFrame() <= -40) {
+            // Hunter and win by collision
+            if (sprite.getState() && board.getWinMethod()){
+                return HspritePurple1;
+                // Hunted and win by collision
+            } else if (!sprite.getState() && board.getWinMethod()){
+                return deadSprite;
+                // Hunter and win by times up
+            } else if (sprite.getState()){
+                return deadSprite;
+            } else {
+                return spritePurple1;
+            }
+        } else if (sprite.getState()){
             if (sprite.getSpinning()){
                 return HspritePurple1;
             } else {
-                if (board.getCurrentFrame() <= -40){
+                int currentFrame = board.getCurrentFrame() % 4;
+                if (currentFrame == 0) {
                     return HspritePurple1;
-                } else {
-                    int currentFrame = board.getCurrentFrame() % 4;
-                    if (currentFrame == 0) {
-                        return HspritePurple1;
-                    } else if (currentFrame == 1) {
-                        return HspritePurple2;
-                    } else if (currentFrame == 2) {
-                        return HspritePurple1;
-                    } else if (currentFrame == 3) {
-                        return HspritePurple3;
-                    }
+                } else if (currentFrame == 1) {
+                    return HspritePurple2;
+                } else if (currentFrame == 2) {
+                    return HspritePurple1;
+                } else if (currentFrame == 3) {
+                    return HspritePurple3;
                 }
             }
         } else {
@@ -276,7 +305,7 @@ public class SimpleTagSurfaceView extends SurfaceView{
                 return spritePurple1;
             } else {
                 if (board.getCurrentFrame() <= -40) {
-                    return spritePurple1;
+                    return deadSprite;
                 } else {
                     int currentFrame = board.getCurrentFrame() % 4;
                     if (currentFrame == 0) {

@@ -89,6 +89,10 @@ public class Board {
         return winMethod;
     }
 
+    public boolean getHunterState(){
+        return hunterState;
+    }
+
 
 
     // Produce true if can move to that x, y coordinate - need to be fixed
@@ -117,7 +121,7 @@ public class Board {
         if (hasCollision) {
             if (currentFrame > 0) {
                 winMethod = true;
-                currentFrame = -50;
+                currentFrame = -55;
             }
             if (currentFrame >= -40) {
                 resetSprites(0); // Condition 0 means hunter updates score
@@ -161,7 +165,7 @@ public class Board {
         if (timeToSwitch){
             if (currentFrame > 0) {
                 winMethod = false;
-                currentFrame = -50;
+                currentFrame = -55;
             }
             if (currentFrame >= -40) {
                 resetSprites(1);  // (Condition 1 = time has run out, hunted gets point)
