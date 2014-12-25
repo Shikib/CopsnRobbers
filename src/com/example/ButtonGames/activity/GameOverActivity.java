@@ -31,7 +31,12 @@ public class GameOverActivity extends Activity {
                         | View.SYSTEM_UI_FLAG_FULLSCREEN
                         | View.SYSTEM_UI_FLAG_IMMERSIVE);
 
-        setContentView(R.layout.game_over);
+        if (getIntent().getBooleanExtra("com.example.ButtonGames.winner", false)){
+            setContentView(R.layout.game_over_green);
+        } else {
+            setContentView(R.layout.game_over_purple);
+        }
+
         // Make button transparent
         Button buttonRetry = (Button)findViewById(R.id.buttonRetry);
         buttonRetry.setVisibility(View.VISIBLE);

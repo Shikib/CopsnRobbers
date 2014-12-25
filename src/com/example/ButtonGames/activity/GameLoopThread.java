@@ -35,7 +35,12 @@ public class GameLoopThread extends Thread {
 
             // check whether game is over
             if (board.getPlayerL().getScore() >= score || board.getPlayerR().getScore() >= score) {
+                Boolean winner = false;
+                if (board.getPlayerL().getScore() >= score){
+                    winner = true;
+                }
                 Intent gameOverScreen = new Intent((view.getContext()), GameOverActivity.class);
+                gameOverScreen.putExtra("com.example.ButtonGames.winner", winner);
                 view.getContext().startActivity(gameOverScreen);
                 ((Activity) view.getContext()).finish();
                 return;

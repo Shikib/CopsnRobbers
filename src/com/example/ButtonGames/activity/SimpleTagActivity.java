@@ -5,7 +5,6 @@ import android.graphics.Color;
 import android.graphics.Point;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
 import android.view.*;
 
 import android.widget.Button;
@@ -59,6 +58,7 @@ public class SimpleTagActivity extends Activity{
 
 
     }
+
 
 
     @Override
