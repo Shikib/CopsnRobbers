@@ -106,8 +106,8 @@ public class Board {
             //if ((o.getXRange().contains(x + spriteRadius) || o.getXRange().contains(x - spriteRadius)) &&
             //      (o.getYRange().contains(y + spriteRadius) || o.getYRange().contains(y - spriteRadius)))
 
-            if ((o.getXRange().getLower() <= x + spriteRadius) && (o.getXRange().getUpper() >= x -  spriteRadius)
-                    && (o.getYRange().getLower() <= y + spriteRadius) && (o.getYRange().getUpper() >= y - spriteRadius)) {
+            if ((o.getXLower() <= x + spriteRadius) && (o.getXUpper() >= x -  spriteRadius)
+                    && (o.getYLower() <= y + spriteRadius) && (o.getYUpper() >= y - spriteRadius)) {
                 return false;
             }
         }

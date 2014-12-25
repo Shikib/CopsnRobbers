@@ -101,7 +101,7 @@ public class SimpleTagActivity extends Activity{
                 // Start spinning left sprite when button is let go
                 else if (action == MotionEvent.ACTION_UP || action == MotionEvent.ACTION_POINTER_UP || action == MotionEvent.ACTION_CANCEL)
                     board.getPlayerL().startSpinning();
-                return true;
+                return false;
             }
         });
 
@@ -122,7 +122,7 @@ public class SimpleTagActivity extends Activity{
                 // Start spinning right sprite if buttons is let go
                 else if (action == MotionEvent.ACTION_UP || action == MotionEvent.ACTION_POINTER_UP || action == MotionEvent.ACTION_CANCEL)
                     board.getPlayerR().startSpinning();
-                return true;
+                return false;
             }
         });
 

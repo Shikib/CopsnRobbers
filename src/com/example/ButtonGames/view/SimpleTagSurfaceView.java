@@ -161,8 +161,8 @@ public class SimpleTagSurfaceView extends SurfaceView{
         // Draw obstacles
         List<Obstacle> obstacles = board.getObstacles();
         for (Obstacle o : obstacles){
-            canvas.drawRect((float) o.getXRange().getLower().doubleValue(), (float) o.getYRange().getLower().doubleValue(),
-                    (float) o.getXRange().getUpper().doubleValue(), (float) o.getYRange().getUpper().doubleValue(),obstacle);
+            canvas.drawRect((float) o.getXLower(), (float) o.getYLower(),
+                    (float) o.getXUpper(), (float) o.getYUpper(),obstacle);
         }
 
         // Draw the countdown after resetting roles
