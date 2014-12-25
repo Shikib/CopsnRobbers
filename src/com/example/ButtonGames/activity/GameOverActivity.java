@@ -2,10 +2,12 @@ package com.example.ButtonGames.activity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 import com.example.ButtonGames.R;
 
 /**
@@ -30,6 +32,15 @@ public class GameOverActivity extends Activity {
                         | View.SYSTEM_UI_FLAG_IMMERSIVE);
 
         setContentView(R.layout.game_over);
+        // Make button transparent
+        Button buttonRetry = (Button)findViewById(R.id.buttonRetry);
+        buttonRetry.setVisibility(View.VISIBLE);
+        buttonRetry.setBackgroundColor(Color.TRANSPARENT);
+
+        // Make button transparent
+        Button buttonMainMenu = (Button)findViewById(R.id.buttonMainMenu);
+        buttonMainMenu.setVisibility(View.VISIBLE);
+        buttonMainMenu.setBackgroundColor(Color.TRANSPARENT);
     }
 
     public void onRetryButton(View view){
