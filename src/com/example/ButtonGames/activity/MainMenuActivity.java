@@ -56,42 +56,7 @@ public class MainMenuActivity extends Activity {
 
     // When play button is pressed, start new SimpleTagActivity with selected obstacle and background
     public void onPlayButton(View view){
-
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(this, android.R.style.Theme_Holo_Light_Dialog));
-
-        // Options in selection menu
-        CharSequence[] mapOptions = new CharSequence[2];
-        mapOptions[0] = "Map 1";
-        mapOptions[1] = "Map 2";
-
-
-        builder.setTitle("Chose a map:")
-                .setItems(mapOptions, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) { // which is the index of item touched
-
-                        // Combination of obstacles and backgrounds - first is obstacle, second is background
-                        List<Pair<Integer, Integer>> maps = new ArrayList<Pair<Integer, Integer>>();
-                        maps.add(new Pair<Integer, Integer>(0, 0));
-                        maps.add(new Pair<Integer, Integer>(1, 1));
-
-                        // Get the combination of obstacle and background chosen
-                        Pair<Integer, Integer> map = maps.get(which);
-
-                        // Start new SimpleTagActivity with combination of obstacle and background chosen
-                        Intent i = new Intent(MainMenuActivity.this, SimpleTagActivity.class);
-                        i.putExtra("com.example.ButtonGames.obstacle", map.first);
-                        i.putExtra("com.example.ButtonGames.background", map.second);
-                        MainMenuActivity.this.startActivity(i);
-
-                        MainMenuActivity.this.finish();
-                    }
-                });
-        // Create and show the dialog
-        AlertDialog alertDialog = builder.create();
-
-        alertDialog.show();
-
+        startActivity(new Intent(this, SelectionMenuActivity.class));
     }
 
 }

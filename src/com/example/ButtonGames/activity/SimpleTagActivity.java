@@ -64,7 +64,7 @@ public class SimpleTagActivity extends Activity{
         board = new Board(map, screenWidth, screenHeight);
 
         // Make new surface view with correct background
-        backgroundMap = getIntent().getIntExtra("com.example.ButtonGames.background", 0);
+        backgroundMap = getIntent().getIntExtra("com.example.ButtonGames.theme", 0);
         Bitmap backgroundType = backgrounds.get(backgroundMap);
 
         stSurfaceView = new SimpleTagSurfaceView(this, board, backgroundType);
@@ -107,9 +107,14 @@ public class SimpleTagActivity extends Activity{
         obstacles1.add(new Obstacle((double) 15*screenWidth/ 20, (double) 16* screenWidth / 20,
                 (double) 2*screenHeight / 7, (double) 4*screenHeight / 7));
 
+        List<Obstacle> obstacles2 = new ArrayList<Obstacle>();
+        obstacles2.add(new Obstacle((double) 15*screenWidth/ 20, (double) 16* screenWidth / 20,
+                (double) 2*screenHeight / 7, (double) 4*screenHeight / 7));
+
         obstacles = new ArrayList<List<Obstacle>>();
         obstacles.add(obstacles0);
         obstacles.add(obstacles1);
+        obstacles.add(obstacles2);
     }
 
     public void initBackground(){
