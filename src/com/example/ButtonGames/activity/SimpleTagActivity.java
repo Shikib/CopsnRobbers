@@ -32,7 +32,6 @@ public class SimpleTagActivity extends Activity{
     public RelativeLayout pauseView;
     private Button pause;
     private boolean resume = false;
-    public static Activity simpleTag;
 
     private int screenWidth;
     private int screenHeight;
@@ -225,7 +224,7 @@ public class SimpleTagActivity extends Activity{
         pauseRules.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, RelativeLayout.TRUE);
         pauseRules.addRule(RelativeLayout.ALIGN_PARENT_TOP, RelativeLayout.TRUE);
 
-        // Set height, color of right button
+        // Set height, color of pause button
         pauseRules.height = screenHeight / 6;
         pauseRules.width = screenWidth / 6;
         pause.setLayoutParams(pauseRules);
@@ -307,10 +306,6 @@ public class SimpleTagActivity extends Activity{
         // Set holder to what is shown on display
         setContentView(holder);
     }
-
-
-
-
 
 
     // This snippet hides the system bars.
