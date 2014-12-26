@@ -94,7 +94,7 @@ public class MainMenuActivity extends Activity {
         // Create and show the dialog
         AlertDialog alertDialog = builder.create();
 
-        alertDialog.show();
+        // alertDialog.show();
     }
 
     public void onSettingsButton(View view){

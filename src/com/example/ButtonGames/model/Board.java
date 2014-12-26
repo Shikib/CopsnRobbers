@@ -79,6 +79,10 @@ public class Board {
         return obstacles;
     }
 
+    public void setObstacles(List<Obstacle> obstacles) {
+        this.obstacles = obstacles;
+    }
+
     public int getSwitchRoleTime(){
         return switchRoleTime;
     }

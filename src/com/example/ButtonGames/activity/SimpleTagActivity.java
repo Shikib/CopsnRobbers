@@ -109,9 +109,8 @@ public class SimpleTagActivity extends Activity{
         super.onSaveInstanceState(savedInstanceState);
 
         // add obstacles and map
-//        Intent intent = getIntent();
-//        Bundle extras = intent.getExtras();
-//        savedInstanceState.putAll(extras);
+        int obstacleMap = getIntent().getIntExtra("com.example.ButtonGames.obstacle", 0);
+        savedInstanceState.putInt("obstacleMap", obstacleMap);
 
         savedInstanceState.putDouble("leftX", board.getPlayerL().getX());
         savedInstanceState.putDouble("leftY", board.getPlayerL().getY());
@@ -132,9 +131,7 @@ public class SimpleTagActivity extends Activity{
         super.onRestoreInstanceState(savedInstanceState);
 
         if (savedInstanceState != null) {
-            Intent i = getIntent();
-            i.putExtra("com.example.ButtonGames.obstacle", savedInstanceState.getBundle("com.example.ButtonGames.obstacle"));
-            i.putExtra("com.example.ButtonGames.background", savedInstanceState.getBundle("com.example.ButtonGames.background"));
+            board.setObstacles(obstacles.get(savedInstanceState.getInt("obstacleMap")));
 
             board.getPlayerL().setX(savedInstanceState.getDouble("leftX"));
             board.getPlayerL().setY(savedInstanceState.getDouble("leftY"));
@@ -149,6 +146,7 @@ public class SimpleTagActivity extends Activity{
             board.getPlayerR().setState(!savedInstanceState.getBoolean("leftState"));
 
             board.setCurrentFrame(savedInstanceState.getInt("currentFrame"));
+
 
             pauseView.setVisibility(View.VISIBLE);
         }
