@@ -2,22 +2,25 @@ package com.example.ButtonGames.activity;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Button;
 import com.example.ButtonGames.R;
 
-public class MyActivity extends Activity {
-    /**
-     * Called when the activity is first created.
-     */
+
+/**
+ * Created by Sarah on 2014-12-25.
+ */
+public class SplashScreenActivity extends Activity {
+    /** Duration of wait **/
+    private final int SPLASH_DISPLAY_LENGTH = 1000;
+
+    /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         // Get rid of banner, fill screens the app
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
@@ -31,18 +34,18 @@ public class MyActivity extends Activity {
                         | View.SYSTEM_UI_FLAG_FULLSCREEN
                         | View.SYSTEM_UI_FLAG_IMMERSIVE);
 
-        // Set what is displayed to main.xml in layout-land
-        setContentView(R.layout.main);
+        setContentView(R.layout.splash_screen);
 
-        // Make button transparent
-        Button theButton = (Button)findViewById(R.id.button);
-        theButton.setVisibility(View.VISIBLE);
-        theButton.setBackgroundColor(Color.TRANSPARENT);
-    }
-
-    // When play button is pressed, start new SimpleTagActivity
-    public void onPlayButton(View view){
-        startActivity(new Intent(this, SimpleTagActivity.class));
-        finish();
+        /* New Handler to start the Menu-Activity
+         * and close this Splash-Screen after some seconds.*/
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                /* Create an Intent that will start the Menu-Activity. */
+                Intent mainMenu = new Intent(SplashScreenActivity.this, MainMenuActivity.class);
+                SplashScreenActivity.this.startActivity(mainMenu);
+                SplashScreenActivity.this.finish();
+            }
+        }, SPLASH_DISPLAY_LENGTH);
     }
 }

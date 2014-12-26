@@ -1,12 +1,6 @@
 package com.example.ButtonGames.model;
 
-import android.content.Intent;
-import com.example.ButtonGames.activity.MyActivity;
-import com.example.ButtonGames.activity.SimpleTagActivity;
-
-import java.util.ArrayList;
 import java.util.List;
-import java.util.TimerTask;
 
 /**
  * Created by Sarah on 2014-12-20.
@@ -25,7 +19,7 @@ public class Board {
 
     public static final int winningScore = 5;
 
-    private int currentFrame = 0; // What frame the game is on right now
+    private int currentFrame = -40; // What frame the game is on right now
     private int switchRoleTime = 300; // Number of frames before sprites switch roles
 
 
@@ -89,30 +83,39 @@ public class Board {
         return winMethod;
     }
 
+    public boolean getHunterState(){
+        return hunterState;
+    }
+
 
 
     // Produce true if can move to that x, y coordinate - need to be fixed
     public boolean canMove(double x, double y){
         // Check if hit borders
-        if (x < 0 || x > width || y < 0 || y > 5*height / 6)
+        if (x - spriteRadius < 0 || x + spriteRadius > width || y - spriteRadius < 0 || y + spriteRadius > 5*height / 6)
             return false;
         // Check of hit obstacles
-        for (Obstacle o: obstacles){
-            if ((o.getXRange().contains(x + spriteRadius) || o.getXRange().contains(x - spriteRadius)) &&
-                    (o.getYRange().contains(y + spriteRadius) || o.getYRange().contains(y - spriteRadius)))
+        for (Obstacle o: obstacles) {
+
+            //if ((o.getXRange().contains(x + spriteRadius) || o.getXRange().contains(x - spriteRadius)) &&
+            //      (o.getYRange().contains(y + spriteRadius) || o.getYRange().contains(y - spriteRadius)))
+
+            if ((o.getXLower() <= x + spriteRadius) && (o.getXUpper() >= x -  spriteRadius)
+                    && (o.getYLower() <= y + spriteRadius) && (o.getYUpper() >= y - spriteRadius)) {
                 return false;
+            }
         }
         return true;
     }
 
     // If there is a collision, update score, and reset sprites
     public boolean checkCollision(){
-        boolean hasCollision = Math.abs(playerL.getX() - playerR.getX()) <= 2*spriteRadius && Math.abs(playerL.getY() - playerR.getY()) <= 2*spriteRadius;
+        boolean hasCollision = Math.abs(playerL.getX() - playerR.getX()) <= spriteRadius && Math.abs(playerL.getY() - playerR.getY()) <= spriteRadius;
 
         if (hasCollision) {
             if (currentFrame > 0) {
                 winMethod = true;
-                currentFrame = -50;
+                currentFrame = -55;
             }
             if (currentFrame >= -40) {
                 resetSprites(0); // Condition 0 means hunter updates score
@@ -156,7 +159,7 @@ public class Board {
         if (timeToSwitch){
             if (currentFrame > 0) {
                 winMethod = false;
-                currentFrame = -50;
+                currentFrame = -55;
             }
             if (currentFrame >= -40) {
                 resetSprites(1);  // (Condition 1 = time has run out, hunted gets point)

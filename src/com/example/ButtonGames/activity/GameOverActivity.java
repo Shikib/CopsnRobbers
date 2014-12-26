@@ -2,10 +2,12 @@ package com.example.ButtonGames.activity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 import com.example.ButtonGames.R;
 
 /**
@@ -29,7 +31,21 @@ public class GameOverActivity extends Activity {
                         | View.SYSTEM_UI_FLAG_FULLSCREEN
                         | View.SYSTEM_UI_FLAG_IMMERSIVE);
 
-        setContentView(R.layout.game_over);
+        if (getIntent().getBooleanExtra("com.example.ButtonGames.winner", false)){
+            setContentView(R.layout.game_over_green);
+        } else {
+            setContentView(R.layout.game_over_purple);
+        }
+
+        // Make button transparent
+        Button buttonRetry = (Button)findViewById(R.id.buttonRetry);
+        buttonRetry.setVisibility(View.VISIBLE);
+        buttonRetry.setBackgroundColor(Color.TRANSPARENT);
+
+        // Make button transparent
+        Button buttonMainMenu = (Button)findViewById(R.id.buttonMainMenu);
+        buttonMainMenu.setVisibility(View.VISIBLE);
+        buttonMainMenu.setBackgroundColor(Color.TRANSPARENT);
     }
 
     public void onRetryButton(View view){
@@ -38,7 +54,7 @@ public class GameOverActivity extends Activity {
     }
 
     public void onMainMenuButton(View view){
-        startActivity(new Intent(this, MyActivity.class));
+        startActivity(new Intent(this, MainMenuActivity.class));
         finish();
     }
 }
