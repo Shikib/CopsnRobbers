@@ -1,12 +1,6 @@
 package com.example.ButtonGames.model;
 
-import android.content.Intent;
-import com.example.ButtonGames.activity.MyActivity;
-import com.example.ButtonGames.activity.SimpleTagActivity;
-
-import java.util.ArrayList;
 import java.util.List;
-import java.util.TimerTask;
 
 /**
  * Created by Sarah on 2014-12-20.

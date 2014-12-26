@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.util.Pair;
+import android.view.ContextThemeWrapper;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -18,7 +19,7 @@ import com.example.ButtonGames.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MyActivity extends Activity {
+public class MainMenuActivity extends Activity {
     /**
      * Called when the activity is first created.
      */
@@ -57,7 +58,7 @@ public class MyActivity extends Activity {
     public void onPlayButton(View view){
 
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(this, android.R.style.Theme_Holo_Light_Dialog));
 
         // Options in selection menu
         CharSequence[] mapOptions = new CharSequence[2];
@@ -78,12 +79,12 @@ public class MyActivity extends Activity {
                         Pair<Integer, Integer> map = maps.get(which);
 
                         // Start new SimpleTagActivity with combination of obstacle and background chosen
-                        Intent i = new Intent(MyActivity.this, SimpleTagActivity.class);
+                        Intent i = new Intent(MainMenuActivity.this, SimpleTagActivity.class);
                         i.putExtra("com.example.ButtonGames.obstacle", map.first);
                         i.putExtra("con.example.ButtonGames.background", map.second);
-                        MyActivity.this.startActivity(i);
+                        MainMenuActivity.this.startActivity(i);
 
-                        MyActivity.this.finish();
+                        MainMenuActivity.this.finish();
                     }
                 });
         // Create and show the dialog

@@ -54,7 +54,7 @@ public class GameOverActivity extends Activity {
     }
 
     public void onMainMenuButton(View view){
-        startActivity(new Intent(this, MyActivity.class));
+        startActivity(new Intent(this, MainMenuActivity.class));
         finish();
     }
 }
