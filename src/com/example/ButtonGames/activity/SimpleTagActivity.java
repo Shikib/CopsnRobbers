@@ -1,6 +1,8 @@
 package com.example.ButtonGames.activity;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Point;
 import android.graphics.PorterDuff;
@@ -11,6 +13,7 @@ import android.view.*;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
+import com.example.ButtonGames.R;
 import com.example.ButtonGames.model.Board;
 import com.example.ButtonGames.model.Obstacle;
 import com.example.ButtonGames.view.SimpleTagSurfaceView;
@@ -25,6 +28,8 @@ public class SimpleTagActivity extends Activity{
     private SimpleTagSurfaceView stSurfaceView;
     private FrameLayout holder;     // holder for everything
     private RelativeLayout buttons; // holder for the buttons
+    public RelativeLayout pauseView;
+    private boolean resume = false;
     public static Activity simpleTag;
 
     private int screenWidth;
@@ -55,6 +60,7 @@ public class SimpleTagActivity extends Activity{
         holder = new FrameLayout(this);
         stSurfaceView = new SimpleTagSurfaceView(this, board);
         buttons = new RelativeLayout(this);
+        pauseView = new RelativeLayout(this);
         initView(); // Set up left and right buttons
     }
 
@@ -62,11 +68,19 @@ public class SimpleTagActivity extends Activity{
     @Override
     protected void onResume() {
         super.onResume();
+        if (resume && pauseView != null)
+            pauseView.setVisibility(View.VISIBLE);
+        else
+            resume = true;
+
     }
 
     @Override
     protected void onPause() {
         super.onPause();
+        if (stSurfaceView != null) {
+            stSurfaceView.gameLoopThread.killThread();
+        }
     }
 
 
@@ -120,12 +134,28 @@ public class SimpleTagActivity extends Activity{
             }
         });
 
+        Button pause = new Button(this);
+        pause.setId(123457);
+
+        pause.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                stSurfaceView.gameLoopThread.setRunning(false);
+                pauseView.setVisibility(View.VISIBLE);
+                return false;
+            }
+        });
+
         // Rules for how buttons are placed on screen
         RelativeLayout.LayoutParams leftRules = new RelativeLayout.LayoutParams(
                 RelativeLayout.LayoutParams.WRAP_CONTENT,
                 RelativeLayout.LayoutParams.WRAP_CONTENT);
 
         RelativeLayout.LayoutParams rightRules = new RelativeLayout.LayoutParams(
+                RelativeLayout.LayoutParams.WRAP_CONTENT,
+                RelativeLayout.LayoutParams.WRAP_CONTENT);
+
+        RelativeLayout.LayoutParams pauseRules = new RelativeLayout.LayoutParams(
                 RelativeLayout.LayoutParams.WRAP_CONTENT,
                 RelativeLayout.LayoutParams.WRAP_CONTENT);
 
@@ -137,6 +167,7 @@ public class SimpleTagActivity extends Activity{
         buttons.setLayoutParams(params);
         buttons.addView(left);
         buttons.addView(right);
+        buttons.addView(pause);
 
         // Rule to place button on bottom left of screen
         leftRules.addRule(RelativeLayout.ALIGN_PARENT_LEFT, RelativeLayout.TRUE);
@@ -158,13 +189,95 @@ public class SimpleTagActivity extends Activity{
         right.setLayoutParams(rightRules);
         right.getBackground().setColorFilter(Color.MAGENTA, PorterDuff.Mode.MULTIPLY);
 
+        pauseRules.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, RelativeLayout.TRUE);
+        pauseRules.addRule(RelativeLayout.ALIGN_PARENT_TOP, RelativeLayout.TRUE);
+
+        // Set height, color of right button
+        pauseRules.height = screenHeight / 6;
+        pauseRules.width = screenWidth / 6;
+        pause.setLayoutParams(pauseRules);
+        pause.getBackground().setColorFilter(Color.BLUE, PorterDuff.Mode.MULTIPLY);
+
         // Add SimpleTagSurfaceView to holder
         holder.addView(stSurfaceView);
         // Add buttons to holder
         holder.addView(buttons);
+
+//        LayoutInflater inflater = (LayoutInflater)getApplicationContext().getSystemService
+//                (Context.LAYOUT_INFLATER_SERVICE);
+//        pauseView = inflater.inflate(R.layout.pause_menu, holder, false);
+//
+//        holder.addView(pauseView);
+//
+//        pauseView.setVisibility(View.GONE);
+
+        Button home = new Button(this);
+        left.setId(223456);
+
+        home.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                startActivity(new Intent(v.getContext(), MyActivity.class));
+                ((Activity) v.getContext()).finish();
+                return false;
+            }
+        });
+
+        Button resume = new Button(this);
+        resume.setId(223457);
+
+        resume.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                pauseView.setVisibility(View.GONE);
+                stSurfaceView.gameLoopThread.setRunning(true);
+                return false;
+            }
+        });
+
+        RelativeLayout.LayoutParams homeRules = new RelativeLayout.LayoutParams(
+                RelativeLayout.LayoutParams.WRAP_CONTENT,
+                RelativeLayout.LayoutParams.WRAP_CONTENT);
+
+        RelativeLayout.LayoutParams resumeRules = new RelativeLayout.LayoutParams(
+                RelativeLayout.LayoutParams.WRAP_CONTENT,
+                RelativeLayout.LayoutParams.WRAP_CONTENT);
+
+        RelativeLayout.LayoutParams statsRules = new RelativeLayout.LayoutParams(
+                RelativeLayout.LayoutParams.WRAP_CONTENT,
+                RelativeLayout.LayoutParams.WRAP_CONTENT);
+
+        pauseView.setLayoutParams(params);
+        pauseView.addView(home);
+        pauseView.addView(resume);
+
+        homeRules.addRule(RelativeLayout.ALIGN_PARENT_TOP, RelativeLayout.TRUE);
+        homeRules.addRule(RelativeLayout.ALIGN_PARENT_LEFT, RelativeLayout.TRUE);
+
+        homeRules.height = screenHeight / 6;
+        homeRules.width = screenWidth / 6;
+        home.setLayoutParams(homeRules);
+        home.getBackground().setColorFilter(Color.YELLOW, PorterDuff.Mode.MULTIPLY);
+
+        resumeRules.addRule(RelativeLayout.ALIGN_PARENT_TOP, RelativeLayout.TRUE);
+        resumeRules.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, RelativeLayout.TRUE);
+
+        resumeRules.height = screenHeight / 6;
+        resumeRules.width = screenWidth / 6;
+        resume.setLayoutParams(resumeRules);
+        resume.getBackground().setColorFilter(Color.YELLOW, PorterDuff.Mode.MULTIPLY);
+
+        holder.addView(pauseView);
+        pauseView.setVisibility(View.GONE);
+
         // Set holder to what is shown on display
         setContentView(holder);
     }
+
+
+
+
+
 
     // This snippet hides the system bars.
     private void hideSystemUI() {

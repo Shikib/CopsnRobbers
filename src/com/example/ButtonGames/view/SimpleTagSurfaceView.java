@@ -18,7 +18,7 @@ public class SimpleTagSurfaceView extends SurfaceView{
 
     private SurfaceHolder sh;
     private Board board;
-    private GameLoopThread gameLoopThread;
+    public GameLoopThread gameLoopThread;
     private final Paint textL = new Paint(Paint.ANTI_ALIAS_FLAG); // Color/style/size/alignment of text for Lscore
     private final Paint textR = new Paint(Paint.ANTI_ALIAS_FLAG); // Color/style/size/alignment of text for Rscore
     private final Paint textT = new Paint(Paint.ANTI_ALIAS_FLAG); // Color/style/size/alignment of text for timer
