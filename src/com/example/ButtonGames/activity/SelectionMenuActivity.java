@@ -47,18 +47,7 @@ public class SelectionMenuActivity extends Activity{
 
         setContentView(R.layout.selection_menu);
     }
-
-    public static String convertStreamToString(InputStream is) throws Exception {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(is));
-        StringBuilder sb = new StringBuilder();
-        String line = null;
-        while ((line = reader.readLine()) != null) {
-            sb.append(line).append("\n");
-        }
-        reader.close();
-        return sb.toString();
-    }
-
+    
     public void onMap0Button(View view){
         Intent i = new Intent(this, SimpleTagActivity.class);
         i.putExtra("com.example.ButtonGames.obstacle", 0);
