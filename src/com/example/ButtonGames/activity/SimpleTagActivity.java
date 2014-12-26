@@ -167,6 +167,7 @@ public class SimpleTagActivity extends Activity{
 
         pause = new Button(this);
         pause.setId(123457);
+        pause.setBackgroundResource(R.drawable.pause_button);
 
         pause.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -228,7 +229,6 @@ public class SimpleTagActivity extends Activity{
         pauseRules.height = screenHeight / 6;
         pauseRules.width = screenWidth / 6;
         pause.setLayoutParams(pauseRules);
-        pause.getBackground().setColorFilter(Color.BLUE, PorterDuff.Mode.MULTIPLY);
 
         // Add SimpleTagSurfaceView to holder
         holder.addView(stSurfaceView);
