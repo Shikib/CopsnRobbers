@@ -1,6 +1,7 @@
 package com.example.ButtonGames.activity;
 
 import android.app.Activity;
+import android.content.Context;
 import android.graphics.*;
 import android.os.Bundle;
 import android.view.*;
@@ -28,6 +29,9 @@ public class SimpleTagActivity extends Activity{
     private int screenWidth;
     private int screenHeight;
 
+    public static int obstacleMap;
+    public static int  backgroundMap;
+
 
 
     @Override
@@ -49,18 +53,23 @@ public class SimpleTagActivity extends Activity{
         initBackground(); // Set up background options to use
 
         // Make new board with width and height of display, and correct obstacles
-        List<Obstacle> map = obstacles.get(getIntent().getIntExtra("com.example.ButtonGames.obstacle", 0));
+        obstacleMap = getIntent().getIntExtra("com.example.ButtonGames.obstacle", 0);
+        List<Obstacle> map = obstacles.get(obstacleMap);
         board = new Board(map, screenWidth, screenHeight);
 
         // Make new surface view with correct background
-        Bitmap backgroundType = backgrounds.get(getIntent().getIntExtra("con.example.ButtonGames.background", 0));
+        backgroundMap = getIntent().getIntExtra("com.example.ButtonGames.background", 0);
+        Bitmap backgroundType = backgrounds.get(backgroundMap);
+
         stSurfaceView = new SimpleTagSurfaceView(this, board, backgroundType);
 
         holder = new FrameLayout(this);
         buttons = new RelativeLayout(this);
         initView(); // Set up left and right buttons
 
+
     }
+
 
 
     @Override

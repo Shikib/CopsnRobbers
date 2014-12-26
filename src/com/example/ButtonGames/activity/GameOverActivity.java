@@ -49,7 +49,10 @@ public class GameOverActivity extends Activity {
     }
 
     public void onRetryButton(View view){
-        startActivity(new Intent(this, SimpleTagActivity.class));
+        Intent i = new Intent(this, SimpleTagActivity.class);
+        i.putExtra("com.example.ButtonGames.obstacle", getIntent().getIntExtra("com.example.ButtonGames.oldObstacle", 0));
+        i.putExtra("com.example.ButtonGames.background", getIntent().getIntExtra("com.example.ButtonGames.oldBackground", 0));
+        startActivity(i);
         finish();
     }
 

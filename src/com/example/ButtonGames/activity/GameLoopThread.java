@@ -41,6 +41,8 @@ public class GameLoopThread extends Thread {
                 }
                 Intent gameOverScreen = new Intent((view.getContext()), GameOverActivity.class);
                 gameOverScreen.putExtra("com.example.ButtonGames.winner", winner);
+                gameOverScreen.putExtra("com.example.ButtonGames.oldObstacle", SimpleTagActivity.obstacleMap);
+                gameOverScreen.putExtra("com.example.ButtonGames.oldBackground", SimpleTagActivity.backgroundMap);
                 view.getContext().startActivity(gameOverScreen);
                 ((Activity) view.getContext()).finish();
                 return;

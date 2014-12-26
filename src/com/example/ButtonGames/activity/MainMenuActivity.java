@@ -81,7 +81,7 @@ public class MainMenuActivity extends Activity {
                         // Start new SimpleTagActivity with combination of obstacle and background chosen
                         Intent i = new Intent(MainMenuActivity.this, SimpleTagActivity.class);
                         i.putExtra("com.example.ButtonGames.obstacle", map.first);
-                        i.putExtra("con.example.ButtonGames.background", map.second);
+                        i.putExtra("com.example.ButtonGames.background", map.second);
                         MainMenuActivity.this.startActivity(i);
 
                         MainMenuActivity.this.finish();
