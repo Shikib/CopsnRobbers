@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+    <ScrollView
+            android:id="@+id/scrollView1"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_alignParentTop="true" android:layout_alignParentStart="true">
+    <LinearLayout
+            android:id="@+id/linearLayout1"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical"
+            android:weightSum="1" android:layout_alignParentTop="true" android:layout_alignParentStart="true">
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Choose a Theme:"
+                android:id="@+id/textView" android:layout_alignParentTop="true" android:layout_centerHorizontal="true"
+                android:layout_gravity="center_horizontal" android:textStyle="bold" android:textSize="30sp"/>
+        <ImageButton
+                android:layout_width="450dp"
+                android:layout_height="275dp"
+                android:background="@drawable/map1"
+                android:id="@+id/imageButtonTheme0" android:layout_centerVertical="true" android:layout_centerHorizontal="true"
+                android:onClick="onTheme0Button" android:layout_gravity="center_horizontal"/>
+        <ImageButton
+                android:layout_width="450dp"
+                android:layout_height="275dp"
+                android:background="@drawable/map2"
+                android:id="@+id/imageButtonTheme1" android:layout_below="@+id/imageTheme0"
+                android:layout_centerHorizontal="true" android:layout_gravity="center_horizontal"
+                android:onClick="onTheme1Button"/>
+        <ImageButton
+                android:layout_width="450dp"
+                android:layout_height="275dp"
+                android:background="@drawable/map3"
+                android:id="@+id/imageButtonTheme2" android:layout_below="@+id/imageTheme1"
+                android:layout_centerHorizontal="true" android:layout_gravity="center_horizontal"
+                android:onClick="onTheme2Button" android:adjustViewBounds="false"/>
+        <ImageButton
+                android:layout_width="450dp"
+                android:layout_height="275dp"
+                android:background="@drawable/map4"
+                android:id="@+id/imageButtonTheme3" android:layout_below="@+id/imageTheme2"
+                android:layout_centerHorizontal="true" android:layout_gravity="center_horizontal"
+                android:onClick="onTheme3Button" android:adjustViewBounds="false"/>
+        <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Back"
+                android:id="@+id/buttonBack" android:layout_gravity="center_horizontal"
+                android:onClick="onBackButton"/>
+    </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

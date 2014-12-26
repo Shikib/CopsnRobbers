@@ -1,7 +1,6 @@
 package com.example.ButtonGames.activity;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Point;
@@ -13,6 +12,7 @@ import android.view.*;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import com.example.ButtonGames.R;
 import com.example.ButtonGames.model.Board;
 import com.example.ButtonGames.model.Obstacle;
@@ -57,7 +57,6 @@ public class SimpleTagActivity extends Activity{
             screenHeight = size.y;
 
         initObstacles(); // Set up obstacle options to use
-        initBackground(); // Set up background options to use
 
         // Make new board with width and height of display, and correct obstacles
         obstacleMap = getIntent().getIntExtra("com.example.ButtonGames.obstacle", 0);
@@ -65,19 +64,20 @@ public class SimpleTagActivity extends Activity{
         board = new Board(map, screenWidth, screenHeight);
 
         // Make new surface view with correct background
-        backgroundMap = getIntent().getIntExtra("com.example.ButtonGames.background", 0);
-        Bitmap backgroundType = backgrounds.get(backgroundMap);
-
-        stSurfaceView = new SimpleTagSurfaceView(this, board, backgroundType);
+        backgroundMap = getIntent().getIntExtra("com.example.ButtonGames.theme", 0);
+        stSurfaceView = new SimpleTagSurfaceView(this, board, initBackground(backgroundMap), backgroundMap);
 
         holder = new FrameLayout(this);
         buttons = new RelativeLayout(this);
         pauseView = new RelativeLayout(this);
         initView(); // Set up left and right buttons
+<<<<<<< HEAD
 
 
         if (savedInstanceState != null)
             onRestoreInstanceState(savedInstanceState);
+=======
+>>>>>>> 47ff475dba2fdc1525ccb77dcade9bddeace3c09
     }
 
 
@@ -165,18 +165,26 @@ public class SimpleTagActivity extends Activity{
         obstacles1.add(new Obstacle((double) 15*screenWidth/ 20, (double) 16* screenWidth / 20,
                 (double) 2*screenHeight / 7, (double) 4*screenHeight / 7));
 
+        List<Obstacle> obstacles2 = new ArrayList<Obstacle>();
+        obstacles2.add(new Obstacle((double) 15*screenWidth/ 20, (double) 16* screenWidth / 20,
+                (double) 2*screenHeight / 7, (double) 4*screenHeight / 7));
+
         obstacles = new ArrayList<List<Obstacle>>();
         obstacles.add(obstacles0);
         obstacles.add(obstacles1);
+        obstacles.add(obstacles2);
     }
 
-    public void initBackground(){
-        Bitmap background0 = BitmapFactory.decodeResource(getResources(), R.drawable.map1);
-        Bitmap background1 = BitmapFactory.decodeResource(getResources(), R.drawable.blank);
-
-        backgrounds = new ArrayList<Bitmap>();
-        backgrounds.add(background0);
-        backgrounds.add(background1);
+    public Bitmap initBackground(int n){
+        if (backgroundMap == 0){
+            return BitmapFactory.decodeResource(getResources(), R.drawable.map1);
+        } else if (backgroundMap == 1){
+            return BitmapFactory.decodeResource(getResources(), R.drawable.map2);
+        } else if (backgroundMap == 2){
+            return BitmapFactory.decodeResource(getResources(), R.drawable.map3);
+        } else {
+            return BitmapFactory.decodeResource(getResources(), R.drawable.map4);
+        }
     }
 
     public void initView() {
@@ -224,7 +232,6 @@ public class SimpleTagActivity extends Activity{
 
         pause = new Button(this);
         pause.setId(123457);
-        pause.setBackgroundResource(R.drawable.pause_button);
 
         pause.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -281,11 +288,14 @@ public class SimpleTagActivity extends Activity{
 
         pauseRules.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, RelativeLayout.TRUE);
         pauseRules.addRule(RelativeLayout.ALIGN_PARENT_TOP, RelativeLayout.TRUE);
+        pauseRules.setMargins( screenHeight / 30, screenHeight / 30,  screenHeight /30, screenHeight /30);
 
         // Set height, color of pause button
-        pauseRules.height = screenHeight / 6;
-        pauseRules.width = screenWidth / 6;
+        pauseRules.height = screenWidth / 15;
+        pauseRules.width = screenWidth / 15;
         pause.setLayoutParams(pauseRules);
+        pause.setBackgroundResource(R.drawable.pause_button);
+        pause.getBackground().setAlpha(64*3);
 
         // Add SimpleTagSurfaceView to holder
         holder.addView(stSurfaceView);
@@ -324,6 +334,15 @@ public class SimpleTagActivity extends Activity{
             }
         });
 
+        TextView paused = new TextView(this);
+        paused.setText("PAUSED");
+        paused.setTextColor(Color.RED);
+        paused.setTextSize(screenHeight/15);
+
+        RelativeLayout.LayoutParams pausedRules = new RelativeLayout.LayoutParams(
+                RelativeLayout.LayoutParams.WRAP_CONTENT,
+                RelativeLayout.LayoutParams.WRAP_CONTENT);
+
         RelativeLayout.LayoutParams homeRules = new RelativeLayout.LayoutParams(
                 RelativeLayout.LayoutParams.WRAP_CONTENT,
                 RelativeLayout.LayoutParams.WRAP_CONTENT);
@@ -339,22 +358,29 @@ public class SimpleTagActivity extends Activity{
         pauseView.setLayoutParams(params);
         pauseView.addView(home);
         pauseView.addView(resume);
+        pauseView.addView(paused);
+
+        pausedRules.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
+        paused.setLayoutParams(pausedRules);
 
         homeRules.addRule(RelativeLayout.ALIGN_PARENT_TOP, RelativeLayout.TRUE);
         homeRules.addRule(RelativeLayout.ALIGN_PARENT_LEFT, RelativeLayout.TRUE);
 
         homeRules.height = screenHeight / 6;
-        homeRules.width = screenWidth / 6;
+        homeRules.width = screenWidth / 5;
         home.setLayoutParams(homeRules);
-        home.getBackground().setColorFilter(Color.YELLOW, PorterDuff.Mode.MULTIPLY);
+        home.setBackgroundResource(R.drawable.home_button);
+        home.getBackground().setAlpha(64*3);
 
         resumeRules.addRule(RelativeLayout.ALIGN_PARENT_TOP, RelativeLayout.TRUE);
         resumeRules.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, RelativeLayout.TRUE);
+        resumeRules.setMargins( screenHeight / 30, screenHeight / 30,  screenHeight /30, screenHeight /30);
 
-        resumeRules.height = screenHeight / 6;
-        resumeRules.width = screenWidth / 6;
+        resumeRules.height = screenWidth / 15;
+        resumeRules.width = screenWidth / 15;
         resume.setLayoutParams(resumeRules);
-        resume.getBackground().setColorFilter(Color.YELLOW, PorterDuff.Mode.MULTIPLY);
+        resume.setBackgroundResource(R.drawable.play_button);
+        resume.getBackground().setAlpha(64*3);
 
         holder.addView(pauseView);
         pauseView.setVisibility(View.GONE);

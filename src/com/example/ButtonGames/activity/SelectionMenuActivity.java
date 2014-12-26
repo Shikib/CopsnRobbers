@@ -2,18 +2,16 @@ package com.example.ButtonGames.activity;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Button;
 import com.example.ButtonGames.R;
 
 /**
- * Created by Sarah on 2014-12-24.
+ * Created by Sarah on 2014-12-25.
  */
-public class GameOverActivity extends Activity {
+public class SelectionMenuActivity extends Activity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,32 +29,28 @@ public class GameOverActivity extends Activity {
                         | View.SYSTEM_UI_FLAG_FULLSCREEN
                         | View.SYSTEM_UI_FLAG_IMMERSIVE);
 
-        if (getIntent().getBooleanExtra("com.example.ButtonGames.winner", false)){
-            setContentView(R.layout.game_over_green);
-        } else {
-            setContentView(R.layout.game_over_purple);
-        }
-
-        // Make button transparent
-        Button buttonRetry = (Button)findViewById(R.id.buttonRetry);
-        buttonRetry.setVisibility(View.VISIBLE);
-        buttonRetry.setBackgroundColor(Color.TRANSPARENT);
-
-        // Make button transparent
-        Button buttonMainMenu = (Button)findViewById(R.id.buttonMainMenu);
-        buttonMainMenu.setVisibility(View.VISIBLE);
-        buttonMainMenu.setBackgroundColor(Color.TRANSPARENT);
+        setContentView(R.layout.selection_menu);
     }
 
-    public void onRetryButton(View view){
+    public void onMap0Button(View view){
         Intent i = new Intent(this, SimpleTagActivity.class);
-        i.putExtra("com.example.ButtonGames.obstacle", getIntent().getIntExtra("com.example.ButtonGames.oldObstacle", 0));
-        i.putExtra("com.example.ButtonGames.theme", getIntent().getIntExtra("com.example.ButtonGames.oldTheme", 0));
+        i.putExtra("com.example.ButtonGames.obstacle", 0);
+        i.putExtra("com.example.ButtonGames.theme", SettingsMenuActivity.theme);
         startActivity(i);
         finish();
     }
-
-    public void onMainMenuButton(View view){
+    public void onMap1Button(View view){
+        Intent i = new Intent(this, SimpleTagActivity.class);
+        i.putExtra("com.example.ButtonGames.obstacle", 1);
+        i.putExtra("com.example.ButtonGames.theme", SettingsMenuActivity.theme);
+        startActivity(i);
+        finish();
+    }
+    public void onMap2Button(View view){
+        Intent i = new Intent(this, SimpleTagActivity.class);
+        i.putExtra("com.example.ButtonGames.obstacle", 2);
+        i.putExtra("com.example.ButtonGames.theme", SettingsMenuActivity.theme);
+        startActivity(i);
         finish();
     }
 }

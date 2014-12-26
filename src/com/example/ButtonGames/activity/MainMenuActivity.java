@@ -61,7 +61,10 @@ public class MainMenuActivity extends Activity {
 
     // When play button is pressed, start new SimpleTagActivity with selected obstacle and background
     public void onPlayButton(View view){
+        startActivity(new Intent(this, SelectionMenuActivity.class));
+    }
 
+<<<<<<< HEAD
 
         AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper(this, android.R.style.Theme_Holo_Light_Dialog));
 
@@ -95,6 +98,10 @@ public class MainMenuActivity extends Activity {
 
         alertDialog.show();
 
+=======
+    public void onSettingsButton(View view){
+        startActivity(new Intent(this, SettingsMenuActivity.class));
+>>>>>>> 47ff475dba2fdc1525ccb77dcade9bddeace3c09
     }
 
     @Override
