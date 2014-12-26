@@ -28,11 +28,6 @@ public class MainMenuActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if (savedInstanceState != null) {
-            onRestoreInstanceState(savedInstanceState);
-            return;
-        }
-
         // Get rid of banner, fill screens the app
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
@@ -48,11 +43,6 @@ public class MainMenuActivity extends Activity {
 
         // Set what is displayed to main.xml in layout-land
         setContentView(R.layout.main);
-
-        // Make button transparent
-        Button theButton = (Button)findViewById(R.id.button);
-        theButton.setVisibility(View.VISIBLE);
-        theButton.setBackgroundColor(Color.TRANSPARENT);
 
         // Get width and height of board from display
         Point size = new Point();
@@ -103,8 +93,15 @@ public class MainMenuActivity extends Activity {
 
     @Override
     public void onRestoreInstanceState(Bundle savedInstanceState) {
-        Intent i = new Intent(MainMenuActivity.this, SimpleTagActivity.class);
-        MainMenuActivity.this.startActivity(i);
+        super.onRestoreInstanceState(savedInstanceState);
+        if (savedInstanceState.getBoolean("gameStarted")) {
+            Intent i = new Intent(MainMenuActivity.this, SimpleTagActivity.class);
+            MainMenuActivity.this.startActivity(i);
+        }
+        // uncomment when selection menu error is fixed
+//        else if (savedInstanceState.getBoolean("inSelectionMenu")) {
+//            startActivity(new Intent(this, SettingsMenuActivity.class));
+//        }
     }
 
 }

@@ -32,6 +32,12 @@ public class SelectionMenuActivity extends Activity{
         setContentView(R.layout.selection_menu);
     }
 
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+        savedInstanceState.putBoolean("inSelectionMenu", true);
+    }
+
     public void onMap0Button(View view){
         Intent i = new Intent(this, SimpleTagActivity.class);
         i.putExtra("com.example.ButtonGames.obstacle", 0);

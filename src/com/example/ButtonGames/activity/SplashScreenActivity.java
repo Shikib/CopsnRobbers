@@ -22,10 +22,10 @@ public class SplashScreenActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        if (savedInstanceState != null) {
-            onRestoreInstanceState(savedInstanceState);
-            return;
-        }
+//        if (savedInstanceState != null) {
+//            onRestoreInstanceState(savedInstanceState);
+//            return;
+//        }
 
         // Get rid of banner, fill screens the app
         requestWindowFeature(Window.FEATURE_NO_TITLE);

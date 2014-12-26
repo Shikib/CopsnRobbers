@@ -110,6 +110,8 @@ public class SimpleTagActivity extends Activity{
 
         // add obstacles and map
         int obstacleMap = getIntent().getIntExtra("com.example.ButtonGames.obstacle", 0);
+
+        savedInstanceState.putBoolean("gameStarted", true);
         savedInstanceState.putInt("obstacleMap", obstacleMap);
 
         savedInstanceState.putDouble("leftX", board.getPlayerL().getX());
@@ -146,7 +148,6 @@ public class SimpleTagActivity extends Activity{
             board.getPlayerR().setState(!savedInstanceState.getBoolean("leftState"));
 
             board.setCurrentFrame(savedInstanceState.getInt("currentFrame"));
-
 
             pauseView.setVisibility(View.VISIBLE);
         }

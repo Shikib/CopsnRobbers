@@ -12,7 +12,9 @@
                 android:clickable="true" android:width="200dp"
                 android:height="75dp"
                 android:onClick="onPlayButton"
-                android:layout_alignParentBottom="true" android:layout_centerHorizontal="true"/>
+                android:layout_alignParentBottom="true" android:layout_centerHorizontal="true"
+                android:alpha="0.0"/>
+
         <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
