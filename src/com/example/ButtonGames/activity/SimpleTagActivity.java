@@ -76,6 +76,8 @@ public class SimpleTagActivity extends Activity{
         initView(); // Set up left and right buttons
 
 
+        if (savedInstanceState != null)
+            onRestoreInstanceState(savedInstanceState);
     }
 
 
@@ -98,6 +100,61 @@ public class SimpleTagActivity extends Activity{
         }
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        holder.removeView(buttons);
+        holder.removeView(pauseView);
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        // call the superclass so it can save the view hierarchy state
+        super.onSaveInstanceState(savedInstanceState);
+
+        // add obstacles and map
+        Intent intent = getIntent();
+        Bundle extras = intent.getExtras();
+        savedInstanceState.putAll(extras);
+
+        savedInstanceState.putDouble("leftX", board.getPlayerL().getX());
+        savedInstanceState.putDouble("leftY", board.getPlayerL().getY());
+        savedInstanceState.putDouble("leftDir", board.getPlayerL().getDirection());
+        savedInstanceState.putInt("leftScore", board.getPlayerL().getScore());
+        savedInstanceState.putBoolean("leftState", board.getPlayerL().getState());
+
+        savedInstanceState.putDouble("rightX", board.getPlayerR().getX());
+        savedInstanceState.putDouble("rightY", board.getPlayerR().getY());
+        savedInstanceState.putDouble("rightDir", board.getPlayerR().getDirection());
+        savedInstanceState.putInt("rightScore", board.getPlayerR().getScore());
+
+        savedInstanceState.putInt("currentFrame", board.getCurrentFrame());
+    }
+
+    @Override
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+
+        if (savedInstanceState != null) {
+            Intent i = getIntent();
+            i.putExtra("com.example.ButtonGames.obstacle", savedInstanceState.getBundle("com.example.ButtonGames.obstacle"));
+            i.putExtra("com.example.ButtonGames.background", savedInstanceState.getBundle("com.example.ButtonGames.background"));
+
+            board.getPlayerL().setX(savedInstanceState.getDouble("leftX"));
+            board.getPlayerL().setY(savedInstanceState.getDouble("leftY"));
+            board.getPlayerL().setDirection(savedInstanceState.getDouble("leftDir"));
+            board.getPlayerL().setScore(savedInstanceState.getInt("leftScore"));
+            board.getPlayerL().setState(savedInstanceState.getBoolean("leftState"));
+
+            board.getPlayerR().setX(savedInstanceState.getDouble("rightX"));
+            board.getPlayerR().setY(savedInstanceState.getDouble("rightY"));
+            board.getPlayerR().setDirection(savedInstanceState.getDouble("rightDir"));
+            board.getPlayerR().setScore(savedInstanceState.getInt("rightScore"));
+            board.getPlayerR().setState(!savedInstanceState.getBoolean("leftState"));
+
+            board.setCurrentFrame(savedInstanceState.getInt("currentFrame"));
+        }
+    }
 
     public void initObstacles(){
         List<Obstacle> obstacles0 = new ArrayList<Obstacle>(); // Example map
@@ -249,7 +306,6 @@ public class SimpleTagActivity extends Activity{
         home.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                startActivity(new Intent(v.getContext(), MainMenuActivity.class));
                 ((Activity) v.getContext()).finish();
                 return false;
             }

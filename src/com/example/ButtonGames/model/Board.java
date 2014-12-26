@@ -63,6 +63,10 @@ public class Board {
         return currentFrame;
     }
 
+    public void setCurrentFrame(int frame) {
+        this.currentFrame = frame;
+    }
+
     public Sprite getPlayerL() {
         return playerL;
     }

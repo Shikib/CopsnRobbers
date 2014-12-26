@@ -21,6 +21,12 @@ public class SplashScreenActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if (savedInstanceState != null) {
+            onRestoreInstanceState(savedInstanceState);
+            return;
+        }
+
         // Get rid of banner, fill screens the app
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
@@ -47,5 +53,13 @@ public class SplashScreenActivity extends Activity {
                 SplashScreenActivity.this.finish();
             }
         }, SPLASH_DISPLAY_LENGTH);
+
+    }
+
+    @Override
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
+        Intent mainMenu = new Intent(SplashScreenActivity.this, MainMenuActivity.class);
+        SplashScreenActivity.this.startActivity(mainMenu);
+        SplashScreenActivity.this.finish();
     }
 }

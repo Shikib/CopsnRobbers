@@ -28,6 +28,11 @@ public class MainMenuActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        if (savedInstanceState != null) {
+            onRestoreInstanceState(savedInstanceState);
+            return;
+        }
+
         // Get rid of banner, fill screens the app
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
@@ -83,8 +88,6 @@ public class MainMenuActivity extends Activity {
                         i.putExtra("com.example.ButtonGames.obstacle", map.first);
                         i.putExtra("com.example.ButtonGames.background", map.second);
                         MainMenuActivity.this.startActivity(i);
-
-                        MainMenuActivity.this.finish();
                     }
                 });
         // Create and show the dialog
@@ -92,6 +95,12 @@ public class MainMenuActivity extends Activity {
 
         alertDialog.show();
 
+    }
+
+    @Override
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
+        Intent i = new Intent(MainMenuActivity.this, SimpleTagActivity.class);
+        MainMenuActivity.this.startActivity(i);
     }
 
 }
