@@ -1,15 +1,12 @@
 package com.example.ButtonGames.activity;
 
 import android.app.Activity;
-<<<<<<< HEAD
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Point;
 import android.graphics.PorterDuff;
-=======
 import android.graphics.*;
->>>>>>> 1b83885dfeb2cadb0b8db1c63fc09a88ba8b773e
 import android.os.Bundle;
 import android.view.*;
 
@@ -32,12 +29,9 @@ public class SimpleTagActivity extends Activity{
     private SimpleTagSurfaceView stSurfaceView;
     private FrameLayout holder;     // holder for everything
     private RelativeLayout buttons; // holder for the buttons
-<<<<<<< HEAD
     public RelativeLayout pauseView;
     private boolean resume = false;
     public static Activity simpleTag;
-=======
->>>>>>> 1b83885dfeb2cadb0b8db1c63fc09a88ba8b773e
 
     private int screenWidth;
     private int screenHeight;
@@ -246,7 +240,7 @@ public class SimpleTagActivity extends Activity{
         home.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                startActivity(new Intent(v.getContext(), MyActivity.class));
+                startActivity(new Intent(v.getContext(), MainMenuActivity.class));
                 ((Activity) v.getContext()).finish();
                 return false;
             }
