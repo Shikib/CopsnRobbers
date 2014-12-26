@@ -91,7 +91,7 @@ public class SimpleTagActivity extends Activity{
     @Override
     protected void onPause() {
         super.onPause();
-        if (stSurfaceView != null) {
+        if (stSurfaceView.gameLoopThread != null) {
             stSurfaceView.gameLoopThread.killThread();
         }
     }
@@ -109,9 +109,9 @@ public class SimpleTagActivity extends Activity{
         super.onSaveInstanceState(savedInstanceState);
 
         // add obstacles and map
-        Intent intent = getIntent();
-        Bundle extras = intent.getExtras();
-        savedInstanceState.putAll(extras);
+//        Intent intent = getIntent();
+//        Bundle extras = intent.getExtras();
+//        savedInstanceState.putAll(extras);
 
         savedInstanceState.putDouble("leftX", board.getPlayerL().getX());
         savedInstanceState.putDouble("leftY", board.getPlayerL().getY());
@@ -149,6 +149,8 @@ public class SimpleTagActivity extends Activity{
             board.getPlayerR().setState(!savedInstanceState.getBoolean("leftState"));
 
             board.setCurrentFrame(savedInstanceState.getInt("currentFrame"));
+
+            pauseView.setVisibility(View.VISIBLE);
         }
     }
 
