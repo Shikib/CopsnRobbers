@@ -39,10 +39,11 @@ public class GameLoopThread extends Thread {
                 Canvas c = null;
                 startTime = System.currentTimeMillis(); // Record when the loop starts
                 int score = Board.winningScore; // get the static winning score
+
             // check whether game is over
             if (board.getPlayerL().getScore() >= score || board.getPlayerR().getScore() >= score) {
                 Boolean winner = false;
-                if (board.getPlayerL().getScore() >= score){
+                if (board.getPlayerL().getScore() >= score) {
                     winner = true;
                 }
                 Intent gameOverScreen = new Intent((view.getContext()), GameOverActivity.class);
@@ -53,19 +54,6 @@ public class GameLoopThread extends Thread {
                 ((Activity) view.getContext()).finish();
                 return;
             }
-
-                // check whether game is over
-                if (board.getPlayerL().getScore() >= score || board.getPlayerR().getScore() >= score) {
-                    Boolean winner = false;
-                    if (board.getPlayerL().getScore() >= score) {
-                        winner = true;
-                    }
-                    Intent gameOverScreen = new Intent((view.getContext()), GameOverActivity.class);
-                    gameOverScreen.putExtra("com.example.ButtonGames.winner", winner);
-                    view.getContext().startActivity(gameOverScreen);
-                    ((Activity) view.getContext()).finish();
-                    return;
-                }
                 if (((SimpleTagActivity) view.getContext()).pauseView.getVisibility() == View.GONE)
                     board.updateBoard(); // Tick the board
 
