@@ -59,4 +59,8 @@ public class MainMenuActivity extends Activity {
         startActivity(new Intent(this, SelectionMenuActivity.class));
     }
 
+    public void onSettingsButton(View view){
+        startActivity(new Intent(this, SettingsMenuActivity.class));
+    }
+
 }

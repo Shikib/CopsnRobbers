@@ -57,7 +57,6 @@ public class SimpleTagActivity extends Activity{
             screenHeight = size.y;
 
         initObstacles(); // Set up obstacle options to use
-        initBackground(); // Set up background options to use
 
         // Make new board with width and height of display, and correct obstacles
         obstacleMap = getIntent().getIntExtra("com.example.ButtonGames.obstacle", 0);
@@ -66,9 +65,7 @@ public class SimpleTagActivity extends Activity{
 
         // Make new surface view with correct background
         backgroundMap = getIntent().getIntExtra("com.example.ButtonGames.theme", 0);
-        Bitmap backgroundType = backgrounds.get(backgroundMap);
-
-        stSurfaceView = new SimpleTagSurfaceView(this, board, backgroundType);
+        stSurfaceView = new SimpleTagSurfaceView(this, board, initBackground(backgroundMap));
 
         holder = new FrameLayout(this);
         buttons = new RelativeLayout(this);
@@ -118,13 +115,18 @@ public class SimpleTagActivity extends Activity{
         obstacles.add(obstacles2);
     }
 
-    public void initBackground(){
-        Bitmap background0 = BitmapFactory.decodeResource(getResources(), R.drawable.map1);
-        Bitmap background1 = BitmapFactory.decodeResource(getResources(), R.drawable.blank);
+    public Bitmap initBackground(int n){
 
-        backgrounds = new ArrayList<Bitmap>();
-        backgrounds.add(background0);
-        backgrounds.add(background1);
+        if (backgroundMap == 0){
+            return BitmapFactory.decodeResource(getResources(), R.drawable.map1);
+        } else if (backgroundMap == 1){
+            return BitmapFactory.decodeResource(getResources(), R.drawable.map2);
+        } else if (backgroundMap == 2){
+            return BitmapFactory.decodeResource(getResources(), R.drawable.map3);
+        } else {
+            return BitmapFactory.decodeResource(getResources(), R.drawable.map4);
+        }
+
     }
 
     public void initView() {
@@ -172,7 +174,6 @@ public class SimpleTagActivity extends Activity{
 
         pause = new Button(this);
         pause.setId(123457);
-        pause.setBackgroundResource(R.drawable.pause_button);
 
         pause.setOnTouchListener(new View.OnTouchListener() {
             @Override
