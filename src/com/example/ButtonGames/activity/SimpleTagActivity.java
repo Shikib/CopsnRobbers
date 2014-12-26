@@ -30,6 +30,7 @@ public class SimpleTagActivity extends Activity{
     private FrameLayout holder;     // holder for everything
     private RelativeLayout buttons; // holder for the buttons
     public RelativeLayout pauseView;
+    private Button pause;
     private boolean resume = false;
 
     private int screenWidth;
@@ -169,13 +170,15 @@ public class SimpleTagActivity extends Activity{
             }
         });
 
-        Button pause = new Button(this);
+        pause = new Button(this);
         pause.setId(123457);
+        pause.setBackgroundResource(R.drawable.pause_button);
 
         pause.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 stSurfaceView.gameLoopThread.setRunning(false);
+                v.setVisibility(View.GONE);
                 pauseView.setVisibility(View.VISIBLE);
                 return false;
             }
@@ -231,7 +234,6 @@ public class SimpleTagActivity extends Activity{
         pauseRules.height = screenHeight / 6;
         pauseRules.width = screenWidth / 6;
         pause.setLayoutParams(pauseRules);
-        pause.getBackground().setColorFilter(Color.BLUE, PorterDuff.Mode.MULTIPLY);
 
         // Add SimpleTagSurfaceView to holder
         holder.addView(stSurfaceView);
@@ -265,6 +267,7 @@ public class SimpleTagActivity extends Activity{
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 pauseView.setVisibility(View.GONE);
+                pause.setVisibility(View.VISIBLE);
                 stSurfaceView.gameLoopThread.setRunning(true);
                 return false;
             }
