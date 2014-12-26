@@ -71,13 +71,9 @@ public class SimpleTagActivity extends Activity{
         buttons = new RelativeLayout(this);
         pauseView = new RelativeLayout(this);
         initView(); // Set up left and right buttons
-<<<<<<< HEAD
-
 
         if (savedInstanceState != null)
             onRestoreInstanceState(savedInstanceState);
-=======
->>>>>>> 47ff475dba2fdc1525ccb77dcade9bddeace3c09
     }
 
 
