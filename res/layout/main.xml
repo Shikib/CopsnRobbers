@@ -2,5 +2,23 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" android:id="@+id/home_screen" >
+        android:layout_height="match_parent" android:id="@+id/home_screen" android:background="@drawable/home"
+        android:clickable="false">
+        <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/button"
+                android:layout_marginBottom="78dp" android:layout_gravity="center"
+                android:clickable="true" android:width="200dp"
+                android:height="75dp"
+                android:onClick="onPlayButton"
+                android:layout_alignParentBottom="true" android:layout_centerHorizontal="true"
+                android:alpha="0.0"/>
+
+        <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Settings"
+                android:id="@+id/buttonSettings" android:layout_alignTop="@+id/button" android:layout_alignParentEnd="true"
+                android:layout_marginEnd="35dp" android:onClick="onSettingsButton"/>
 </RelativeLayout>
