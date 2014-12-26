@@ -52,7 +52,6 @@ public class MainMenuActivity extends Activity {
     // When play button is pressed, start new SimpleTagActivity with selected obstacle and background
     public void onPlayButton(View view) {
         startActivity(new Intent(this, SelectionMenuActivity.class));
-
     }
 
     public void onSettingsButton(View view){
