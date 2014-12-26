@@ -38,10 +38,7 @@ public class GameLoopThread extends Thread {
             while (running) {
                 Canvas c = null;
                 startTime = System.currentTimeMillis(); // Record when the loop starts
-
-<<<<<<< HEAD
                 int score = Board.winningScore; // get the static winning score
-=======
             // check whether game is over
             if (board.getPlayerL().getScore() >= score || board.getPlayerR().getScore() >= score) {
                 Boolean winner = false;
@@ -54,7 +51,6 @@ public class GameLoopThread extends Thread {
                 ((Activity) view.getContext()).finish();
                 return;
             }
->>>>>>> 1b83885dfeb2cadb0b8db1c63fc09a88ba8b773e
 
                 // check whether game is over
                 if (board.getPlayerL().getScore() >= score || board.getPlayerR().getScore() >= score) {
