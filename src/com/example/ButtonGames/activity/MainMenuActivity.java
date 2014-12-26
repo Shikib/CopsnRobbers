@@ -27,9 +27,14 @@ public class MainMenuActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        // Get rid of banner, fill screens the app
         requestWindowFeature(Window.FEATURE_NO_TITLE);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        
+        // Get rid of banner, fill screens the app
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
