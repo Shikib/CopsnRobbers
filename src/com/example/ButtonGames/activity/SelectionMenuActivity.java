@@ -15,6 +15,8 @@ public class SelectionMenuActivity extends Activity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (savedInstanceState != null && savedInstanceState.getBoolean("inSelectionMenu"))
+            return;
 
         // Get rid of banner, fill screens the app
         requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -34,7 +36,6 @@ public class SelectionMenuActivity extends Activity{
 
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
-        super.onSaveInstanceState(savedInstanceState);
         savedInstanceState.putBoolean("inSelectionMenu", true);
     }
 

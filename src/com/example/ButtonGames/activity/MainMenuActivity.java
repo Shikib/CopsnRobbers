@@ -98,10 +98,9 @@ public class MainMenuActivity extends Activity {
             Intent i = new Intent(MainMenuActivity.this, SimpleTagActivity.class);
             MainMenuActivity.this.startActivity(i);
         }
-        // uncomment when selection menu error is fixed
-//        else if (savedInstanceState.getBoolean("inSelectionMenu")) {
-//            startActivity(new Intent(this, SettingsMenuActivity.class));
-//        }
+        else if (savedInstanceState.getBoolean("inSelectionMenu")) {
+            startActivity(new Intent(this, SettingsMenuActivity.class));
+        }
     }
 
 }
