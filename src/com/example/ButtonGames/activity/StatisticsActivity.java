@@ -46,9 +46,22 @@ public class StatisticsActivity extends Activity {
         text.setText("Games Played: " + stats.getInt("games_played", 0) + " times\n");
         text.append("Left Side Won: " + stats.getInt("left_won", 0) + " times\n");
         text.append("Right Side Won: " + stats.getInt("right_won", 0) + " times\n");
-        
     }
 
+    public void onResetStatistics(View view) {
+        SharedPreferences stats = getApplicationContext().getSharedPreferences(
+                "com.example.ButtonGames", Context.MODE_PRIVATE);
 
+        SharedPreferences.Editor editor = stats.edit();
+        editor.putInt("games_played", 0);
+        editor.putInt("left_won", 0);
+        editor.putInt("right_won", 0);
 
+        editor.commit();
+        initTextView();
+    }
+
+    public void onBackButton(View view) {
+        finish();
+    }
 }
