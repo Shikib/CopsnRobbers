@@ -1,7 +1,11 @@
 package com.example.ButtonGames.activity;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Point;
 import android.graphics.PorterDuff;
@@ -32,6 +36,7 @@ public class SimpleTagActivity extends Activity{
     public RelativeLayout pauseView;
     private Button pause;
     private boolean resume = false;
+    private boolean dialogShown = false;
 
     private int screenWidth;
     private int screenHeight;
@@ -299,21 +304,34 @@ public class SimpleTagActivity extends Activity{
         // Add buttons to holder
         holder.addView(buttons);
 
-//        LayoutInflater inflater = (LayoutInflater)getApplicationContext().getSystemService
-//                (Context.LAYOUT_INFLATER_SERVICE);
-//        pauseView = inflater.inflate(R.layout.pause_menu, holder, false);
-//
-//        holder.addView(pauseView);
-//
-//        pauseView.setVisibility(View.GONE);
-
         Button home = new Button(this);
         left.setId(223456);
 
         home.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                ((Activity) v.getContext()).finish();
+                if (dialogShown)
+                    return false;
+                AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+                final View view = v;
+                builder.setMessage("Are you sure you want quit the game?")
+                        .setPositiveButton("Quit", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                ((Activity) view.getContext()).finish();
+                                dialogShown = false;
+                            }
+                        })
+                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                                hideSystemUI();
+                                dialogShown = false;
+                            }
+                        });
+
+                AlertDialog dialog = builder.create();
+                dialog.show();
+                dialogShown = true;
                 return false;
             }
         });
