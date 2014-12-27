@@ -17,7 +17,19 @@
         android:layout_height="wrap_content"
         android:text="Reset stats"
         android:id="@+id/reset_stats"
+        android:layout_marginBottom="26dp"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="29dp" />
+        android:layout_toStartOf="@+id/statistics_view"
+        android:layout_marginEnd="35dp"
+        android:onClick="onResetStatistics" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Back"
+        android:id="@+id/back_button"
+        android:layout_alignBottom="@+id/reset_stats"
+        android:layout_toEndOf="@+id/statistics_view"
+        android:layout_marginStart="84dp"
+        android:onClick="onBackButton" />
 </RelativeLayout>
