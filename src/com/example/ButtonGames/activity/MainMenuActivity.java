@@ -33,7 +33,7 @@ public class MainMenuActivity extends Activity {
     @Override
     public void onResume() {
         super.onResume();
-        
+
         // Get rid of banner, fill screens the app
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -57,6 +57,10 @@ public class MainMenuActivity extends Activity {
     // When play button is pressed, start new SimpleTagActivity with selected obstacle and background
     public void onPlayButton(View view) {
         startActivity(new Intent(this, SelectionMenuActivity.class));
+    }
+
+    public void onStatisticsButton(View view) {
+        startActivity(new Intent(this, StatisticsActivity.class));
     }
 
     public void onSettingsButton(View view){

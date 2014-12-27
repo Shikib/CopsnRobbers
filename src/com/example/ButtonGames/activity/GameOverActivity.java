@@ -1,7 +1,9 @@
 package com.example.ButtonGames.activity;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -31,11 +33,23 @@ public class GameOverActivity extends Activity {
                         | View.SYSTEM_UI_FLAG_FULLSCREEN
                         | View.SYSTEM_UI_FLAG_IMMERSIVE);
 
+
+
+        SharedPreferences stats = getApplicationContext().getSharedPreferences(
+                "com.example.ButtonGames", Context.MODE_PRIVATE);
+
+        SharedPreferences.Editor editor = stats.edit();
+        editor.putInt("games_played", stats.getInt("games_played", 0) + 1);
+
         if (getIntent().getBooleanExtra("com.example.ButtonGames.winner", false)){
             setContentView(R.layout.game_over_green);
+            editor.putInt("left_won", stats.getInt("left_won", 0) + 1);
         } else {
             setContentView(R.layout.game_over_purple);
+            editor.putInt("right_won", stats.getInt("right_won", 0) + 1);
         }
+
+        editor.commit();
 
         // Make button transparent
         Button buttonRetry = (Button)findViewById(R.id.buttonRetry);
