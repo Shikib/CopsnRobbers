@@ -49,9 +49,6 @@ public class MainMenuActivity extends Activity {
         // Set what is displayed to main.xml in layout-land
         setContentView(R.layout.main);
 
-        // Get width and height of board from display
-        Point size = new Point();
-        this.getWindowManager().getDefaultDisplay().getRealSize(size);
     }
 
     // When play button is pressed, start new SimpleTagActivity with selected obstacle and background

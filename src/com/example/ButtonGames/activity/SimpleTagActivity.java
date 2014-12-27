@@ -268,20 +268,20 @@ public class SimpleTagActivity extends Activity{
         leftRules.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, RelativeLayout.TRUE);
 
         // Set height, color of left button
-        leftRules.height = screenHeight / 6;
-        leftRules.width = screenWidth / 6;
+        leftRules.height = screenHeight /2;
+        leftRules.width = screenWidth / 3;
         left.setLayoutParams(leftRules);
-        left.getBackground().setColorFilter(Color.GREEN, PorterDuff.Mode.MULTIPLY);
+        left.getBackground().setAlpha(0);
 
         // Rule to place button on bottom right of screen
         rightRules.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, RelativeLayout.TRUE);
         rightRules.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, RelativeLayout.TRUE);
 
         // Set height, color of right button
-        rightRules.height = screenHeight / 6;
-        rightRules.width = screenWidth / 6;
+        rightRules.height = screenHeight /2;
+        rightRules.width = screenWidth / 3;
         right.setLayoutParams(rightRules);
-        right.getBackground().setColorFilter(Color.MAGENTA, PorterDuff.Mode.MULTIPLY);
+        right.getBackground().setAlpha(0);
 
         pauseRules.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, RelativeLayout.TRUE);
         pauseRules.addRule(RelativeLayout.ALIGN_PARENT_TOP, RelativeLayout.TRUE);
