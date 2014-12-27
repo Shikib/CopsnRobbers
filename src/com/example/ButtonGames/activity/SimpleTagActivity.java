@@ -336,8 +336,49 @@ public class SimpleTagActivity extends Activity{
             }
         });
 
+        Button restart = new Button(this);
+        restart.setId(223457);
+
+        restart.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (dialogShown)
+                    return false;
+                AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+                final View view = v;
+                builder.setMessage("Are you sure you want restart the game?")
+                        .setPositiveButton("Restart", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                board.initSprites(0,0, (int) Math.random() * 2);
+                                board.resetSprites(-1);
+                                board.setCurrentFrame(-40);
+
+                                dialog.cancel();
+                                hideSystemUI();
+                                dialogShown = false;
+
+                                pauseView.setVisibility(View.GONE);
+                                pause.setVisibility(View.VISIBLE);
+                                stSurfaceView.gameLoopThread.setRunning(true);
+                            }
+                        })
+                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                                hideSystemUI();
+                                dialogShown = false;
+                            }
+                        });
+
+                AlertDialog dialog = builder.create();
+                dialog.show();
+                dialogShown = true;
+                return false;
+            }
+        });
+
         Button resume = new Button(this);
-        resume.setId(223457);
+        resume.setId(223458);
 
         resume.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -362,16 +403,18 @@ public class SimpleTagActivity extends Activity{
                 RelativeLayout.LayoutParams.WRAP_CONTENT,
                 RelativeLayout.LayoutParams.WRAP_CONTENT);
 
+        RelativeLayout.LayoutParams restartRules = new RelativeLayout.LayoutParams(
+                RelativeLayout.LayoutParams.WRAP_CONTENT,
+                RelativeLayout.LayoutParams.WRAP_CONTENT);
+
         RelativeLayout.LayoutParams resumeRules = new RelativeLayout.LayoutParams(
                 RelativeLayout.LayoutParams.WRAP_CONTENT,
                 RelativeLayout.LayoutParams.WRAP_CONTENT);
 
-        RelativeLayout.LayoutParams statsRules = new RelativeLayout.LayoutParams(
-                RelativeLayout.LayoutParams.WRAP_CONTENT,
-                RelativeLayout.LayoutParams.WRAP_CONTENT);
 
         pauseView.setLayoutParams(params);
         pauseView.addView(home);
+        pauseView.addView(restart);
         pauseView.addView(resume);
         pauseView.addView(paused);
 
@@ -386,6 +429,15 @@ public class SimpleTagActivity extends Activity{
         home.setLayoutParams(homeRules);
         home.setBackgroundResource(R.drawable.home_button);
         home.getBackground().setAlpha(64*3);
+
+        restartRules.addRule(RelativeLayout.ALIGN_PARENT_TOP, RelativeLayout.TRUE);
+        restartRules.addRule(RelativeLayout.CENTER_HORIZONTAL, RelativeLayout.TRUE);
+
+        restartRules.height = screenHeight / 6;
+        restartRules.width = screenWidth / 5;
+        restart.setLayoutParams(restartRules);
+        restart.setBackgroundResource(R.drawable.home_button);
+        restart.getBackground().setAlpha(64*3);
 
         resumeRules.addRule(RelativeLayout.ALIGN_PARENT_TOP, RelativeLayout.TRUE);
         resumeRules.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, RelativeLayout.TRUE);
