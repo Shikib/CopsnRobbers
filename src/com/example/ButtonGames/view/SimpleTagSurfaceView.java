@@ -22,6 +22,7 @@ public class SimpleTagSurfaceView extends SurfaceView{
     private final Paint textL = new Paint(Paint.ANTI_ALIAS_FLAG); // Color/style/size/alignment of text for Lscore
     private final Paint textR = new Paint(Paint.ANTI_ALIAS_FLAG); // Color/style/size/alignment of text for Rscore
     private final Paint textT = new Paint(Paint.ANTI_ALIAS_FLAG); // Color/style/size/alignment of text for timer
+    private final Paint textC = new Paint(Paint.ANTI_ALIAS_FLAG); // Color/style/size/alignment of text for countdown
     private final Paint textM = new Paint(Paint.ANTI_ALIAS_FLAG); // Color/style/size/alignment of text for message
     private final Paint obstacle = new Paint(Paint.ANTI_ALIAS_FLAG); // Color/style for obstacle
 
@@ -55,19 +56,25 @@ public class SimpleTagSurfaceView extends SurfaceView{
         super(context);
 
         //Set up color/style of score text timer and obstacles
-        textL.setColor(Color.GREEN);
+        textL.setColor(Color.RED);
         textL.setStyle(Paint.Style.FILL);
         textL.setTextSize(board.getHeight() / 6);
         textL.setTextAlign(Paint.Align.LEFT);
-        textL.setTypeface(Typeface.createFromAsset(getContext().getAssets(), "DS-DIGIB.TTF"));
+        textL.setTypeface(Typeface.createFromAsset(getContext().getAssets(), "arial_black.ttf"));
 
-        textR.setColor(Color.MAGENTA);
+        textR.setColor(Color.BLUE);
         textR.setStyle(Paint.Style.FILL);
         textR.setTextSize(board.getHeight() / 6);
         textR.setTextAlign(Paint.Align.RIGHT);
-        textR.setTypeface(Typeface.createFromAsset(getContext().getAssets(), "DS-DIGIB.TTF"));
+        textR.setTypeface(Typeface.createFromAsset(getContext().getAssets(), "arial_black.ttf"));
 
-        textT.setColor(Color.BLACK);
+        textC.setColor(Color.RED);
+        textC.setStyle(Paint.Style.FILL);
+        textC.setTextSize(board.getHeight() / 6);
+        textC.setTextAlign(Paint.Align.CENTER);
+        textC.setTypeface(Typeface.createFromAsset(getContext().getAssets(), "abadi_condensed_xtrabold.ttf"));
+
+        textT.setColor(Color.WHITE);
         textT.setStyle(Paint.Style.FILL);
         textT.setTextSize(board.getHeight() / 6);
         textT.setTextAlign(Paint.Align.CENTER);
@@ -77,6 +84,7 @@ public class SimpleTagSurfaceView extends SurfaceView{
         textM.setStyle(Paint.Style.FILL);
         textM.setTextSize(board.getHeight() / 6);
         textM.setTextAlign(Paint.Align.CENTER);
+        textM.setTypeface(Typeface.createFromAsset(getContext().getAssets(), "abadi_condensed_xtrabold.ttf"));
 
         obstacle.setColor(Color.GRAY);
         obstacle.setStyle(Paint.Style.FILL);
@@ -158,8 +166,8 @@ public class SimpleTagSurfaceView extends SurfaceView{
 
 
         // Draw score
-        canvas.drawText(Integer.toString(board.getPlayerL().getScore()), 1*board.getWidth()/6, 35*board.getHeight() / 36, textL);
-        canvas.drawText(Integer.toString(board.getPlayerR().getScore()), 5*board.getWidth()/6, 35*board.getHeight() / 36, textR);
+        canvas.drawText(Integer.toString(board.getPlayerL().getScore()), 5*board.getWidth()/24, (3*34+1) * board.getHeight() / (3*36), textL);
+        canvas.drawText(Integer.toString(board.getPlayerR().getScore()), 19*board.getWidth()/24, (3*34+1) * board.getHeight() / (3*36), textR);
 
         // Draw obstacles
         List<Obstacle> obstacles = board.getObstacles();
@@ -189,9 +197,9 @@ public class SimpleTagSurfaceView extends SurfaceView{
                 }
 
                 if (board.getWinMethod()) {
-                    canvas.drawText("Hunter Wins!", board.getWidth() / 2, board.getHeight() / 2, textM);
+                    canvas.drawText("CAUGHT!", board.getWidth() / 2, board.getHeight() / 2, textM);
                 } else {
-                    canvas.drawText("Prey Escaped!", board.getWidth() / 2, board.getHeight() / 2, textM);
+                    canvas.drawText("ESCAPED!", board.getWidth() / 2, board.getHeight() / 2, textM);
                 }
 
             }
@@ -203,15 +211,17 @@ public class SimpleTagSurfaceView extends SurfaceView{
 
              if (board.getCurrentFrame() < 0) {
                  int loadingTime = board.getCurrentFrame() / 10;
-                 if (loadingTime != 0)
-                     canvas.drawText(Integer.toString(-1 * loadingTime), board.getWidth() / 2, board.getHeight() / 2, textT);
-                 else
-                     canvas.drawText("GO!", board.getWidth() / 2, board.getHeight() / 2, textT);
+                 if (loadingTime == -2)
+                     canvas.drawText("READY", board.getWidth() / 2, board.getHeight() / 2, textC);
+                 else if (loadingTime == -1)
+                     canvas.drawText("SET", board.getWidth() / 2, board.getHeight() / 2, textC);
+                 else if (loadingTime == 0)
+                     canvas.drawText("GO!", board.getWidth() / 2, board.getHeight() / 2, textC);
              } else {
                  // Calculate time on timer based on currentFrame
                  int timeOnTimer = (board.getSwitchRoleTime() / 10) - ((board.getCurrentFrame() % board.getSwitchRoleTime()) / 10); // <-- Frames per second
                  //Draws the timer
-                 canvas.drawText("Time:" + Integer.toString(timeOnTimer), board.getWidth() / 2, 35 * board.getHeight() / 36, textT);
+                 canvas.drawText(Integer.toString(timeOnTimer), board.getWidth() / 2, (2*34) * board.getHeight() / (2*36), textT);
              }
         }
     }

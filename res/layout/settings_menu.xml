@@ -16,9 +16,9 @@
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Choose a Theme:"
-                android:id="@+id/textView" android:layout_alignParentTop="true" android:layout_centerHorizontal="true"
-                android:layout_gravity="center_horizontal" android:textStyle="bold" android:textSize="30sp"/>
+                android:text="CHOOSE A THEME:"
+                android:id="@+id/textViewSettings" android:layout_alignParentTop="true" android:layout_centerHorizontal="true"
+                android:layout_gravity="center_horizontal" android:textStyle="bold" android:textSize="50sp"/>
         <ImageButton
                 android:layout_width="450dp"
                 android:layout_height="275dp"

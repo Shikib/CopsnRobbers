@@ -2,21 +2,14 @@ package com.example.ButtonGames.activity;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.Point;
-import android.graphics.PorterDuff;
 import android.graphics.*;
 import android.os.Bundle;
 import android.view.*;
 
-import android.widget.Button;
-import android.widget.FrameLayout;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
+import android.widget.*;
 import com.example.ButtonGames.R;
 import com.example.ButtonGames.model.Board;
 import com.example.ButtonGames.model.Obstacle;
@@ -181,7 +174,7 @@ public class SimpleTagActivity extends Activity{
         if (backgroundMap == 0){
             return BitmapFactory.decodeResource(getResources(), R.drawable.map1);
         } else if (backgroundMap == 1){
-            return BitmapFactory.decodeResource(getResources(), R.drawable.map2);
+            return BitmapFactory.decodeResource(getResources(), R.drawable.map2_test);
         } else if (backgroundMap == 2){
             return BitmapFactory.decodeResource(getResources(), R.drawable.map3);
         } else {
@@ -282,6 +275,7 @@ public class SimpleTagActivity extends Activity{
         rightRules.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, RelativeLayout.TRUE);
         rightRules.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM, RelativeLayout.TRUE);
 
+
         // Set height, color of right button
         rightRules.height = screenHeight /2;
         rightRules.width = screenWidth / 3;
@@ -290,7 +284,7 @@ public class SimpleTagActivity extends Activity{
 
         pauseRules.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, RelativeLayout.TRUE);
         pauseRules.addRule(RelativeLayout.ALIGN_PARENT_TOP, RelativeLayout.TRUE);
-        pauseRules.setMargins( screenHeight / 30, screenHeight / 30,  screenHeight /30, screenHeight /30);
+        pauseRules.setMargins( screenHeight / 29, screenHeight / 29,  screenHeight /29, screenHeight /29);
 
         // Set height, color of pause button
         pauseRules.height = screenWidth / 15;
@@ -393,7 +387,8 @@ public class SimpleTagActivity extends Activity{
         TextView paused = new TextView(this);
         paused.setText("PAUSED");
         paused.setTextColor(Color.RED);
-        paused.setTextSize(screenHeight/15);
+        paused.setTypeface(Typeface.createFromAsset(getAssets(), "abadi_condensed_xtrabold.ttf"));
+        paused.setTextSize(screenHeight / 15);
 
         RelativeLayout.LayoutParams pausedRules = new RelativeLayout.LayoutParams(
                 RelativeLayout.LayoutParams.WRAP_CONTENT,
@@ -423,31 +418,41 @@ public class SimpleTagActivity extends Activity{
 
         homeRules.addRule(RelativeLayout.ALIGN_PARENT_TOP, RelativeLayout.TRUE);
         homeRules.addRule(RelativeLayout.ALIGN_PARENT_LEFT, RelativeLayout.TRUE);
+        homeRules.setMargins(screenHeight / 29, screenHeight / 29, screenHeight / 29, screenHeight / 29);
 
-        homeRules.height = screenHeight / 6;
-        homeRules.width = screenWidth / 5;
         home.setLayoutParams(homeRules);
-        home.setBackgroundResource(R.drawable.home_button);
-        home.getBackground().setAlpha(64*3);
+        home.setBackgroundColor(Color.BLACK);
+        home.getBackground().setAlpha(64 * 3);
+        home.setText("HOME");
+        home.setTextColor(Color.GRAY);
+        home.setTextSize(screenHeight / 20);
+
+        Typeface tf = Typeface.createFromAsset(getAssets(), "abadi_condensed_xtrabold.ttf");
+        home.setTypeface(tf);
 
         restartRules.addRule(RelativeLayout.ALIGN_PARENT_TOP, RelativeLayout.TRUE);
         restartRules.addRule(RelativeLayout.CENTER_HORIZONTAL, RelativeLayout.TRUE);
+        restartRules.setMargins( screenHeight / 29, screenHeight / 29,  screenHeight /29, screenHeight /29);
 
-        restartRules.height = screenHeight / 6;
-        restartRules.width = screenWidth / 5;
+
         restart.setLayoutParams(restartRules);
-        restart.setBackgroundResource(R.drawable.home_button);
+        restart.setBackgroundColor(Color.BLACK);
         restart.getBackground().setAlpha(64*3);
+        restart.setText("RESTART");
+        restart.setTextColor(Color.GRAY);
+        restart.setTypeface(tf);
+        restart.setTextSize(screenHeight/20);
 
         resumeRules.addRule(RelativeLayout.ALIGN_PARENT_TOP, RelativeLayout.TRUE);
         resumeRules.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, RelativeLayout.TRUE);
-        resumeRules.setMargins( screenHeight / 30, screenHeight / 30,  screenHeight /30, screenHeight /30);
+        resumeRules.setMargins( screenHeight / 29, screenHeight / 29,  screenHeight /29, screenHeight /29);
 
         resumeRules.height = screenWidth / 15;
         resumeRules.width = screenWidth / 15;
         resume.setLayoutParams(resumeRules);
         resume.setBackgroundResource(R.drawable.play_button);
         resume.getBackground().setAlpha(64*3);
+
 
         holder.addView(pauseView);
         pauseView.setVisibility(View.GONE);

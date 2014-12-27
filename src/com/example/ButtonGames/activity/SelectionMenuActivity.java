@@ -4,10 +4,12 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.TextView;
 import com.example.ButtonGames.R;
 
 import java.io.BufferedReader;
@@ -46,6 +48,10 @@ public class SelectionMenuActivity extends Activity{
                         | View.SYSTEM_UI_FLAG_IMMERSIVE);
 
         setContentView(R.layout.selection_menu);
+
+        TextView text = (TextView) findViewById(R.id.textViewSelection);
+        Typeface tf = Typeface.createFromAsset(getAssets(), "abadi_condensed_xtrabold.ttf");
+        text.setTypeface(tf);
     }
     
     public void onMap0Button(View view){
