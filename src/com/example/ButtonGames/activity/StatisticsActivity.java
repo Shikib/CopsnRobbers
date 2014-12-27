@@ -1,7 +1,9 @@
 package com.example.ButtonGames.activity;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -19,6 +21,12 @@ public class StatisticsActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
+        hideNavigation();
+        setContentView(R.layout.statistics_screen);
+        initTextView();
+    }
+
+    public void hideNavigation() {
         // Get rid of banner, fill screens the app
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -49,16 +57,35 @@ public class StatisticsActivity extends Activity {
     }
 
     public void onResetStatistics(View view) {
-        SharedPreferences stats = getApplicationContext().getSharedPreferences(
-                "com.example.ButtonGames", Context.MODE_PRIVATE);
 
-        SharedPreferences.Editor editor = stats.edit();
-        editor.putInt("games_played", 0);
-        editor.putInt("left_won", 0);
-        editor.putInt("right_won", 0);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Are you sure you want to reset all your stats?")
+                .setPositiveButton("Reset", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        SharedPreferences stats = getApplicationContext().getSharedPreferences(
+                                "com.example.ButtonGames", Context.MODE_PRIVATE);
 
-        editor.commit();
-        initTextView();
+                        SharedPreferences.Editor editor = stats.edit();
+                        editor.putInt("games_played", 0);
+                        editor.putInt("left_won", 0);
+                        editor.putInt("right_won", 0);
+
+                        editor.commit();
+                        initTextView();
+
+                        dialog.cancel();
+                        hideNavigation();
+                    }
+                })
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                        hideNavigation();
+                    }
+                });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
     public void onBackButton(View view) {
