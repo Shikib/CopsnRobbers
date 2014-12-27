@@ -42,10 +42,10 @@ public class GameOverActivity extends Activity {
         editor.putInt("games_played", stats.getInt("games_played", 0) + 1);
 
         if (getIntent().getBooleanExtra("com.example.ButtonGames.winner", false)){
-            setContentView(R.layout.game_over_green);
+            setContentView(R.layout.game_over_left);
             editor.putInt("left_won", stats.getInt("left_won", 0) + 1);
         } else {
-            setContentView(R.layout.game_over_purple);
+            setContentView(R.layout.game_over_right);
             editor.putInt("right_won", stats.getInt("right_won", 0) + 1);
         }
 

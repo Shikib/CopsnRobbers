@@ -5,6 +5,8 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -54,6 +56,9 @@ public class StatisticsActivity extends Activity {
         text.setText("Games Played: " + stats.getInt("games_played", 0) + " times\n");
         text.append("Left Side Won: " + stats.getInt("left_won", 0) + " times\n");
         text.append("Right Side Won: " + stats.getInt("right_won", 0) + " times\n");
+        Typeface tf = Typeface.createFromAsset(getAssets(), "abadi_condensed_xtrabold.ttf");
+        text.setTypeface(tf);
+        text.setTextColor(Color.WHITE);
     }
 
     public void onResetStatistics(View view) {

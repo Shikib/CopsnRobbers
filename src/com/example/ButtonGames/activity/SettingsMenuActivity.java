@@ -3,6 +3,7 @@ package com.example.ButtonGames.activity;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
@@ -42,6 +43,7 @@ public class SettingsMenuActivity extends Activity {
         TextView text = (TextView) findViewById(R.id.textViewSettings);
         Typeface tf = Typeface.createFromAsset(getAssets(), "abadi_condensed_xtrabold.ttf");
         text.setTypeface(tf);
+        text.setTextColor(Color.WHITE);
 
     }
 

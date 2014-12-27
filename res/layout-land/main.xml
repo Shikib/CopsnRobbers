@@ -8,27 +8,30 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/button"
-                android:layout_marginBottom="78dp" android:layout_gravity="center"
+                android:layout_gravity="center"
                 android:clickable="true" android:width="200dp"
                 android:height="75dp"
                 android:onClick="onPlayButton"
-                android:layout_alignParentBottom="true" android:layout_centerHorizontal="true"
-                android:alpha="0.0"/>
+                android:alpha="0.0"
+                android:layout_marginTop="100dp" android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"/>
 
         <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Settings"
-                android:id="@+id/buttonSettings" android:layout_alignTop="@+id/button" android:layout_alignParentEnd="true"
-                android:layout_marginEnd="35dp" android:onClick="onSettingsButton"/>
+                android:layout_width="150dp"
+                android:layout_height="55dp"
+                android:text=""
+                android:alpha="0.0"
+                android:id="@+id/buttonSettings"
+                android:onClick="onSettingsButton"
+                android:layout_below="@+id/button" android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"/>
 
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Statistics"
+            android:layout_width="150dp"
+            android:layout_height="55dp"
+            android:alpha="0.0"
             android:id="@+id/statistics_button"
-            android:layout_alignBottom="@+id/buttonSettings"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="48dp"
-            android:onClick="onStatisticsButton" />
+            android:onClick="onStatisticsButton"
+            android:layout_below="@+id/buttonSettings" android:layout_alignStart="@+id/buttonSettings"
+            android:layout_marginTop="10dp"/>
 </RelativeLayout>

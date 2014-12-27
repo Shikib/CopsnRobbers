@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
@@ -52,6 +53,7 @@ public class SelectionMenuActivity extends Activity{
         TextView text = (TextView) findViewById(R.id.textViewSelection);
         Typeface tf = Typeface.createFromAsset(getAssets(), "abadi_condensed_xtrabold.ttf");
         text.setTypeface(tf);
+        text.setTextColor(Color.WHITE);
     }
     
     public void onMap0Button(View view){

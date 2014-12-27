@@ -174,7 +174,7 @@ public class SimpleTagActivity extends Activity{
         if (backgroundMap == 0){
             return BitmapFactory.decodeResource(getResources(), R.drawable.map1);
         } else if (backgroundMap == 1){
-            return BitmapFactory.decodeResource(getResources(), R.drawable.map2_test);
+            return BitmapFactory.decodeResource(getResources(), R.drawable.map2_test3);
         } else if (backgroundMap == 2){
             return BitmapFactory.decodeResource(getResources(), R.drawable.map3);
         } else {
