@@ -180,7 +180,7 @@ public class SimpleTagActivity extends Activity{
         obstacles2.add(new Obstacle((double) 3 * screenWidth / 5, (double) 4 * screenWidth / 5,
                 (double) 145 * screenHeight / 240, (double) 155 * screenHeight / 240));
         obstacles2.add(new Obstacle((double) 3 * screenWidth / 10, (double) 7 * screenWidth / 10,
-                (double) 145 * screenHeight / 240, (double) 105 * screenHeight / 240));
+                (double) 95 * screenHeight / 240, (double) 105 * screenHeight / 240));
         obstacles2.add(new Obstacle((double) 3 * screenWidth / 20, (double) 4 * screenWidth / 20,
                 (double) 45 * screenHeight / 240, (double) 155 * screenHeight / 240));
         obstacles2.add(new Obstacle((double) 16 * screenWidth / 20, (double) 17 * screenWidth / 20,
