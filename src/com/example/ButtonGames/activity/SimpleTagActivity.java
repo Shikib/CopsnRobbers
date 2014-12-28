@@ -419,11 +419,11 @@ public class SimpleTagActivity extends Activity{
         homeRules.addRule(RelativeLayout.ALIGN_PARENT_TOP, RelativeLayout.TRUE);
         homeRules.addRule(RelativeLayout.ALIGN_PARENT_LEFT, RelativeLayout.TRUE);
         homeRules.setMargins(screenHeight / 36, screenHeight / 36, screenHeight / 36, screenHeight / 36);
-        homeRules.height = screenHeight / 7;
-        homeRules.width = screenWidth / 6;
+        homeRules.height = screenWidth / 15;
+        homeRules.width = screenWidth / 15;
 
         home.setLayoutParams(homeRules);
-        home.setBackgroundResource(R.drawable.home_button);
+        home.setBackgroundResource(R.drawable.home_button_square);
         home.getBackground().setAlpha(64 * 3);
 
         Typeface tf = Typeface.createFromAsset(getAssets(), "abadi_condensed_xtrabold.ttf");
@@ -432,13 +432,13 @@ public class SimpleTagActivity extends Activity{
         restartRules.addRule(RelativeLayout.ALIGN_PARENT_TOP, RelativeLayout.TRUE);
         restartRules.addRule(RelativeLayout.CENTER_HORIZONTAL, RelativeLayout.TRUE);
         restartRules.setMargins( screenHeight / 36, screenHeight / 36,  screenHeight /36, screenHeight /36);
-        restartRules.height = screenHeight / 7;
-        restartRules.width = screenWidth / 6;
+        restartRules.height = screenWidth / 15;
+        restartRules.width = screenWidth / 15;
 
 
         restart.setLayoutParams(restartRules);
         restart.setBackgroundResource(R.drawable.retry_button);
-        restart.getBackground().setAlpha(64*3);
+        restart.getBackground().setAlpha(64 * 3);
 
         resumeRules.addRule(RelativeLayout.ALIGN_PARENT_TOP, RelativeLayout.TRUE);
         resumeRules.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, RelativeLayout.TRUE);
