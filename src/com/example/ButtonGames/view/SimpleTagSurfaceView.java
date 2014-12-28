@@ -4,8 +4,10 @@ import android.content.Context;
 import android.graphics.*;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.view.View;
 import com.example.ButtonGames.R;
 import com.example.ButtonGames.activity.GameLoopThread;
+import com.example.ButtonGames.activity.SimpleTagActivity;
 import com.example.ButtonGames.model.Board;
 import com.example.ButtonGames.model.Obstacle;
 import com.example.ButtonGames.model.Sprite;
@@ -186,7 +188,9 @@ public class SimpleTagSurfaceView extends SurfaceView{
                     canvas.drawBitmap(rightBitmap, rightMatrix, null);
                 }
 
-                if (board.getWinMethod()) {
+                if (((SimpleTagActivity) this.getContext()).pauseView.getVisibility() == View.VISIBLE)
+                    ;
+                else if (board.getWinMethod()) {
                     canvas.drawText("CAUGHT!", board.getWidth() / 2, board.getHeight() / 2, textM);
                 } else {
                     canvas.drawText("ESCAPED!", board.getWidth() / 2, board.getHeight() / 2, textM);
@@ -199,7 +203,9 @@ public class SimpleTagSurfaceView extends SurfaceView{
             // Draw right sprite
             canvas.drawBitmap(rightBitmap, rightMatrix, null);
 
-            if (board.getCurrentFrame() < 0) {
+            if (((SimpleTagActivity) this.getContext()).pauseView.getVisibility() == View.VISIBLE)
+                ;
+            else if (board.getCurrentFrame() < 0) {
                 int loadingTime = board.getCurrentFrame() / 10;
                 if (loadingTime == -2)
                     canvas.drawText("READY", board.getWidth() / 2, board.getHeight() / 2, textC);
@@ -207,7 +213,9 @@ public class SimpleTagSurfaceView extends SurfaceView{
                     canvas.drawText("SET", board.getWidth() / 2, board.getHeight() / 2, textC);
                 else if (loadingTime == 0)
                     canvas.drawText("GO!", board.getWidth() / 2, board.getHeight() / 2, textC);
-            } else {
+            }
+
+            if (board.getCurrentFrame() > 0) {
                 // Calculate time on timer based on currentFrame
                 int timeOnTimer = (board.getSwitchRoleTime() / 10) - ((board.getCurrentFrame() % board.getSwitchRoleTime()) / 10); // <-- Frames per second
                 //Draws the timer

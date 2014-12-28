@@ -79,8 +79,10 @@ public class SimpleTagActivity extends Activity{
     @Override
     protected void onResume() {
         super.onResume();
-        if (resume && pauseView != null)
+        if (resume && pauseView != null) {
             pauseView.setVisibility(View.VISIBLE);
+            pause.setVisibility(View.GONE);
+        }
         else
             resume = true;
 
@@ -90,7 +92,7 @@ public class SimpleTagActivity extends Activity{
     protected void onPause() {
         super.onPause();
         if (stSurfaceView.gameLoopThread != null) {
-            stSurfaceView.gameLoopThread.killThread();
+            stSurfaceView.gameLoopThread.setRunning(false);
         }
     }
 
@@ -231,9 +233,8 @@ public class SimpleTagActivity extends Activity{
         pause.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                stSurfaceView.gameLoopThread.setRunning(false);
-                v.setVisibility(View.GONE);
                 pauseView.setVisibility(View.VISIBLE);
+                pause.setVisibility(View.GONE);
                 return false;
             }
         });
@@ -377,9 +378,10 @@ public class SimpleTagActivity extends Activity{
         resume.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
+                if (board.getCurrentFrame() <= 0)
+                    board.setCurrentFrame((board.getCurrentFrame()/10)*10 - 9);
                 pauseView.setVisibility(View.GONE);
                 pause.setVisibility(View.VISIBLE);
-                stSurfaceView.gameLoopThread.setRunning(true);
                 return false;
             }
         });
