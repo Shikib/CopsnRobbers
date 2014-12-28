@@ -172,13 +172,13 @@ public class SimpleTagActivity extends Activity{
 
     public Bitmap initBackground(int n){
         if (backgroundMap == 0){
-            return BitmapFactory.decodeResource(getResources(), R.drawable.map1);
+            return BitmapFactory.decodeResource(getResources(), R.drawable.map1_final);
         } else if (backgroundMap == 1){
-            return BitmapFactory.decodeResource(getResources(), R.drawable.map2_test3);
+            return BitmapFactory.decodeResource(getResources(), R.drawable.map2_final);
         } else if (backgroundMap == 2){
-            return BitmapFactory.decodeResource(getResources(), R.drawable.map3);
+            return BitmapFactory.decodeResource(getResources(), R.drawable.map3_final);
         } else {
-            return BitmapFactory.decodeResource(getResources(), R.drawable.map4);
+            return BitmapFactory.decodeResource(getResources(), R.drawable.map4_final);
         }
     }
 

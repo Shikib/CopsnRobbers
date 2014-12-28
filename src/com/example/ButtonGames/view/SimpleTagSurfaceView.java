@@ -166,8 +166,8 @@ public class SimpleTagSurfaceView extends SurfaceView{
 
 
         // Draw score
-        canvas.drawText(Integer.toString(board.getPlayerL().getScore()), 5*board.getWidth()/24, (3*34+1) * board.getHeight() / (3*36), textL);
-        canvas.drawText(Integer.toString(board.getPlayerR().getScore()), 19*board.getWidth()/24, (3*34+1) * board.getHeight() / (3*36), textR);
+        canvas.drawText(Integer.toString(board.getPlayerL().getScore()), 6*board.getWidth()/24, (3*34+2) * board.getHeight() / (3*36), textL);
+        canvas.drawText(Integer.toString(board.getPlayerR().getScore()), 18*board.getWidth()/24, (3*34+2) * board.getHeight() / (3*36), textR);
 
         // Draw obstacles
         List<Obstacle> obstacles = board.getObstacles();
@@ -221,7 +221,7 @@ public class SimpleTagSurfaceView extends SurfaceView{
                  // Calculate time on timer based on currentFrame
                  int timeOnTimer = (board.getSwitchRoleTime() / 10) - ((board.getCurrentFrame() % board.getSwitchRoleTime()) / 10); // <-- Frames per second
                  //Draws the timer
-                 canvas.drawText(Integer.toString(timeOnTimer), board.getWidth() / 2, (2*34) * board.getHeight() / (2*36), textT);
+                 canvas.drawText(Integer.toString(timeOnTimer), board.getWidth() / 2, (3*34+2) * board.getHeight() / (3*36), textT);
              }
         }
     }
