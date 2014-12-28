@@ -284,7 +284,7 @@ public class SimpleTagActivity extends Activity{
 
         pauseRules.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, RelativeLayout.TRUE);
         pauseRules.addRule(RelativeLayout.ALIGN_PARENT_TOP, RelativeLayout.TRUE);
-        pauseRules.setMargins( screenHeight / 29, screenHeight / 29,  screenHeight /29, screenHeight /29);
+        pauseRules.setMargins( screenHeight / 36, screenHeight / 36,  screenHeight /36, screenHeight /36);
 
         // Set height, color of pause button
         pauseRules.height = screenWidth / 15;
@@ -418,34 +418,31 @@ public class SimpleTagActivity extends Activity{
 
         homeRules.addRule(RelativeLayout.ALIGN_PARENT_TOP, RelativeLayout.TRUE);
         homeRules.addRule(RelativeLayout.ALIGN_PARENT_LEFT, RelativeLayout.TRUE);
-        homeRules.setMargins(screenHeight / 29, screenHeight / 29, screenHeight / 29, screenHeight / 29);
+        homeRules.setMargins(screenHeight / 36, screenHeight / 36, screenHeight / 36, screenHeight / 36);
+        homeRules.height = screenHeight / 7;
+        homeRules.width = screenWidth / 6;
 
         home.setLayoutParams(homeRules);
-        home.setBackgroundColor(Color.BLACK);
+        home.setBackgroundResource(R.drawable.home_button);
         home.getBackground().setAlpha(64 * 3);
-        home.setText("HOME");
-        home.setTextColor(Color.GRAY);
-        home.setTextSize(screenHeight / 20);
 
         Typeface tf = Typeface.createFromAsset(getAssets(), "abadi_condensed_xtrabold.ttf");
         home.setTypeface(tf);
 
         restartRules.addRule(RelativeLayout.ALIGN_PARENT_TOP, RelativeLayout.TRUE);
         restartRules.addRule(RelativeLayout.CENTER_HORIZONTAL, RelativeLayout.TRUE);
-        restartRules.setMargins( screenHeight / 29, screenHeight / 29,  screenHeight /29, screenHeight /29);
+        restartRules.setMargins( screenHeight / 36, screenHeight / 36,  screenHeight /36, screenHeight /36);
+        restartRules.height = screenHeight / 7;
+        restartRules.width = screenWidth / 6;
 
 
         restart.setLayoutParams(restartRules);
-        restart.setBackgroundColor(Color.BLACK);
+        restart.setBackgroundResource(R.drawable.retry_button);
         restart.getBackground().setAlpha(64*3);
-        restart.setText("RESTART");
-        restart.setTextColor(Color.GRAY);
-        restart.setTypeface(tf);
-        restart.setTextSize(screenHeight/20);
 
         resumeRules.addRule(RelativeLayout.ALIGN_PARENT_TOP, RelativeLayout.TRUE);
         resumeRules.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, RelativeLayout.TRUE);
-        resumeRules.setMargins( screenHeight / 29, screenHeight / 29,  screenHeight /29, screenHeight /29);
+        resumeRules.setMargins( screenHeight / 36, screenHeight / 36,  screenHeight /36, screenHeight /36);
 
         resumeRules.height = screenWidth / 15;
         resumeRules.width = screenWidth / 15;
