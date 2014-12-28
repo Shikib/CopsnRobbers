@@ -113,11 +113,15 @@ public class Sprite {
     private void moveHorizontal(double amount) {
         if (board.canMove(x + amount, y)) // will keep moving in y unless something is done
             x += amount;
+        else
+            x -= amount/2;
     }
 
     private void moveVertical(double amount) {
         if (board.canMove(x, y + amount))
             y += amount;
+        else
+            y -= amount/2;
     }
 
     // Add a game over call here?

@@ -100,14 +100,10 @@ public class Board {
     // Produce true if can move to that x, y coordinate - need to be fixed
     public boolean canMove(double x, double y){
         // Check if hit borders
-        if (x - spriteRadius < 0 || x + spriteRadius > width || y - spriteRadius < 0 || y + spriteRadius > 5*height / 6)
+        if (x - 2*spriteRadius < 0 || x + 2*spriteRadius > width || y - 2*spriteRadius < 0 || y + 2*spriteRadius > 5*height / 6)
             return false;
         // Check of hit obstacles
         for (Obstacle o: obstacles) {
-
-            //if ((o.getXRange().contains(x + spriteRadius) || o.getXRange().contains(x - spriteRadius)) &&
-            //      (o.getYRange().contains(y + spriteRadius) || o.getYRange().contains(y - spriteRadius)))
-
             if ((o.getXLower() <= x + spriteRadius) && (o.getXUpper() >= x -  spriteRadius)
                     && (o.getYLower() <= y + spriteRadius) && (o.getYUpper() >= y - spriteRadius)) {
                 return false;
@@ -118,7 +114,7 @@ public class Board {
 
     // If there is a collision, update score, and reset sprites
     public boolean checkCollision(){
-        boolean hasCollision = Math.abs(playerL.getX() - playerR.getX()) <= spriteRadius && Math.abs(playerL.getY() - playerR.getY()) <= spriteRadius;
+        boolean hasCollision = Math.abs(playerL.getX() - playerR.getX()) <= 2*spriteRadius && Math.abs(playerL.getY() - playerR.getY()) <= 2*spriteRadius;
 
         if (hasCollision) {
             if (currentFrame > 0) {
