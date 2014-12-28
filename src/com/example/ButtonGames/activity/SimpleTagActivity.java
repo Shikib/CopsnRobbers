@@ -155,16 +155,36 @@ public class SimpleTagActivity extends Activity{
 
     public void initObstacles(){
         List<Obstacle> obstacles0 = new ArrayList<Obstacle>(); // Example map
-        obstacles0.add(new Obstacle((double)screenWidth / 5,
-                (double) 2*screenWidth/ 5, (double) 10* screenHeight / 20, (double)11* screenHeight / 20));
+        obstacles0.add(new Obstacle((double) 9 * screenWidth / 40, (double) 11 * screenWidth / 40,
+                (double) screenHeight / 4, (double) 3 * screenHeight / 4));
+        obstacles0.add(new Obstacle((double) 19 * screenWidth / 40, (double) 21 * screenWidth / 40,
+                (double) screenHeight / 4, (double) 3 * screenHeight / 4));
+        obstacles0.add(new Obstacle((double) 29 * screenWidth / 40, (double) 31 * screenWidth / 40,
+                (double) screenHeight / 4, (double) 3 * screenHeight / 4));
 
         List<Obstacle> obstacles1 = new ArrayList<Obstacle>();
-        obstacles1.add(new Obstacle((double) 15*screenWidth/ 20, (double) 16* screenWidth / 20,
-                (double) 2*screenHeight / 7, (double) 4*screenHeight / 7));
+        obstacles1.add(new Obstacle((double) screenWidth / 7, (double) 3 * screenWidth / 7,
+                (double) 37 * screenHeight / 120, (double) 43 * screenHeight / 120));
+        obstacles1.add(new Obstacle((double) 4 * screenWidth / 7, (double) 6 * screenWidth / 7,
+                (double) 37 * screenHeight / 120, (double) 43 * screenHeight / 120));
+        obstacles1.add(new Obstacle((double) screenWidth / 7, (double) 6 * screenWidth / 7,
+                (double) 77 * screenHeight / 120, (double) 83 * screenHeight / 120));
 
         List<Obstacle> obstacles2 = new ArrayList<Obstacle>();
-        obstacles2.add(new Obstacle((double) 15*screenWidth/ 20, (double) 16* screenWidth / 20,
-                (double) 2*screenHeight / 7, (double) 4*screenHeight / 7));
+        obstacles2.add(new Obstacle((double) screenWidth / 5, (double) 2 * screenWidth / 5,
+                (double) 9 * screenHeight / 40, (double) 11 * screenHeight / 40));
+        obstacles2.add(new Obstacle((double) 3 * screenWidth / 5, (double) 4 * screenWidth / 5,
+                (double) 9 * screenHeight / 40, (double) 11 * screenHeight / 40));
+        obstacles2.add(new Obstacle((double) screenWidth / 5, (double) 2 * screenWidth / 5,
+                (double) 29 * screenHeight / 40, (double) 31 * screenHeight / 40));
+        obstacles2.add(new Obstacle((double) 3 * screenWidth / 5, (double) 4 * screenWidth / 5,
+                (double) 29 * screenHeight / 40, (double) 31 * screenHeight / 40));
+        obstacles2.add(new Obstacle((double) 3 * screenWidth / 10, (double) 7 * screenWidth / 10,
+                (double) 19 * screenHeight / 40, (double) 21 * screenHeight / 40));
+        obstacles2.add(new Obstacle((double) 3 * screenWidth / 20, (double) 4 * screenWidth / 20,
+                (double) 9 * screenHeight / 40, (double) 31 * screenHeight / 40));
+        obstacles2.add(new Obstacle((double) 16 * screenWidth / 20, (double) 17 * screenWidth / 20,
+                (double) 9 * screenHeight / 40, (double) 31 * screenHeight / 40));
 
         obstacles = new ArrayList<List<Obstacle>>();
         obstacles.add(obstacles0);
@@ -433,7 +453,7 @@ public class SimpleTagActivity extends Activity{
 
         restartRules.addRule(RelativeLayout.ALIGN_PARENT_TOP, RelativeLayout.TRUE);
         restartRules.addRule(RelativeLayout.CENTER_HORIZONTAL, RelativeLayout.TRUE);
-        restartRules.setMargins( screenHeight / 36, screenHeight / 36,  screenHeight /36, screenHeight /36);
+        restartRules.setMargins( screenHeight / 36, screenHeight / 36, screenHeight /36, screenHeight /36);
         restartRules.height = screenWidth / 15;
         restartRules.width = screenWidth / 15;
 
