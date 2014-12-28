@@ -29,25 +29,15 @@ public class SimpleTagSurfaceView extends SurfaceView{
     // Bitmap of background
     private Bitmap background;
 
-    // Bitmap of green hunted sprite
-    private Bitmap spriteGreen1 = BitmapFactory.decodeResource(getResources(), R.drawable.sprite_green_1);
-    private Bitmap spriteGreen2 = BitmapFactory.decodeResource(getResources(), R.drawable.sprite_green_2);
-    private Bitmap spriteGreen3 = BitmapFactory.decodeResource(getResources(), R.drawable.sprite_green_3);
+    // Bitmap of inmate sprites
+    private Bitmap inmate0 = BitmapFactory.decodeResource(getResources(), R.drawable.inmate0);
+    private Bitmap inmate1 = BitmapFactory.decodeResource(getResources(), R.drawable.inmate1);
+    private Bitmap inmate2 = BitmapFactory.decodeResource(getResources(), R.drawable.inmate2);
 
-    // Bitmap of green hunter sprite
-    private Bitmap HspriteGreen1 = BitmapFactory.decodeResource(getResources(), R.drawable.hunter_sprite_green_1);
-    private Bitmap HspriteGreen2 = BitmapFactory.decodeResource(getResources(), R.drawable.hunter_sprite_green_2);
-    private Bitmap HspriteGreen3 = BitmapFactory.decodeResource(getResources(), R.drawable.hunter_sprite_green_3);
-
-    // Bitmap of purple hunted sprite
-    private Bitmap spritePurple1 = BitmapFactory.decodeResource(getResources(), R.drawable.sprite_purple_1);
-    private Bitmap spritePurple2 = BitmapFactory.decodeResource(getResources(), R.drawable.sprite_purple_2);
-    private Bitmap spritePurple3 = BitmapFactory.decodeResource(getResources(), R.drawable.sprite_purple_3);
-
-    // Bitmap of purple hunter sprite
-    private Bitmap HspritePurple1 = BitmapFactory.decodeResource(getResources(), R.drawable.hunger_sprite_purple_1);
-    private Bitmap HspritePurple2 = BitmapFactory.decodeResource(getResources(), R.drawable.hunger_sprite_purple_2);
-    private Bitmap HspritePurple3 = BitmapFactory.decodeResource(getResources(), R.drawable.hunger_sprite_purple_3);
+    // Bitmap of police sprites
+    private Bitmap police0 = BitmapFactory.decodeResource(getResources(), R.drawable.police0);
+    private Bitmap police1 = BitmapFactory.decodeResource(getResources(), R.drawable.police1);
+    private Bitmap police2 = BitmapFactory.decodeResource(getResources(), R.drawable.police2);
 
     private Bitmap deadSprite = BitmapFactory.decodeResource(getResources(), R.drawable.dead_sprite);
 
@@ -144,8 +134,8 @@ public class SimpleTagSurfaceView extends SurfaceView{
         // Make a matrix, get the correct left sprite for the frame
         Matrix leftMatrix = new Matrix();
         // Resize the sprite -- MUST CHANGE RADIUS AND SPEED
-        Bitmap leftBitmap = Bitmap.createScaledBitmap(getCorrectSpriteL(),
-                getCorrectSpriteL().getWidth() * (board.getHeight() / 12) / getCorrectSpriteL().getHeight(), board.getHeight() / 12, false);
+        Bitmap leftBitmap = Bitmap.createScaledBitmap(getCorrectSprite(true),
+                getCorrectSprite(true).getWidth() * (board.getHeight() / 12) / getCorrectSprite(true).getHeight(), board.getHeight() / 12, false);
 
         // Rotate and translate left sprite
         leftMatrix.setRotate((float) board.getPlayerL().getDirection(), (float) leftBitmap.getWidth() / 2, (float) leftBitmap.getHeight() / 2);
@@ -156,8 +146,8 @@ public class SimpleTagSurfaceView extends SurfaceView{
         // Make a matrix, get the correct right sprite for the frame
         Matrix rightMatrix = new Matrix();
         // Resize the sprite -- MUST CHANGE RADIUS AND SPEED
-        Bitmap rightBitmap = Bitmap.createScaledBitmap(getCorrectSpriteR(),
-                getCorrectSpriteR().getWidth() * (board.getHeight() / 12) / getCorrectSpriteR().getHeight(), board.getHeight() / 12, false);
+        Bitmap rightBitmap = Bitmap.createScaledBitmap(getCorrectSprite(false),
+                getCorrectSprite(false).getWidth() * (board.getHeight() / 12) / getCorrectSprite(false).getHeight(), board.getHeight() / 12, false);
 
         // Rotate and translate right sprite
         rightMatrix.setRotate((float) board.getPlayerR().getDirection(), (float) rightBitmap.getWidth() / 2, (float) rightBitmap.getHeight() / 2);
@@ -226,49 +216,21 @@ public class SimpleTagSurfaceView extends SurfaceView{
         }
     }
 
-    public Bitmap getCorrectSpriteL(){
-        Sprite sprite = board.getPlayerL();
-        Bitmap hSprite1;
-        Bitmap hSprite2;
-        Bitmap hSprite3;
-        Bitmap sprite1;
-        Bitmap sprite2;
-        Bitmap sprite3;
-        Bitmap deadSprite;
+    // true = left, false = right
+    public Bitmap getCorrectSprite(boolean side) {
+        Sprite sprite;
+        if (side)
+            sprite = board.getPlayerL();
+        else
+            sprite = board.getPlayerR();
 
-        if (spriteTheme == 0){
-            hSprite1 = HspriteGreen1;
-            hSprite2 = HspriteGreen2;
-            hSprite3 = HspriteGreen3;
-            sprite1 = spriteGreen1;
-            sprite2 = spriteGreen2;
-            sprite3 = spriteGreen3;
-            deadSprite = this.deadSprite;
-        } else if (spriteTheme == 1){
-            hSprite1 = HspritePurple1;
-            hSprite2 = HspritePurple2;
-            hSprite3 = HspritePurple3;
-            sprite1 = spritePurple1;
-            sprite2 = spritePurple2;
-            sprite3 = spritePurple3;
-            deadSprite = this.deadSprite;
-        } else if (spriteTheme == 2){
-            hSprite1 = HspriteGreen1;
-            hSprite2 = HspriteGreen2;
-            hSprite3 = HspriteGreen3;
-            sprite1 = spriteGreen1;
-            sprite2 = spriteGreen2;
-            sprite3 = spriteGreen3;
-            deadSprite = this.deadSprite;
-        } else {
-            hSprite1 = HspritePurple1;
-            hSprite2 = HspritePurple2;
-            hSprite3 = HspritePurple3;
-            sprite1 = spritePurple1;
-            sprite2 = spritePurple2;
-            sprite3 = spritePurple3;
-            deadSprite = this.deadSprite;
-        }
+        Bitmap hSprite1 = police0;
+        Bitmap hSprite2 = police1;
+        Bitmap hSprite3 = police2;
+        Bitmap sprite1 = inmate0;
+        Bitmap sprite2 = inmate1;
+        Bitmap sprite3 = inmate2;
+        Bitmap deadSprite = this.deadSprite;
 
         if (board.getCurrentFrame() <= -40) {
             // Hunter and win by collision
@@ -322,101 +284,5 @@ public class SimpleTagSurfaceView extends SurfaceView{
         return sprite1; // return generic if in doubt
     }
 
-    public Bitmap getCorrectSpriteR(){
-        Sprite sprite = board.getPlayerR();
-
-        Bitmap hSprite1;
-        Bitmap hSprite2;
-        Bitmap hSprite3;
-        Bitmap sprite1;
-        Bitmap sprite2;
-        Bitmap sprite3;
-        Bitmap deadSprite;
-
-        if (spriteTheme == 0){
-            hSprite1 = HspritePurple1;
-            hSprite2 = HspritePurple2;
-            hSprite3 = HspritePurple3;
-            sprite1 = spritePurple1;
-            sprite2 = spritePurple2;
-            sprite3 = spritePurple3;
-            deadSprite = this.deadSprite;
-        } else if (spriteTheme == 1){
-            hSprite1 = HspriteGreen1;
-            hSprite2 = HspriteGreen2;
-            hSprite3 = HspriteGreen3;
-            sprite1 = spriteGreen1;
-            sprite2 = spriteGreen2;
-            sprite3 = spriteGreen3;
-            deadSprite = this.deadSprite;
-        } else if (spriteTheme == 2){
-            hSprite1 = HspritePurple1;
-            hSprite2 = HspritePurple2;
-            hSprite3 = HspritePurple3;
-            sprite1 = spritePurple1;
-            sprite2 = spritePurple2;
-            sprite3 = spritePurple3;
-            deadSprite = this.deadSprite;
-        } else {
-            hSprite1 = HspriteGreen1;
-            hSprite2 = HspriteGreen2;
-            hSprite3 = HspriteGreen3;
-            sprite1 = spriteGreen1;
-            sprite2 = spriteGreen2;
-            sprite3 = spriteGreen3;
-            deadSprite = this.deadSprite;
-        }
-
-        if (board.getCurrentFrame() <= -40) {
-            // Hunter and win by collision
-            if (sprite.getState() && board.getWinMethod()){
-                return hSprite1;
-                // Hunted and win by collision
-            } else if (!sprite.getState() && board.getWinMethod()){
-                return deadSprite;
-                // Hunter and win by times up
-            } else if (sprite.getState()){
-                return deadSprite;
-            } else {
-                return sprite1;
-            }
-        } else if (sprite.getState()){
-            if (sprite.getSpinning()){
-                return hSprite1;
-            } else {
-                int currentFrame = board.getCurrentFrame() % 4;
-                if (currentFrame == 0) {
-                    return hSprite1;
-                } else if (currentFrame == 1) {
-                    return hSprite2;
-                } else if (currentFrame == 2) {
-                    return hSprite1;
-                } else if (currentFrame == 3) {
-                    return hSprite3;
-                }
-            }
-        } else {
-            if (sprite.getSpinning()){
-                return sprite1;
-            } else {
-                if (board.getCurrentFrame() <= -40) {
-                    return deadSprite;
-                } else {
-                    int currentFrame = board.getCurrentFrame() % 4;
-                    if (currentFrame == 0) {
-                        return sprite1;
-                    } else if (currentFrame == 1) {
-                        return sprite2;
-                    } else if (currentFrame == 2) {
-                        return sprite1;
-                    } else { // currentFrame == 3
-                        return sprite3;
-                    }
-                }
-
-            }
-        }
-        return sprite1; // if in doubt return generic sprite
-    }
 
 }
