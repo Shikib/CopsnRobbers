@@ -135,7 +135,7 @@ public class SimpleTagSurfaceView extends SurfaceView{
         Matrix leftMatrix = new Matrix();
         // Resize the sprite -- MUST CHANGE RADIUS AND SPEED
         Bitmap leftBitmap = Bitmap.createScaledBitmap(getCorrectSprite(true),
-                getCorrectSprite(true).getWidth() * (board.getHeight() / 12) / getCorrectSprite(true).getHeight(), board.getHeight() / 12, false);
+                getCorrectSprite(true).getWidth() * (board.getHeight() / 9) / getCorrectSprite(true).getHeight(), board.getHeight() / 9, false);
 
         // Rotate and translate left sprite
         leftMatrix.setRotate((float) board.getPlayerL().getDirection(), (float) leftBitmap.getWidth() / 2, (float) leftBitmap.getHeight() / 2);
@@ -147,7 +147,7 @@ public class SimpleTagSurfaceView extends SurfaceView{
         Matrix rightMatrix = new Matrix();
         // Resize the sprite -- MUST CHANGE RADIUS AND SPEED
         Bitmap rightBitmap = Bitmap.createScaledBitmap(getCorrectSprite(false),
-                getCorrectSprite(false).getWidth() * (board.getHeight() / 12) / getCorrectSprite(false).getHeight(), board.getHeight() / 12, false);
+                getCorrectSprite(false).getWidth() * (board.getHeight() / 9) / getCorrectSprite(false).getHeight(), board.getHeight() / 9, false);
 
         // Rotate and translate right sprite
         rightMatrix.setRotate((float) board.getPlayerR().getDirection(), (float) rightBitmap.getWidth() / 2, (float) rightBitmap.getHeight() / 2);
@@ -199,20 +199,20 @@ public class SimpleTagSurfaceView extends SurfaceView{
             // Draw right sprite
             canvas.drawBitmap(rightBitmap, rightMatrix, null);
 
-             if (board.getCurrentFrame() < 0) {
-                 int loadingTime = board.getCurrentFrame() / 10;
-                 if (loadingTime == -2)
-                     canvas.drawText("READY", board.getWidth() / 2, board.getHeight() / 2, textC);
-                 else if (loadingTime == -1)
-                     canvas.drawText("SET", board.getWidth() / 2, board.getHeight() / 2, textC);
-                 else if (loadingTime == 0)
-                     canvas.drawText("GO!", board.getWidth() / 2, board.getHeight() / 2, textC);
-             } else {
-                 // Calculate time on timer based on currentFrame
-                 int timeOnTimer = (board.getSwitchRoleTime() / 10) - ((board.getCurrentFrame() % board.getSwitchRoleTime()) / 10); // <-- Frames per second
-                 //Draws the timer
-                 canvas.drawText(Integer.toString(timeOnTimer), board.getWidth() / 2, (3*34+2) * board.getHeight() / (3*36), textT);
-             }
+            if (board.getCurrentFrame() < 0) {
+                int loadingTime = board.getCurrentFrame() / 10;
+                if (loadingTime == -2)
+                    canvas.drawText("READY", board.getWidth() / 2, board.getHeight() / 2, textC);
+                else if (loadingTime == -1)
+                    canvas.drawText("SET", board.getWidth() / 2, board.getHeight() / 2, textC);
+                else if (loadingTime == 0)
+                    canvas.drawText("GO!", board.getWidth() / 2, board.getHeight() / 2, textC);
+            } else {
+                // Calculate time on timer based on currentFrame
+                int timeOnTimer = (board.getSwitchRoleTime() / 10) - ((board.getCurrentFrame() % board.getSwitchRoleTime()) / 10); // <-- Frames per second
+                //Draws the timer
+                canvas.drawText(Integer.toString(timeOnTimer), board.getWidth() / 2, (3*34+2) * board.getHeight() / (3*36), textT);
+            }
         }
     }
 
@@ -236,7 +236,7 @@ public class SimpleTagSurfaceView extends SurfaceView{
             // Hunter and win by collision
             if (sprite.getState() && board.getWinMethod()){
                 return hSprite1;
-            // Hunted and win by collision
+                // Hunted and win by collision
             } else if (!sprite.getState() && board.getWinMethod()){
                 return deadSprite;
                 // Hunter and win by times up
@@ -250,6 +250,10 @@ public class SimpleTagSurfaceView extends SurfaceView{
                 return hSprite1; // If spinning keep the same left sprite every frame
             } else {
                 int currentFrame = board.getCurrentFrame() % 4; // Alternate between left sprites each from
+
+                if (currentFrame < 0)
+                    currentFrame += 4;
+
                 if (currentFrame == 0) {
                     return hSprite1;
                 } else if (currentFrame == 1) {
@@ -262,20 +266,22 @@ public class SimpleTagSurfaceView extends SurfaceView{
             }
 
         } else { // is hunted
-            if (sprite.getSpinning()){
+            if (sprite.getSpinning()) {
                 return sprite1;
             } else {
                 if (board.getCurrentFrame() <= -40) {
                     return deadSprite;
                 } else {
                     int currentFrame = board.getCurrentFrame() % 4;
+                    if (currentFrame < 0)
+                        currentFrame += 4;
                     if (currentFrame == 0) {
                         return sprite1;
                     } else if (currentFrame == 1) {
                         return sprite2;
                     } else if (currentFrame == 2) {
                         return sprite1;
-                    } else { // currentFrame == 3
+                    } else if (currentFrame == 3) {
                         return sprite3;
                     }
                 }
