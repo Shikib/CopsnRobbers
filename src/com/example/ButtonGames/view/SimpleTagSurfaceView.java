@@ -30,14 +30,14 @@ public class SimpleTagSurfaceView extends SurfaceView{
     private Bitmap background;
 
     // Bitmap of inmate sprites
-    private Bitmap inmate0 = BitmapFactory.decodeResource(getResources(), R.drawable.inmate0);
-    private Bitmap inmate1 = BitmapFactory.decodeResource(getResources(), R.drawable.inmate1);
-    private Bitmap inmate2 = BitmapFactory.decodeResource(getResources(), R.drawable.inmate2);
+    private Bitmap inmate0 = BitmapFactory.decodeResource(getResources(), R.drawable.blinmate0);
+    private Bitmap inmate1 = BitmapFactory.decodeResource(getResources(), R.drawable.blinmate1);
+    private Bitmap inmate2 = BitmapFactory.decodeResource(getResources(), R.drawable.blinmate2);
 
     // Bitmap of police sprites
-    private Bitmap police0 = BitmapFactory.decodeResource(getResources(), R.drawable.police0);
-    private Bitmap police1 = BitmapFactory.decodeResource(getResources(), R.drawable.police1);
-    private Bitmap police2 = BitmapFactory.decodeResource(getResources(), R.drawable.police2);
+    private Bitmap police0 = BitmapFactory.decodeResource(getResources(), R.drawable.blpolice0);
+    private Bitmap police1 = BitmapFactory.decodeResource(getResources(), R.drawable.blpolice1);
+    private Bitmap police2 = BitmapFactory.decodeResource(getResources(), R.drawable.blpolice2);
 
     private Bitmap deadSprite = BitmapFactory.decodeResource(getResources(), R.drawable.dead_sprite);
 
