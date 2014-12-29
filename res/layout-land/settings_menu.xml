@@ -23,30 +23,34 @@
         <ImageButton
                 android:layout_width="450dp"
                 android:layout_height="275dp"
-                android:background="@drawable/map1_final"
+                android:background="@drawable/background1"
                 android:id="@+id/imageButtonTheme0" android:layout_centerVertical="true" android:layout_centerHorizontal="true"
-                android:onClick="onTheme0Button" android:layout_gravity="center_horizontal"/>
+                android:onClick="onTheme0Button" android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="50dp"/>
         <ImageButton
                 android:layout_width="450dp"
                 android:layout_height="275dp"
-                android:background="@drawable/map2_final"
+                android:background="@drawable/background2"
                 android:id="@+id/imageButtonTheme1" android:layout_below="@+id/imageTheme0"
                 android:layout_centerHorizontal="true" android:layout_gravity="center_horizontal"
-                android:onClick="onTheme1Button"/>
+                android:onClick="onTheme1Button"
+                android:layout_marginBottom="50dp"/>
         <ImageButton
                 android:layout_width="450dp"
                 android:layout_height="275dp"
-                android:background="@drawable/map3_final"
+                android:background="@drawable/background3"
                 android:id="@+id/imageButtonTheme2" android:layout_below="@+id/imageTheme1"
                 android:layout_centerHorizontal="true" android:layout_gravity="center_horizontal"
-                android:onClick="onTheme2Button" android:adjustViewBounds="false"/>
+                android:onClick="onTheme2Button" android:adjustViewBounds="false"
+                android:layout_marginBottom="50dp"/>
         <ImageButton
                 android:layout_width="450dp"
                 android:layout_height="275dp"
-                android:background="@drawable/map4_final"
+                android:background="@drawable/background4"
                 android:id="@+id/imageButtonTheme3" android:layout_below="@+id/imageTheme2"
                 android:layout_centerHorizontal="true" android:layout_gravity="center_horizontal"
-                android:onClick="onTheme3Button" android:adjustViewBounds="false"/>
+                android:onClick="onTheme3Button" android:adjustViewBounds="false"
+                android:layout_marginBottom="50dp"/>
         <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

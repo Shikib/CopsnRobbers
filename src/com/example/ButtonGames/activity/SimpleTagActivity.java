@@ -63,7 +63,7 @@ public class SimpleTagActivity extends Activity{
 
         // Make new surface view with correct background
         backgroundMap = getIntent().getIntExtra("com.example.ButtonGames.theme", 0);
-        stSurfaceView = new SimpleTagSurfaceView(this, board, initBackground(backgroundMap), backgroundMap);
+        stSurfaceView = new SimpleTagSurfaceView(this, board, initBackground(), backgroundMap);
 
         holder = new FrameLayout(this);
         buttons = new RelativeLayout(this);
@@ -192,7 +192,7 @@ public class SimpleTagActivity extends Activity{
         obstacles.add(obstacles2);
     }
 
-    public Bitmap initBackground(int n){
+    public Bitmap initBackground(){
         if (backgroundMap == 0){
             return BitmapFactory.decodeResource(getResources(), R.drawable.map1_final);
         } else if (backgroundMap == 1){

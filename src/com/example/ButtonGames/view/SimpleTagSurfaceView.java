@@ -19,7 +19,7 @@ public class SimpleTagSurfaceView extends SurfaceView{
     private SurfaceHolder sh;
     private Board board;
     public GameLoopThread gameLoopThread;
-    private int spriteTheme; // Theme of sprite
+    private int theme; // Theme of sprite
 
     private final Paint textL = new Paint(Paint.ANTI_ALIAS_FLAG); // Color/style/size/alignment of text for Lscore
     private final Paint textR = new Paint(Paint.ANTI_ALIAS_FLAG); // Color/style/size/alignment of text for Rscore
@@ -44,8 +44,10 @@ public class SimpleTagSurfaceView extends SurfaceView{
     private Bitmap deadSprite = BitmapFactory.decodeResource(getResources(), R.drawable.dead_sprite);
 
 
-    public SimpleTagSurfaceView(Context context, final Board board, Bitmap background, int spriteTheme) {
+    public SimpleTagSurfaceView(Context context, final Board board, Bitmap background, int theme) {
         super(context);
+        this.background = background;
+        this.theme = theme;
 
         //Set up color/style of score text timer and obstacles
         textL.setColor(Color.RED);
@@ -78,11 +80,10 @@ public class SimpleTagSurfaceView extends SurfaceView{
         textM.setTextAlign(Paint.Align.CENTER);
         textM.setTypeface(Typeface.createFromAsset(getContext().getAssets(), "abadi_condensed_xtrabold.ttf"));
 
-        obstacle.setColor(Color.GRAY);
+        obstacle.setColor(Color.parseColor(getObstacleColour()));
         obstacle.setStyle(Paint.Style.FILL);
 
-        this.background = background;
-        this.spriteTheme = spriteTheme;
+
 
         // Set up stuff
         sh = getHolder();
@@ -124,7 +125,28 @@ public class SimpleTagSurfaceView extends SurfaceView{
         });
     }
 
+    public String getObstacleColour() {
+        String colour;
+        switch (theme) {
+            case 0:
+                colour = "#6c6c6c";
+                break;
+            case 1:
+                colour = "#dba916";
+                break;
+            case 2:
+                colour = "#19732a";
+                break;
+            case 3:
+                colour = "#b86d2d";
+                break;
+            default:
+                colour = "0xffffff";
+                break;
+        }
 
+        return colour;
+    }
 
     @Override
     public void onDraw(Canvas canvas) {
@@ -132,6 +154,13 @@ public class SimpleTagSurfaceView extends SurfaceView{
         Rect rect = new Rect(0, 0, board.getWidth(), board.getHeight()); // Rectangle that is size of board
         // Draw the background
         canvas.drawBitmap(background, null, rect, null);
+
+        // Draw obstacles
+        List<Obstacle> obstacles = board.getObstacles();
+        for (Obstacle o : obstacles){
+            canvas.drawRect((float) o.getXLower(), (float) o.getYLower(),
+                    (float) o.getXUpper(), (float) o.getYUpper(), obstacle);
+        }
 
         // Make a matrix, get the correct left sprite for the frame
         Matrix leftMatrix = new Matrix();
@@ -160,13 +189,6 @@ public class SimpleTagSurfaceView extends SurfaceView{
         // Draw score
         canvas.drawText(Integer.toString(board.getPlayerL().getScore()), 6*board.getWidth()/24, (3*34+2) * board.getHeight() / (3*36), textL);
         canvas.drawText(Integer.toString(board.getPlayerR().getScore()), 18*board.getWidth()/24, (3*34+2) * board.getHeight() / (3*36), textR);
-
-        // Draw obstacles
-        List<Obstacle> obstacles = board.getObstacles();
-        for (Obstacle o : obstacles){
-            canvas.drawRect((float) o.getXLower(), (float) o.getYLower(),
-                    (float) o.getXUpper(), (float) o.getYUpper(),obstacle);
-        }
 
         // Draw the countdown after resetting roles
         if (board.getCurrentFrame() <= -40){

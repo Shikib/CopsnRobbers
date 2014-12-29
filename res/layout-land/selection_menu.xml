@@ -27,19 +27,22 @@
                 android:layout_width="450dp"
                 android:layout_height="275dp"
                 android:id="@+id/imageButtonMap0" android:layout_centerVertical="true" android:layout_centerHorizontal="true"
-                android:onClick="onMap0Button" android:layout_gravity="center_horizontal"/>
+                android:onClick="onMap0Button" android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="50dp"/>
         <ImageButton
                 android:layout_width="450dp"
                 android:layout_height="275dp"
                 android:id="@+id/imageButtonMap1" android:layout_below="@+id/imageButton0"
                 android:layout_centerHorizontal="true" android:layout_gravity="center_horizontal"
-                android:onClick="onMap1Button"/>
+                android:onClick="onMap1Button"
+                android:layout_marginBottom="50dp"/>
         <ImageButton
                 android:layout_width="450dp"
                 android:layout_height="275dp"
                 android:id="@+id/imageButtonMap2" android:layout_below="@+id/imageButton1"
                 android:layout_centerHorizontal="true" android:layout_gravity="center_horizontal"
-                android:onClick="onMap2Button" android:adjustViewBounds="false"/>
+                android:onClick="onMap2Button" android:adjustViewBounds="false"
+                android:layout_marginBottom="50dp"/>
     </LinearLayout>
     </ScrollView>
 
