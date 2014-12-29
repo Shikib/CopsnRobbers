@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -53,17 +54,27 @@ public class GameOverActivity extends Activity {
             editor.putInt("right_won", stats.getInt("right_won", 0) + 1);
         }
 
+
+
         editor.commit();
 
-        // Make button transparent
-        Button buttonRetry = (Button)findViewById(R.id.buttonRetry);
-        buttonRetry.setVisibility(View.VISIBLE);
-        buttonRetry.setBackgroundColor(Color.TRANSPARENT);
+        Typeface tf = Typeface.createFromAsset(getAssets(), "abadi_condensed_xtrabold.ttf");
 
-        // Make button transparent
-        Button buttonMainMenu = (Button)findViewById(R.id.buttonHome);
-        buttonMainMenu.setVisibility(View.VISIBLE);
-        buttonMainMenu.setBackgroundColor(Color.TRANSPARENT);
+        Button retryButton = (Button)findViewById(R.id.buttonRetry);
+        retryButton.setVisibility(View.VISIBLE);
+        retryButton.setBackgroundResource(R.drawable.button_background);
+        retryButton.setTypeface(tf);
+        retryButton.setTextColor(Color.BLACK);
+
+
+        Button homeButton = (Button)findViewById(R.id.buttonHome);
+        homeButton.setVisibility(View.VISIBLE);
+        homeButton.setBackgroundResource(R.drawable.button_background);
+        homeButton.setTypeface(tf);
+        homeButton.setTextColor(Color.BLACK);
+
+
+
     }
 
     public void onRetryButton(View view){

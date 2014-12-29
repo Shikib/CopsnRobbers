@@ -1,9 +1,6 @@
 package com.example.ButtonGames.model;
 
-import android.content.Context;
 import android.content.SharedPreferences;
-import com.example.ButtonGames.activity.SimpleTagActivity;
-import com.example.ButtonGames.view.SimpleTagSurfaceView;
 
 import java.util.List;
 
@@ -42,8 +39,8 @@ public class Board {
 
     public void initSprites(int scoreL, int scoreR, int rand, int rotDir) {
 
-        playerL = new Sprite(this, false, scoreL, 2*spriteRadius, height/2, 0, rotDir); // Set left sprite on left side of board
-        playerR = new Sprite(this, false, scoreR, width - 2*spriteRadius, height/2, 180, rotDir); // Set right sprite on right side of board
+        playerL = new Sprite(this, false, scoreL, 2*spriteRadius, height/2 - height/12, 0, rotDir); // Set left sprite on left side of board
+        playerR = new Sprite(this, false, scoreR, width - 2*spriteRadius, height/2 - height/12, 180, rotDir); // Set right sprite on right side of board
 
         // If 0 set left sprite as hunter
         if (rand == 0) {
