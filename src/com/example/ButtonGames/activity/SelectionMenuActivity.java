@@ -214,25 +214,43 @@ public class SelectionMenuActivity extends Activity{
 
     }
 
-    public void onMap0Button(View view){
+    public void onMapButton(View view){
         Intent i = new Intent(this, SimpleTagActivity.class);
-        i.putExtra("com.example.ButtonGames.obstacle", 0);
+        int obstacleMap;
+
+        switch(view.getId()) {
+            case R.id.imageButtonMap0:
+                obstacleMap = 0;
+                break;
+            case R.id.imageButtonMap1:
+                obstacleMap = 1;
+                break;
+            case R.id.imageButtonMap2:
+                obstacleMap = 2;
+                break;
+            case R.id.imageButtonMap3:
+                obstacleMap = 3;
+                break;
+            case R.id.imageButtonMap4:
+                obstacleMap = 4;
+                break;
+            case R.id.imageButtonMap5:
+                obstacleMap = 5;
+                break;
+            case R.id.imageButtonMap6:
+                obstacleMap = 6;
+                break;
+            case R.id.imageButtonMap7:
+                obstacleMap = 7;
+                break;
+            default:
+                obstacleMap = 0; // will never get here
+        }
+
+        i.putExtra("com.example.ButtonGames.obstacle", obstacleMap);
         i.putExtra("com.example.ButtonGames.theme", theme);
         startActivity(i);
         finish();
     }
-    public void onMap1Button(View view){
-        Intent i = new Intent(this, SimpleTagActivity.class);
-        i.putExtra("com.example.ButtonGames.obstacle", 1);
-        i.putExtra("com.example.ButtonGames.theme", theme);
-        startActivity(i);
-        finish();
-    }
-    public void onMap2Button(View view){
-        Intent i = new Intent(this, SimpleTagActivity.class);
-        i.putExtra("com.example.ButtonGames.obstacle", 2);
-        i.putExtra("com.example.ButtonGames.theme", theme);
-        startActivity(i);
-        finish();
-    }
+
 }
