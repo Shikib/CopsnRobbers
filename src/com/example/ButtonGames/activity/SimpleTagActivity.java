@@ -364,7 +364,7 @@ public class SimpleTagActivity extends Activity{
                 builder.setMessage("Are you sure you want restart the game?")
                         .setPositiveButton("Restart", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
-                                board.initSprites(0,0, (int) Math.random() * 2);
+                                board.initSprites(0,0, (int) (Math.random() * 2), (int) (Math.random() * 2));
                                 board.resetSprites(-1);
                                 board.setCurrentFrame(-40);
 

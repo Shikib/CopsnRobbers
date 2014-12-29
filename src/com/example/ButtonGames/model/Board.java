@@ -30,15 +30,15 @@ public class Board {
         this.width = width;
         this.height = height;
         this.spriteRadius = height / 24; // Based on resize of sprite in surface view
-        initSprites(0,0,(int) (Math.random()* 2)); // Makes sprites with random sprite as hunter/hunted
+        initSprites(0,0,(int) (Math.random()* 2), (int) (Math.random()*2)); // Makes sprites with random sprite as hunter/hunted
         winMethod = false; // (do we need this? idk scared of null pointers)
         timeToSwitch = false;
     }
 
-    public void initSprites(int scoreL, int scoreR, int rand) {
+    public void initSprites(int scoreL, int scoreR, int rand, int rotDir) {
 
-        playerL = new Sprite(this, false, scoreL, 0 + 2*spriteRadius, height/2, 0); // Set left sprite on left side of board
-        playerR = new Sprite(this, false, scoreR, width - 2*spriteRadius, height/2, 180); // Set right sprite on right side of board
+        playerL = new Sprite(this, false, scoreL, 0 + 2*spriteRadius, height/2, 0, rotDir); // Set left sprite on left side of board
+        playerR = new Sprite(this, false, scoreR, width - 2*spriteRadius, height/2, 180, rotDir); // Set right sprite on right side of board
 
         // If 0 set left sprite as hunter
         if (rand == 0) {
@@ -152,7 +152,7 @@ public class Board {
         // Switch roles
         // If hunterState is true (left is hunter), make right hunter (1 = right is hunter, 0 = left is hunter)
         // Consider putting a delay here
-        initSprites(playerL.getScore(), playerR.getScore(), hunterState ?  1 : 0);
+        initSprites(playerL.getScore(), playerR.getScore(), hunterState ?  1 : 0, (int) (Math.random()*2));
 
 
     }
