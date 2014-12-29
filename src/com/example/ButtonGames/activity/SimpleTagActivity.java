@@ -168,9 +168,9 @@ public class SimpleTagActivity extends Activity{
 
         List<Obstacle> obstacles1 = new ArrayList<Obstacle>();
         obstacles1.add(new Obstacle((double) 27 * screenWidth / 55, (double) 28 * screenWidth / 55,
-                (double) 0, (double) 5 * screenHeight / 18));
+                (double) 24 * screenHeight / 540, (double) 5 * screenHeight / 18));
         obstacles1.add(new Obstacle((double) 27 * screenWidth / 55, (double) 28 * screenWidth / 55,
-                (double) 10 * screenHeight / 18, (double) 15 * screenHeight / 18));
+                (double) 10 * screenHeight / 18, (double) 424 * screenHeight / 540));
 
         List<Obstacle> obstacles2 = new ArrayList<Obstacle>();
         obstacles2.add(new Obstacle((double) 9 * screenWidth / 40, (double) 11 * screenWidth / 40,

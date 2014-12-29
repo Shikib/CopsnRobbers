@@ -130,9 +130,9 @@ public class SelectionMenuActivity extends Activity{
 
         List<Obstacle> obstacles1 = new ArrayList<Obstacle>();
         obstacles1.add(new Obstacle((double) 27 * buttonWidth / 55, (double) 28 * buttonWidth / 55,
-                (double) 0, (double) 5 * buttonHeight / 18));
+                (double) 24 * buttonHeight / 540, (double) 5 * buttonHeight / 18));
         obstacles1.add(new Obstacle((double) 27 * buttonWidth / 55, (double) 28 * buttonWidth / 55,
-                (double) 10 * buttonHeight / 18, (double) 15 * buttonHeight / 18));
+                (double) 10 * buttonHeight / 18, (double) 424 * buttonHeight / 540));
 
         List<Obstacle> obstacles2 = new ArrayList<Obstacle>();
         obstacles2.add(new Obstacle((double) 9 * buttonWidth / 40, (double) 11 * buttonWidth / 40,
