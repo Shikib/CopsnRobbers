@@ -124,42 +124,93 @@ public class SelectionMenuActivity extends Activity{
     }
 
     public void initObstacles(){
-        List<Obstacle> obstacles0 = new ArrayList<Obstacle>(); // Example map
-        obstacles0.add(new Obstacle((double) 9 * buttonWidth / 40, (double) 11 * buttonWidth / 40,
-                (double) 5 * buttonHeight / 24, (double) 15 * buttonHeight / 24));
-        obstacles0.add(new Obstacle((double) 19 * buttonWidth / 40, (double) 21 * buttonWidth / 40,
-                (double) 5 * buttonHeight / 24, (double) 15 * buttonHeight / 24));
-        obstacles0.add(new Obstacle((double) 29 * buttonWidth / 40, (double) 31 * buttonWidth / 40,
-                (double) 5 * buttonHeight / 24, (double) 15 * buttonHeight / 24));
+        List<Obstacle> obstacles0 = new ArrayList<Obstacle>();
+        obstacles0.add(new Obstacle((double) screenWidth / 3, (double) 2 * screenWidth / 3,
+                (double) 95 * screenHeight / 240, (double) 105 * screenHeight / 240));
 
         List<Obstacle> obstacles1 = new ArrayList<Obstacle>();
-        obstacles1.add(new Obstacle((double) buttonWidth / 7, (double) 3 * buttonWidth / 7,
-                (double) 185 * buttonHeight / 720, (double) 215 * buttonHeight / 720));
-        obstacles1.add(new Obstacle((double) 4 * buttonWidth / 7, (double) 6 * buttonWidth / 7,
-                (double) 185 * buttonHeight / 720, (double) 215 * buttonHeight / 720));
-        obstacles1.add(new Obstacle((double) buttonWidth / 7, (double) 6 * buttonWidth / 7,
-                (double) 385 * buttonHeight / 720, (double) 415 * buttonHeight / 720));
+        obstacles1.add(new Obstacle((double) 3 * screenWidth / 8, (double) 5 * screenWidth / 8,
+                (double) 15 * screenHeight / 48, (double) 25 * screenHeight / 48));
 
         List<Obstacle> obstacles2 = new ArrayList<Obstacle>();
-        obstacles2.add(new Obstacle((double) buttonWidth / 5, (double) 2 * buttonWidth / 5,
-                (double) 45 * buttonHeight / 240, (double) 55 * buttonHeight / 240));
-        obstacles2.add(new Obstacle((double) 3 * buttonWidth / 5, (double) 4 * buttonWidth / 5,
-                (double) 45 * buttonHeight / 240, (double) 55 * buttonHeight / 240));
-        obstacles2.add(new Obstacle((double) buttonWidth / 5, (double) 2 * buttonWidth / 5,
-                (double) 145 * buttonHeight / 240, (double) 155 * buttonHeight / 240));
-        obstacles2.add(new Obstacle((double) 3 * buttonWidth / 5, (double) 4 * buttonWidth / 5,
-                (double) 145 * buttonHeight / 240, (double) 155 * buttonHeight / 240));
-        obstacles2.add(new Obstacle((double) 3 * buttonWidth / 10, (double) 7 * buttonWidth / 10,
-                (double) 95 * buttonHeight / 240, (double) 105 * buttonHeight / 240));
-        obstacles2.add(new Obstacle((double) 3 * buttonWidth / 20, (double) 4 * buttonWidth / 20,
-                (double) 45 * buttonHeight / 240, (double) 155 * buttonHeight / 240));
-        obstacles2.add(new Obstacle((double) 16 * buttonWidth / 20, (double) 17 * buttonWidth / 20,
-                (double) 45 * buttonHeight / 240, (double) 155 * buttonHeight / 240));
+        obstacles2.add(new Obstacle((double) 9 * screenWidth / 40, (double) 11 * screenWidth / 40,
+                (double) 5 * screenHeight / 24, (double) 15 * screenHeight / 24));
+        obstacles2.add(new Obstacle((double) 19 * screenWidth / 40, (double) 21 * screenWidth / 40,
+                (double) 5 * screenHeight / 24, (double) 15 * screenHeight / 24));
+        obstacles2.add(new Obstacle((double) 29 * screenWidth / 40, (double) 31 * screenWidth / 40,
+                (double) 5 * screenHeight / 24, (double) 15 * screenHeight / 24));
+
+        List<Obstacle> obstacles3 = new ArrayList<Obstacle>();
+        obstacles3.add(new Obstacle((double) screenWidth / 4, (double) 3 * screenWidth / 4,
+                (double) 95 * screenHeight / 240, (double) 105 * screenHeight / 240));
+        obstacles3.add(new Obstacle((double) 22 * screenWidth / 55, (double) 23 * screenWidth / 55,
+                (double) 5 * screenHeight / 24, (double) 15 * screenHeight / 24));
+
+        List<Obstacle> obstacles4 = new ArrayList<Obstacle>();
+        obstacles4.add(new Obstacle((double) screenWidth / 7, (double) 3 * screenWidth / 7,
+                (double) 185 * screenHeight / 720, (double) 215 * screenHeight / 720));
+        obstacles4.add(new Obstacle((double) 4 * screenWidth / 7, (double) 6 * screenWidth / 7,
+                (double) 185 * screenHeight / 720, (double) 215 * screenHeight / 720));
+        obstacles4.add(new Obstacle((double) screenWidth / 7, (double) 6 * screenWidth / 7,
+                (double) 385 * screenHeight / 720, (double) 415 * screenHeight / 720));
+
+        List<Obstacle> obstacles5 = new ArrayList<Obstacle>();
+        obstacles5.add(new Obstacle((double) screenWidth / 4, (double) 2 * screenWidth / 4,
+                (double) 45 * screenHeight / 240, (double) 55 * screenHeight / 240));
+        obstacles5.add(new Obstacle((double) 2 * screenWidth / 4, (double) 3 * screenWidth / 4,
+                (double) 145 * screenHeight / 240, (double) 155 * screenHeight / 240));
+        obstacles5.add(new Obstacle((double) 53 * screenWidth / 220, (double) 57 * screenWidth / 220,
+                (double) 5 * screenHeight / 24, (double) 10 * screenHeight / 24));
+        obstacles5.add(new Obstacle((double) 163 * screenWidth / 220, (double) 167 * screenWidth / 220,
+                (double) 10 * screenHeight / 24, (double) 15 * screenHeight / 24));
+
+        List<Obstacle> obstacles6 = new ArrayList<Obstacle>();
+        obstacles6.add(new Obstacle((double) screenWidth / 5, (double) 2 * screenWidth / 5,
+                (double) 45 * screenHeight / 240, (double) 55 * screenHeight / 240));
+        obstacles6.add(new Obstacle((double) 3 * screenWidth / 5, (double) 4 * screenWidth / 5,
+                (double) 45 * screenHeight / 240, (double) 55 * screenHeight / 240));
+        obstacles6.add(new Obstacle((double) screenWidth / 5, (double) 2 * screenWidth / 5,
+                (double) 145 * screenHeight / 240, (double) 155 * screenHeight / 240));
+        obstacles6.add(new Obstacle((double) 3 * screenWidth / 5, (double) 4 * screenWidth / 5,
+                (double) 145 * screenHeight / 240, (double) 155 * screenHeight / 240));
+        obstacles6.add(new Obstacle((double) 3 * screenWidth / 10, (double) 7 * screenWidth / 10,
+                (double) 95 * screenHeight / 240, (double) 105 * screenHeight / 240));
+        obstacles6.add(new Obstacle((double) 3 * screenWidth / 20, (double) 4 * screenWidth / 20,
+                (double) 45 * screenHeight / 240, (double) 155 * screenHeight / 240));
+        obstacles6.add(new Obstacle((double) 16 * screenWidth / 20, (double) 17 * screenWidth / 20,
+                (double) 45 * screenHeight / 240, (double) 155 * screenHeight / 240));
+
+        List<Obstacle> obstacles7 = new ArrayList<Obstacle>();
+        obstacles7.add(new Obstacle((double) screenWidth / 4, (double) 3 * screenWidth / 4,
+                (double) 95 * screenHeight / 240, (double) 105 * screenHeight / 240));
+        obstacles7.add(new Obstacle((double) 22 * screenWidth / 55, (double) 23 * screenWidth / 55,
+                (double) 5 * screenHeight / 24, (double) 15 * screenHeight / 24));
+        obstacles7.add(new Obstacle((double) 2 * screenWidth / 8, (double) 3 * screenWidth / 8,
+                (double) 45 * screenHeight / 240, (double) 55 * screenHeight / 240));
+        obstacles7.add(new Obstacle((double) 53 * screenWidth / 220, (double) 57 * screenWidth / 220,
+                (double) 10 * screenHeight / 48, (double) 15 * screenHeight / 48));
+        obstacles7.add(new Obstacle((double) 5 * screenWidth / 8, (double) 6 * screenWidth / 8,
+                (double) 45 * screenHeight / 240, (double) 55 * screenHeight / 240));
+        obstacles7.add(new Obstacle((double) 163 * screenWidth / 220, (double) 167 * screenWidth / 220,
+                (double) 10 * screenHeight / 48, (double) 15 * screenHeight / 48));
+        obstacles7.add(new Obstacle((double) 2 * screenWidth / 8, (double) 3 * screenWidth / 8,
+                (double) 145 * screenHeight / 240, (double) 155 * screenHeight / 240));
+        obstacles7.add(new Obstacle((double) 163 * screenWidth / 220, (double) 167 * screenWidth / 220,
+                (double) 25 * screenHeight / 48, (double) 30 * screenHeight / 48));
+        obstacles7.add(new Obstacle((double) 5 * screenWidth / 8, (double) 6 * screenWidth / 8,
+                (double) 145 * screenHeight / 240, (double) 155 * screenHeight / 240));
+        obstacles7.add(new Obstacle((double) 163 * screenWidth / 220, (double) 167 * screenWidth / 220,
+                (double) 25 * screenHeight / 48, (double) 30 * screenHeight / 48));
 
         obstacles = new ArrayList<List<Obstacle>>();
         obstacles.add(obstacles0);
         obstacles.add(obstacles1);
         obstacles.add(obstacles2);
+        obstacles.add(obstacles3);
+        obstacles.add(obstacles4);
+        obstacles.add(obstacles5);
+        obstacles.add(obstacles6);
+        obstacles.add(obstacles7);
     }
 
     public void onMap0Button(View view){
