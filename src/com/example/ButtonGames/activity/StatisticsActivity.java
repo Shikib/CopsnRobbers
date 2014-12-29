@@ -94,6 +94,13 @@ public class StatisticsActivity extends Activity {
                         editor.putInt("games_played", 0);
                         editor.putInt("left_won", 0);
                         editor.putInt("right_won", 0);
+                        editor.putInt("total_captures", 0);
+                        editor.putInt("left_captures", 0);
+                        editor.putInt("right_captures", 0);
+                        editor.putInt("average_capture_frame", 0);
+                        editor.putInt("total_escapes", 0);
+                        editor.putInt("left_escapes", 0);
+                        editor.putInt("right_captures", 0);
 
                         editor.commit();
                         initTextView();
