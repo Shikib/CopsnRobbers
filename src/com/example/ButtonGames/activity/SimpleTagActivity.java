@@ -155,11 +155,11 @@ public class SimpleTagActivity extends Activity{
 
     public void initObstacles(){
         List<Obstacle> obstacles0 = new ArrayList<Obstacle>(); // Example map
-        obstacles0.add(new Obstacle((double) 9 * screenWidth / 40, (double) 11 * screenWidth / 40,
+        obstacles0.add(new Obstacle((double) 53 * screenWidth / 220, (double) 57 * screenWidth / 220,
                 (double) 5 * screenHeight / 24, (double) 15 * screenHeight / 24));
-        obstacles0.add(new Obstacle((double) 19 * screenWidth / 40, (double) 21 * screenWidth / 40,
+        obstacles0.add(new Obstacle((double) 108 * screenWidth / 220, (double) 112 * screenWidth / 220,
                 (double) 5 * screenHeight / 24, (double) 15 * screenHeight / 24));
-        obstacles0.add(new Obstacle((double) 29 * screenWidth / 40, (double) 31 * screenWidth / 40,
+        obstacles0.add(new Obstacle((double) 163 * screenWidth / 220, (double) 167 * screenWidth / 220,
                 (double) 5 * screenHeight / 24, (double) 15 * screenHeight / 24));
 
         List<Obstacle> obstacles1 = new ArrayList<Obstacle>();
@@ -181,9 +181,9 @@ public class SimpleTagActivity extends Activity{
                 (double) 145 * screenHeight / 240, (double) 155 * screenHeight / 240));
         obstacles2.add(new Obstacle((double) 3 * screenWidth / 10, (double) 7 * screenWidth / 10,
                 (double) 95 * screenHeight / 240, (double) 105 * screenHeight / 240));
-        obstacles2.add(new Obstacle((double) 3 * screenWidth / 20, (double) 4 * screenWidth / 20,
+        obstacles2.add(new Obstacle((double) 10 * screenWidth / 55, (double) 11 * screenWidth / 55,
                 (double) 45 * screenHeight / 240, (double) 155 * screenHeight / 240));
-        obstacles2.add(new Obstacle((double) 16 * screenWidth / 20, (double) 17 * screenWidth / 20,
+        obstacles2.add(new Obstacle((double) 44 * screenWidth / 55, (double) 45 * screenWidth / 55,
                 (double) 45 * screenHeight / 240, (double) 155 * screenHeight / 240));
 
         obstacles = new ArrayList<List<Obstacle>>();
