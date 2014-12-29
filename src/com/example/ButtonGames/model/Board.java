@@ -1,5 +1,10 @@
 package com.example.ButtonGames.model;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+import com.example.ButtonGames.activity.SimpleTagActivity;
+import com.example.ButtonGames.view.SimpleTagSurfaceView;
+
 import java.util.List;
 
 /**
@@ -21,6 +26,9 @@ public class Board {
 
     private int currentFrame = -40; // What frame the game is on right now
     private int switchRoleTime = 300; // Number of frames before sprites switch roles
+
+    private SharedPreferences stats;
+    private SharedPreferences.Editor editor;
 
 
 
@@ -49,6 +57,11 @@ public class Board {
             playerR.setState(true);
             hunterState = false;
         }
+    }
+
+    public void setStats(SharedPreferences stats) {
+        this.stats = stats;
+        this.editor = stats.edit();
     }
 
     public int getHeight(){
@@ -119,6 +132,18 @@ public class Board {
         if (hasCollision) {
             if (currentFrame > 0) {
                 winMethod = true;
+
+                if (hunterState)
+                    editor.putInt("left_captures", stats.getInt("left_captures", 0) + 1);
+                else
+                    editor.putInt("right_captures", stats.getInt("right_captures", 0) + 1);
+
+                int total_captures = stats.getInt("total_captures", 0);
+                editor.putInt("total_captures", total_captures + 1);
+                editor.putInt("average_capture_frame", (stats.getInt("average_capture_frame", 0)*total_captures + currentFrame)/(total_captures + 1));
+
+                editor.commit();
+
                 currentFrame = -55;
             }
             if (currentFrame >= -40) {
@@ -176,6 +201,13 @@ public class Board {
     public void updateBoard(){
         if (currentFrame != 0 && (currentFrame % switchRoleTime) == 0){
             timeToSwitch = true;
+            if (hunterState)
+                editor.putInt("right_escapes", stats.getInt("right_escapes", 0) + 1);
+            else
+                editor.putInt("left_escapes", stats.getInt("left_escapes", 0) + 1);
+
+            editor.putInt("total_escapes", stats.getInt("total_escapes", 0) + 1);
+
         }
         playerL.action(); // Move left sprite
         playerR.action(); // Move right sprite
