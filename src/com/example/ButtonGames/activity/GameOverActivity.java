@@ -33,7 +33,6 @@ public class GameOverActivity extends Activity {
                         | View.SYSTEM_UI_FLAG_IMMERSIVE);
 
 
-
         SharedPreferences stats = getApplicationContext().getSharedPreferences(
                 "com.example.ButtonGames", Context.MODE_PRIVATE);
 
@@ -41,10 +40,16 @@ public class GameOverActivity extends Activity {
         editor.putInt("games_played", stats.getInt("games_played", 0) + 1);
 
         if (getIntent().getBooleanExtra("com.example.ButtonGames.winner", false)){
-            setContentView(R.layout.game_over_left);
+            if (getIntent().getBooleanExtra("com.example.ButtonGames.cop", true))
+                setContentView(R.layout.game_over_robber_left);
+            else
+                setContentView(R.layout.game_over_police_left);
             editor.putInt("left_won", stats.getInt("left_won", 0) + 1);
         } else {
-            setContentView(R.layout.game_over_right);
+            if (getIntent().getBooleanExtra("com.example.ButtonGames.cop", true))
+                setContentView(R.layout.game_over_police_right);
+            else
+                setContentView(R.layout.game_over_robber_right);
             editor.putInt("right_won", stats.getInt("right_won", 0) + 1);
         }
 
