@@ -20,9 +20,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainMenuActivity extends Activity {
-    /**
-     * Called when the activity is first created.
-     */
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

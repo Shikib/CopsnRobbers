@@ -7,7 +7,7 @@
         <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/button"
+                android:id="@+id/buttonPlay"
                 android:layout_gravity="center"
                 android:clickable="true" android:width="200dp"
                 android:height="75dp"
@@ -23,15 +23,15 @@
                 android:alpha="0.0"
                 android:id="@+id/buttonSettings"
                 android:onClick="onSettingsButton"
-                android:layout_above="@+id/statistics_button"
+                android:layout_above="@+id/buttonStats"
                 android:layout_centerHorizontal="true"
-                android:layout_below="@+id/button"/>
+                android:layout_below="@+id/buttonPlay" />
 
         <Button
             android:layout_width="150dp"
             android:layout_height="55dp"
             android:alpha="0.0"
-            android:id="@+id/statistics_button"
+            android:id="@+id/buttonStats"
             android:onClick="onStatisticsButton"
             android:layout_alignParentBottom="true"
             android:layout_alignStart="@+id/buttonSettings"

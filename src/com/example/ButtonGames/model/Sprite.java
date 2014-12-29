@@ -1,10 +1,6 @@
 package com.example.ButtonGames.model;
 
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import com.example.ButtonGames.R;
-
 public class Sprite {
 
 
@@ -132,7 +128,6 @@ public class Sprite {
             y -= amount/2;
     }
 
-    // Add a game over call here?
     public int updateScore() {
         return score++;
     }

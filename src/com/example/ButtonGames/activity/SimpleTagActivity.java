@@ -23,7 +23,6 @@ public class SimpleTagActivity extends Activity{
 
     private Board board;
     private List<List<Obstacle>> obstacles;
-    private List<Bitmap> backgrounds;
     private SimpleTagSurfaceView stSurfaceView;
     private FrameLayout holder;     // holder for everything
     private RelativeLayout buttons; // holder for the buttons
@@ -203,13 +202,13 @@ public class SimpleTagActivity extends Activity{
 
     public Bitmap initBackground(){
         if (backgroundMap == 0){
-            return BitmapFactory.decodeResource(getResources(), R.drawable.map1_final);
+            return BitmapFactory.decodeResource(getResources(), R.drawable.board0);
         } else if (backgroundMap == 1){
-            return BitmapFactory.decodeResource(getResources(), R.drawable.map2_final);
+            return BitmapFactory.decodeResource(getResources(), R.drawable.board1);
         } else if (backgroundMap == 2){
-            return BitmapFactory.decodeResource(getResources(), R.drawable.map3_final);
+            return BitmapFactory.decodeResource(getResources(), R.drawable.board2);
         } else {
-            return BitmapFactory.decodeResource(getResources(), R.drawable.map4_final);
+            return BitmapFactory.decodeResource(getResources(), R.drawable.board3);
         }
     }
 
@@ -454,7 +453,7 @@ public class SimpleTagActivity extends Activity{
         homeRules.width = screenWidth / 15;
 
         home.setLayoutParams(homeRules);
-        home.setBackgroundResource(R.drawable.home_button_square);
+        home.setBackgroundResource(R.drawable.home_button);
         home.getBackground().setAlpha(64 * 3);
 
         Typeface tf = Typeface.createFromAsset(getAssets(), "abadi_condensed_xtrabold.ttf");

@@ -7,9 +7,6 @@ import com.example.ButtonGames.view.SimpleTagSurfaceView;
 
 import java.util.List;
 
-/**
- * Created by Sarah on 2014-12-20.
- */
 public class Board {
 
     private Sprite playerL;
@@ -45,7 +42,7 @@ public class Board {
 
     public void initSprites(int scoreL, int scoreR, int rand, int rotDir) {
 
-        playerL = new Sprite(this, false, scoreL, 0 + 2*spriteRadius, height/2, 0, rotDir); // Set left sprite on left side of board
+        playerL = new Sprite(this, false, scoreL, 2*spriteRadius, height/2, 0, rotDir); // Set left sprite on left side of board
         playerR = new Sprite(this, false, scoreR, width - 2*spriteRadius, height/2, 180, rotDir); // Set right sprite on right side of board
 
         // If 0 set left sprite as hunter

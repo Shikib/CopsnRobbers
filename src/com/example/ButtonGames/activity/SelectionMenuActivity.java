@@ -7,7 +7,6 @@ import android.content.SharedPreferences;
 import android.graphics.*;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.media.Image;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,16 +17,9 @@ import android.widget.TextView;
 import com.example.ButtonGames.R;
 import com.example.ButtonGames.model.Obstacle;
 
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Sarah on 2014-12-25.
- */
 public class SelectionMenuActivity extends Activity{
 
     private int theme;
@@ -98,13 +90,13 @@ public class SelectionMenuActivity extends Activity{
 
     public Bitmap getBackgroundImage(){
         if (theme == 0){
-            return BitmapFactory.decodeResource(getResources(), R.drawable.background1);
+            return BitmapFactory.decodeResource(getResources(), R.drawable.background0);
         } else if (theme == 1){
-            return BitmapFactory.decodeResource(getResources(), R.drawable.background2);
+            return BitmapFactory.decodeResource(getResources(), R.drawable.background1);
         } else if (theme == 2){
-            return BitmapFactory.decodeResource(getResources(), R.drawable.background3);
+            return BitmapFactory.decodeResource(getResources(), R.drawable.background2);
         } else {
-            return BitmapFactory.decodeResource(getResources(), R.drawable.background4);
+            return BitmapFactory.decodeResource(getResources(), R.drawable.background3);
         }
     }
 
