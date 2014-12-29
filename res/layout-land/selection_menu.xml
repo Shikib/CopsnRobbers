@@ -44,6 +44,41 @@
                 android:layout_centerHorizontal="true" android:layout_gravity="center_horizontal"
                 android:onClick="onMap2Button" android:adjustViewBounds="false"
                 android:layout_marginBottom="30dp"/>
+        <ImageButton
+            android:layout_width="450dp"
+            android:layout_height="275dp"
+            android:id="@+id/imageButtonMap3" android:layout_below="@+id/imageButton1"
+            android:layout_centerHorizontal="true" android:layout_gravity="center_horizontal"
+            android:onClick="onMap2Button" android:adjustViewBounds="false"
+            android:layout_marginBottom="30dp"/>
+        <ImageButton
+            android:layout_width="450dp"
+            android:layout_height="275dp"
+            android:id="@+id/imageButtonMap4" android:layout_below="@+id/imageButton1"
+            android:layout_centerHorizontal="true" android:layout_gravity="center_horizontal"
+            android:onClick="onMap2Button" android:adjustViewBounds="false"
+            android:layout_marginBottom="30dp"/>
+        <ImageButton
+            android:layout_width="450dp"
+            android:layout_height="275dp"
+            android:id="@+id/imageButtonMap5" android:layout_below="@+id/imageButton1"
+            android:layout_centerHorizontal="true" android:layout_gravity="center_horizontal"
+            android:onClick="onMap2Button" android:adjustViewBounds="false"
+            android:layout_marginBottom="30dp"/>
+        <ImageButton
+            android:layout_width="450dp"
+            android:layout_height="275dp"
+            android:id="@+id/imageButtonMap6" android:layout_below="@+id/imageButton1"
+            android:layout_centerHorizontal="true" android:layout_gravity="center_horizontal"
+            android:onClick="onMap2Button" android:adjustViewBounds="false"
+            android:layout_marginBottom="30dp"/>
+        <ImageButton
+            android:layout_width="450dp"
+            android:layout_height="275dp"
+            android:id="@+id/imageButtonMap7" android:layout_below="@+id/imageButton1"
+            android:layout_centerHorizontal="true" android:layout_gravity="center_horizontal"
+            android:onClick="onMap2Button" android:adjustViewBounds="false"
+            android:layout_marginBottom="30dp"/>
     </LinearLayout>
     </ScrollView>
 
