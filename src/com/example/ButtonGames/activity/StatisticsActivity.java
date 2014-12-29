@@ -55,10 +55,19 @@ public class StatisticsActivity extends Activity {
         text.setText("Games Played: " + stats.getInt("games_played", 0) + " times\n");
         text.append("Left Side Won: " + stats.getInt("left_won", 0) + " times\n");
         text.append("Right Side Won: " + stats.getInt("right_won", 0) + " times\n");
+        text.append("Total Captures: " + stats.getInt("total_captures", 0) + " times\n");
+        text.append("Left Captures: " + stats.getInt("left_captures", 0) + " times\n");
+        text.append("Right Captures: " + stats.getInt("right_captures", 0) + " times\n");
+        text.append("Average Time: " + stats.getInt("average_capture_frame", 0)/10 + " seconds\n");
+        text.append("Total Escapes: " + stats.getInt("total_escapes", 0) + " times\n");
+        text.append("Left Escapes: " + stats.getInt("left_escapes", 0) + " times\n");
+        text.append("Right Escapes: " + stats.getInt("right_escapes", 0) + " times\n");
+
+
         Typeface tf = Typeface.createFromAsset(getAssets(), "abadi_condensed_xtrabold.ttf");
         text.setTypeface(tf);
         text.setTextColor(Color.WHITE);
-        text.setTextSize(35f);
+        text.setTextSize(25f);
 
         Button backButton = (Button) findViewById(R.id.buttonBack);
         backButton.setBackgroundResource(R.drawable.button_background);

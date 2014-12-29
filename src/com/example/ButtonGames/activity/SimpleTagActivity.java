@@ -2,6 +2,7 @@ package com.example.ButtonGames.activity;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.Point;
@@ -61,11 +62,15 @@ public class SimpleTagActivity extends Activity{
         // Make new board with width and height of display, and correct obstacles
         obstacleMap = getIntent().getIntExtra("com.example.ButtonGames.obstacle", 0);
         List<Obstacle> map = obstacles.get(obstacleMap);
+
         board = new Board(map, screenWidth, screenHeight);
+        board.setStats(getApplicationContext().getSharedPreferences(
+                "com.example.ButtonGames", Context.MODE_PRIVATE));
 
         // Make new surface view with correct background
         backgroundMap = getIntent().getIntExtra("com.example.ButtonGames.theme", 0);
         stSurfaceView = new SimpleTagSurfaceView(this, board, initBackground(), backgroundMap);
+
 
         holder = new FrameLayout(this);
         buttons = new RelativeLayout(this);
