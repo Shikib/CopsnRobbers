@@ -23,8 +23,9 @@
                 android:alpha="0.0"
                 android:id="@+id/buttonSettings"
                 android:onClick="onSettingsButton"
-                android:layout_below="@+id/buttonPlay" android:layout_centerHorizontal="true"
-                android:layout_marginTop="10dp"/>
+                android:layout_above="@+id/buttonStats"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/buttonPlay" />
 
         <Button
             android:layout_width="150dp"
@@ -32,6 +33,7 @@
             android:alpha="0.0"
             android:id="@+id/buttonStats"
             android:onClick="onStatisticsButton"
-            android:layout_below="@+id/buttonSettings" android:layout_alignStart="@+id/buttonSettings"
-            android:layout_marginTop="10dp"/>
+            android:layout_alignParentBottom="true"
+            android:layout_alignStart="@+id/buttonSettings"
+            android:layout_marginBottom="19dp"/>
 </RelativeLayout>
