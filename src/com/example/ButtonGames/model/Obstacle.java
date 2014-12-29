@@ -1,10 +1,7 @@
 package com.example.ButtonGames.model;
 
-import android.util.Range;
 
-/**
- * Created by Sarah on 2014-12-20.
- */
+
 public class Obstacle {
 
     private double xLower;

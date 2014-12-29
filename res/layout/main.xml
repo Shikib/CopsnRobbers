@@ -7,7 +7,7 @@
         <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/button"
+                android:id="@+id/buttonPlay"
                 android:layout_marginBottom="78dp" android:layout_gravity="center"
                 android:clickable="true" android:width="200dp"
                 android:height="75dp"
@@ -19,6 +19,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Settings"
-                android:id="@+id/buttonSettings" android:layout_alignTop="@+id/button" android:layout_alignParentEnd="true"
+                android:id="@+id/buttonSettings" android:layout_alignTop="@+id/buttonPlay" android:layout_alignParentEnd="true"
                 android:layout_marginEnd="35dp" android:onClick="onSettingsButton"/>
 </RelativeLayout>

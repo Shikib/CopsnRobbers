@@ -15,9 +15,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import com.example.ButtonGames.R;
 
-/**
- * Created by hp on 26/12/2014.
- */
+
 public class StatisticsActivity extends Activity {
 
     @Override
@@ -62,12 +60,12 @@ public class StatisticsActivity extends Activity {
         text.setTextColor(Color.WHITE);
         text.setTextSize(35f);
 
-        Button backButton = (Button) findViewById(R.id.back_button);
+        Button backButton = (Button) findViewById(R.id.buttonBack);
         backButton.setBackgroundResource(R.drawable.button_background);
         backButton.setTypeface(tf);
         backButton.setTextColor(Color.BLACK);
 
-        Button resetButton = (Button) findViewById(R.id.reset_stats);
+        Button resetButton = (Button) findViewById(R.id.buttonReset);
         resetButton.setBackgroundResource(R.drawable.button_background);
         resetButton.setTypeface(tf);
         resetButton.setTextColor(Color.BLACK);

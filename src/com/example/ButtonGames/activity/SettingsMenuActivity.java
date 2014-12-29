@@ -15,9 +15,7 @@ import android.widget.Toast;
 import com.example.ButtonGames.R;
 
 
-/**
- * Created by Sarah on 2014-12-25.
- */
+
 public class SettingsMenuActivity extends Activity {
     public static int theme; // default theme
 

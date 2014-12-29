@@ -12,10 +12,9 @@ import android.view.WindowManager;
 import android.widget.Button;
 import com.example.ButtonGames.R;
 
-/**
- * Created by Sarah on 2014-12-24.
- */
+
 public class GameOverActivity extends Activity {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,7 +56,7 @@ public class GameOverActivity extends Activity {
         buttonRetry.setBackgroundColor(Color.TRANSPARENT);
 
         // Make button transparent
-        Button buttonMainMenu = (Button)findViewById(R.id.buttonMainMenu);
+        Button buttonMainMenu = (Button)findViewById(R.id.buttonHome);
         buttonMainMenu.setVisibility(View.VISIBLE);
         buttonMainMenu.setBackgroundColor(Color.TRANSPARENT);
     }
@@ -70,7 +69,7 @@ public class GameOverActivity extends Activity {
         finish();
     }
 
-    public void onMainMenuButton(View view){
+    public void onHomeButton(View view){
         finish();
     }
 }

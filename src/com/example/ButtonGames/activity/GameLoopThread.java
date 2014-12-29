@@ -4,7 +4,6 @@ package com.example.ButtonGames.activity;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Canvas;
-import android.opengl.Visibility;
 import android.view.View;
 import com.example.ButtonGames.model.Board;
 import com.example.ButtonGames.view.SimpleTagSurfaceView;
@@ -23,7 +22,6 @@ public class GameLoopThread extends Thread {
     public void setRunning(boolean run) {
         running = run;
     }
-
 
     @Override
     public void run() {
