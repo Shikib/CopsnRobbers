@@ -167,7 +167,7 @@ public class SimpleTagSurfaceView extends SurfaceView{
         Matrix leftMatrix = new Matrix();
         // Resize the sprite -- MUST CHANGE RADIUS AND SPEED
         Bitmap leftBitmap = Bitmap.createScaledBitmap(getCorrectSprite(true),
-                getCorrectSprite(true).getWidth() * (board.getHeight() / 9) / getCorrectSprite(true).getHeight(), board.getHeight() / 9, false);
+                getCorrectSprite(true).getWidth() * (board.getHeight() / 10) / getCorrectSprite(true).getHeight(), board.getHeight() / 10, false);
 
         // Rotate and translate left sprite
         leftMatrix.setRotate((float) board.getPlayerL().getDirection(), (float) leftBitmap.getWidth() / 2, (float) leftBitmap.getHeight() / 2);
@@ -179,7 +179,7 @@ public class SimpleTagSurfaceView extends SurfaceView{
         Matrix rightMatrix = new Matrix();
         // Resize the sprite -- MUST CHANGE RADIUS AND SPEED
         Bitmap rightBitmap = Bitmap.createScaledBitmap(getCorrectSprite(false),
-                getCorrectSprite(false).getWidth() * (board.getHeight() / 9) / getCorrectSprite(false).getHeight(), board.getHeight() / 9, false);
+                getCorrectSprite(false).getWidth() * (board.getHeight() / 10) / getCorrectSprite(false).getHeight(), board.getHeight() / 10, false);
 
         // Rotate and translate right sprite
         rightMatrix.setRotate((float) board.getPlayerR().getDirection(), (float) rightBitmap.getWidth() / 2, (float) rightBitmap.getHeight() / 2);

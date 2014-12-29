@@ -2,37 +2,39 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" android:id="@+id/home_screen" android:background="@drawable/home"
+        android:layout_height="match_parent" android:id="@+id/home_screen" android:background="@drawable/home1"
         android:clickable="false">
         <Button
-                android:layout_width="wrap_content"
-                android:layout_height="90dp"
+                android:layout_width="180dp"
+                android:layout_height="75dp"
                 android:id="@+id/buttonPlay"
                 android:layout_gravity="center"
-                android:clickable="true" android:width="200dp"
-                android:height="75dp"
+                android:clickable="true"
+                android:text="PLAY!"
                 android:onClick="onPlayButton"
-                android:alpha="0.0"
                 android:layout_alignParentTop="true" android:layout_centerHorizontal="true"
-                android:layout_marginTop="140dp"/>
+                android:layout_marginTop="140dp" android:textSize="65sp" android:padding="0dp"/>
 
         <Button
-                android:layout_width="130dp"
-                android:layout_height="40dp"
-                android:text=""
-                android:alpha="0.0"
+                android:layout_width="140dp"
+                android:layout_height="50dp"
+                android:text="THEMES"
                 android:id="@+id/buttonSettings"
                 android:onClick="onSettingsButton"
                 android:layout_centerHorizontal="true"
-                android:layout_below="@+id/buttonPlay" android:layout_above="@+id/buttonStats"/>
+                android:layout_below="@+id/buttonPlay" android:textSize="40sp" android:layout_marginTop="20dp"
+                android:padding="0dp" android:gravity="center" android:layout_alignParentTop="false"
+                android:layout_alignParentBottom="false"/>
 
         <Button
-            android:layout_width="130dp"
-            android:layout_height="65dp"
-            android:alpha="0.0"
+            android:layout_width="140dp"
+            android:layout_height="50dp"
             android:id="@+id/buttonStats"
+            android:text="STATS"
             android:onClick="onStatisticsButton"
-            android:layout_alignParentBottom="true"
+            android:layout_alignParentBottom="false"
             android:layout_alignStart="@+id/buttonSettings"
-            android:layout_marginBottom="25dp"/>
+            android:layout_below="@+id/buttonSettings" android:layout_marginTop="20dp"
+            android:layout_centerHorizontal="true" android:layout_alignParentTop="false" android:textSize="40sp"
+            android:padding="0dp" android:gravity="center"/>
 </RelativeLayout>
