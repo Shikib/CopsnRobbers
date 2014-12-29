@@ -86,8 +86,8 @@ public class SelectionMenuActivity extends Activity{
 
             for (int j = 0; j < obstacles.get(i - 1).size(); j++) {
                 Obstacle o = obstacles.get(i - 1).get(j);
-                canvas.drawRect((float) o.getXLower(), (float) o.getYLower(),
-                        (float) o.getXUpper(), (float) o.getYUpper(), paint);
+                canvas.drawRect((float) o.getXLower(), (float) o.getYLower() + buttonHeight / 12,
+                        (float) o.getXUpper(), (float) o.getYUpper() + buttonHeight / 12, paint);
             }
 
             Drawable background = new BitmapDrawable(getResources(), bitmap);

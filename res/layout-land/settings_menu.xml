@@ -19,14 +19,15 @@
                 android:layout_height="wrap_content"
                 android:text="CHOOSE A THEME:"
                 android:id="@+id/textViewSettings" android:layout_alignParentTop="true" android:layout_centerHorizontal="true"
-                android:layout_gravity="center_horizontal" android:textStyle="bold" android:textSize="50sp"/>
+                android:layout_gravity="center_horizontal" android:textStyle="bold" android:textSize="50sp"
+                android:layout_marginTop="10dp" android:layout_marginBottom="10dp"/>
         <ImageButton
                 android:layout_width="450dp"
                 android:layout_height="275dp"
                 android:background="@drawable/background1"
                 android:id="@+id/imageButtonTheme0" android:layout_centerVertical="true" android:layout_centerHorizontal="true"
                 android:onClick="onTheme0Button" android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="50dp"/>
+                android:layout_marginBottom="30dp"/>
         <ImageButton
                 android:layout_width="450dp"
                 android:layout_height="275dp"
@@ -34,7 +35,7 @@
                 android:id="@+id/imageButtonTheme1" android:layout_below="@+id/imageTheme0"
                 android:layout_centerHorizontal="true" android:layout_gravity="center_horizontal"
                 android:onClick="onTheme1Button"
-                android:layout_marginBottom="50dp"/>
+                android:layout_marginBottom="30dp"/>
         <ImageButton
                 android:layout_width="450dp"
                 android:layout_height="275dp"
@@ -42,7 +43,7 @@
                 android:id="@+id/imageButtonTheme2" android:layout_below="@+id/imageTheme1"
                 android:layout_centerHorizontal="true" android:layout_gravity="center_horizontal"
                 android:onClick="onTheme2Button" android:adjustViewBounds="false"
-                android:layout_marginBottom="50dp"/>
+                android:layout_marginBottom="30dp"/>
         <ImageButton
                 android:layout_width="450dp"
                 android:layout_height="275dp"
@@ -50,13 +51,14 @@
                 android:id="@+id/imageButtonTheme3" android:layout_below="@+id/imageTheme2"
                 android:layout_centerHorizontal="true" android:layout_gravity="center_horizontal"
                 android:onClick="onTheme3Button" android:adjustViewBounds="false"
-                android:layout_marginBottom="50dp"/>
+                android:layout_marginBottom="10dp"/>
         <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Back"
+                android:layout_width="90dp"
+                android:layout_height="40dp"
+                android:text="BACK"
                 android:id="@+id/buttonBack" android:layout_gravity="center_horizontal"
-                android:onClick="onBackButton"/>
+                android:onClick="onBackButton" android:layout_marginBottom="10dp" android:padding="0dp"
+                android:textSize="35sp"/>
     </LinearLayout>
     </ScrollView>
 </RelativeLayout>

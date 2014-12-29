@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.TextView;
 import com.example.ButtonGames.R;
 
@@ -59,6 +60,17 @@ public class StatisticsActivity extends Activity {
         Typeface tf = Typeface.createFromAsset(getAssets(), "abadi_condensed_xtrabold.ttf");
         text.setTypeface(tf);
         text.setTextColor(Color.WHITE);
+        text.setTextSize(35f);
+
+        Button backButton = (Button) findViewById(R.id.back_button);
+        backButton.setBackgroundResource(R.drawable.button_background);
+        backButton.setTypeface(tf);
+        backButton.setTextColor(Color.BLACK);
+
+        Button resetButton = (Button) findViewById(R.id.reset_stats);
+        resetButton.setBackgroundResource(R.drawable.button_background);
+        resetButton.setTypeface(tf);
+        resetButton.setTextColor(Color.BLACK);
     }
 
     public void onResetStatistics(View view) {

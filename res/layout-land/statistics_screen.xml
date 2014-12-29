@@ -9,28 +9,27 @@
         android:layout_height="wrap_content"
         android:text="Text"
         android:id="@+id/statistics_view"
-        android:layout_marginTop="55dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:textSize="40sp" android:layout_centerVertical="true" android:layout_centerHorizontal="true"/>
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Reset stats"
+        android:layout_width="110dp"
+        android:layout_height="40dp"
+        android:text="RESET"
         android:id="@+id/reset_stats"
-        android:layout_marginBottom="26dp"
+        android:layout_marginBottom="10dp"
         android:layout_alignParentBottom="true"
-        android:layout_toStartOf="@+id/statistics_view"
-        android:layout_marginEnd="35dp"
-        android:onClick="onResetStatistics" />
+        android:onClick="onResetStatistics" android:textSize="35sp" android:padding="0dp"
+        android:layout_alignParentLeft="true" android:layout_marginLeft="10dp"
+        android:layout_alignParentStart="true"/>
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Back"
+        android:layout_width="90dp"
+        android:layout_height="40dp"
+        android:text="BACK"
         android:id="@+id/back_button"
         android:layout_alignBottom="@+id/reset_stats"
-        android:layout_toEndOf="@+id/statistics_view"
-        android:layout_marginStart="84dp"
-        android:onClick="onBackButton" />
+        android:onClick="onBackButton" android:textSize="35sp" android:padding="0dp"
+        android:layout_alignParentRight="true" android:layout_alignParentBottom="true"
+        android:layout_marginRight="10dp" android:layout_marginBottom="10dp"
+        android:layout_alignParentEnd="true"/>
 </RelativeLayout>

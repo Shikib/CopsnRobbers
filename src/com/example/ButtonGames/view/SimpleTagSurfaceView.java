@@ -42,6 +42,7 @@ public class SimpleTagSurfaceView extends SurfaceView{
     private Bitmap police2 = BitmapFactory.decodeResource(getResources(), R.drawable.blpolice2);
 
     private Bitmap deadSprite = BitmapFactory.decodeResource(getResources(), R.drawable.dead_sprite);
+    private Bitmap emptyBitmap = Bitmap.createBitmap(1, 1, Bitmap.Config.ALPHA_8);
 
 
     public SimpleTagSurfaceView(Context context, final Board board, Bitmap background, int theme) {
@@ -260,7 +261,6 @@ public class SimpleTagSurfaceView extends SurfaceView{
         Bitmap sprite1 = inmate0;
         Bitmap sprite2 = inmate1;
         Bitmap sprite3 = inmate2;
-        Bitmap deadSprite = this.deadSprite;
 
         if (board.getCurrentFrame() <= -40) {
             // Hunter and win by collision
@@ -271,9 +271,9 @@ public class SimpleTagSurfaceView extends SurfaceView{
                 return deadSprite;
                 // Hunter and win by times up
             } else if (sprite.getState()){
-                return deadSprite;
-            } else {
-                return sprite1;
+                return hSprite1;
+            } else { // Hunted and win by times up
+                return emptyBitmap;
             }
         } else if (sprite.getState()) { // getState is true if hunter
             if (sprite.getSpinning()) {
