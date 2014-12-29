@@ -40,13 +40,13 @@ public class GameOverActivity extends Activity {
         editor.putInt("games_played", stats.getInt("games_played", 0) + 1);
 
         if (getIntent().getBooleanExtra("com.example.ButtonGames.winner", false)){
-            if (getIntent().getBooleanExtra("com.example.ButtonGames.cop", false))
-                setContentView(R.layout.game_over_police_left);
-            else
+            if (getIntent().getBooleanExtra("com.example.ButtonGames.cop", true))
                 setContentView(R.layout.game_over_robber_left);
+            else
+                setContentView(R.layout.game_over_police_left);
             editor.putInt("left_won", stats.getInt("left_won", 0) + 1);
         } else {
-            if (getIntent().getBooleanExtra("com.example.ButtonGames.cop", false))
+            if (getIntent().getBooleanExtra("com.example.ButtonGames.cop", true))
                 setContentView(R.layout.game_over_police_right);
             else
                 setContentView(R.layout.game_over_robber_right);

@@ -22,7 +22,7 @@ public class Board {
     public static final int winningScore = 5;
 
     private int currentFrame = -40; // What frame the game is on right now
-    private int switchRoleTime = 600; // Number of frames before sprites switch roles
+    private int switchRoleTime = 300; // Number of frames before sprites switch roles
 
     private SharedPreferences stats;
     private SharedPreferences.Editor editor;
