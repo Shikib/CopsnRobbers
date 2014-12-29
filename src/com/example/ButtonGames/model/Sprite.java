@@ -31,7 +31,7 @@ public class Sprite {
         this.score = score;
         this.spinning = true;
         this.speed = board.getHeight()/ 20;
-        this.rspeed = 10;
+        this.rspeed = 12;
 
     }
 
@@ -118,14 +118,14 @@ public class Sprite {
         if (board.canMove(x + amount, y)) // will keep moving in y unless something is done
             x += amount;
         else
-            x -= amount/2;
+            x -= amount/4;
     }
 
     private void moveVertical(double amount) {
         if (board.canMove(x, y + amount))
             y += amount;
         else
-            y -= amount/2;
+            y -= amount/4;
     }
 
     public int updateScore() {

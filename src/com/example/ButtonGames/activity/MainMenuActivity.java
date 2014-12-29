@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Point;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Pair;
 import android.view.ContextThemeWrapper;
@@ -45,6 +46,24 @@ public class MainMenuActivity extends Activity {
 
         // Set what is displayed to main.xml in layout-land
         setContentView(R.layout.main);
+
+        Typeface tf = Typeface.createFromAsset(getAssets(), "abadi_condensed_xtrabold.ttf");
+
+        Button playButton = (Button) findViewById(R.id.buttonPlay);
+        playButton.setBackgroundResource(R.drawable.button_background);
+        playButton.setTypeface(tf);
+        playButton.setTextColor(Color.BLACK);
+
+        Button settingsButton = (Button) findViewById(R.id.buttonSettings);
+        settingsButton.setBackgroundResource(R.drawable.button_background);
+        settingsButton.setTypeface(tf);
+        settingsButton.setTextColor(Color.BLACK);
+
+        Button statsButton = (Button) findViewById(R.id.buttonStats);
+        statsButton.setBackgroundResource(R.drawable.button_background);
+        statsButton.setTypeface(tf);
+        statsButton.setTextColor(Color.BLACK);
+
 
     }
 

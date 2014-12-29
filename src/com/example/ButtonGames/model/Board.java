@@ -110,12 +110,12 @@ public class Board {
     // Produce true if can move to that x, y coordinate - need to be fixed
     public boolean canMove(double x, double y){
         // Check if hit borders
-        if (x - 2*spriteRadius < 0 || x + 2*spriteRadius > width || y - 2*spriteRadius < 0 || y + 2*spriteRadius > 5*height / 6)
+        if (x - 1.5*spriteRadius < 0 || x + 1.5*spriteRadius > width || y - 1.5*spriteRadius < 0 || y + 1.5*spriteRadius > 5*height / 6)
             return false;
         // Check of hit obstacles
         for (Obstacle o: obstacles) {
-            if ((o.getXLower() <= x + spriteRadius) && (o.getXUpper() >= x -  spriteRadius)
-                    && (o.getYLower() <= y + spriteRadius) && (o.getYUpper() >= y - spriteRadius)) {
+            if ((o.getXLower() <= x + 0.5*spriteRadius) && (o.getXUpper() >= x -  0.5*spriteRadius)
+                    && (o.getYLower() <= y + 0.5*spriteRadius) && (o.getYUpper() >= y - 0.5*spriteRadius)) {
                 return false;
             }
         }
