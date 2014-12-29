@@ -33,23 +33,6 @@ public class GameOverActivity extends Activity {
                         | View.SYSTEM_UI_FLAG_IMMERSIVE);
 
 
-
-        SharedPreferences stats = getApplicationContext().getSharedPreferences(
-                "com.example.ButtonGames", Context.MODE_PRIVATE);
-
-        SharedPreferences.Editor editor = stats.edit();
-        editor.putInt("games_played", stats.getInt("games_played", 0) + 1);
-
-        if (getIntent().getBooleanExtra("com.example.ButtonGames.winner", false)){
-            setContentView(R.layout.game_over_left);
-            editor.putInt("left_won", stats.getInt("left_won", 0) + 1);
-        } else {
-            setContentView(R.layout.game_over_right);
-            editor.putInt("right_won", stats.getInt("right_won", 0) + 1);
-        }
-
-        editor.commit();
-
         // Make button transparent
         Button buttonRetry = (Button)findViewById(R.id.buttonRetry);
         buttonRetry.setVisibility(View.VISIBLE);
@@ -59,6 +42,28 @@ public class GameOverActivity extends Activity {
         Button buttonMainMenu = (Button)findViewById(R.id.buttonHome);
         buttonMainMenu.setVisibility(View.VISIBLE);
         buttonMainMenu.setBackgroundColor(Color.TRANSPARENT);
+
+        SharedPreferences stats = getApplicationContext().getSharedPreferences(
+                "com.example.ButtonGames", Context.MODE_PRIVATE);
+
+        SharedPreferences.Editor editor = stats.edit();
+        editor.putInt("games_played", stats.getInt("games_played", 0) + 1);
+
+        if (getIntent().getBooleanExtra("com.example.ButtonGames.winner", false)){
+            if (getIntent().getBooleanExtra("com.example.ButtonGames.cop", false))
+                setContentView(R.layout.game_over_police_left);
+            else
+                setContentView(R.layout.game_over_robber_left);
+            editor.putInt("left_won", stats.getInt("left_won", 0) + 1);
+        } else {
+            if (getIntent().getBooleanExtra("com.example.ButtonGames.cop", false))
+                setContentView(R.layout.game_over_police_right);
+            else
+                setContentView(R.layout.game_over_robber_right);
+            editor.putInt("right_won", stats.getInt("right_won", 0) + 1);
+        }
+
+        editor.commit();
     }
 
     public void onRetryButton(View view){
