@@ -34,7 +34,7 @@ public class SelectionMenuActivity extends Activity{
         SharedPreferences prefs = getApplicationContext().getSharedPreferences(
                 "com.example.ButtonGames", Context.MODE_PRIVATE);
 
-        theme = prefs.getInt("theme", 0);
+        theme = prefs.getInt("theme", 3);
 
 
         // Get rid of banner, fill screens the app
