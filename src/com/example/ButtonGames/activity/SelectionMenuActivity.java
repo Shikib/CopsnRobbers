@@ -143,7 +143,7 @@ public class SelectionMenuActivity extends Activity{
         List<Obstacle> obstacles3 = new ArrayList<Obstacle>();
         obstacles3.add(new Obstacle((double) screenWidth / 4, (double) 3 * screenWidth / 4,
                 (double) 95 * screenHeight / 240, (double) 105 * screenHeight / 240));
-        obstacles3.add(new Obstacle((double) 22 * screenWidth / 55, (double) 23 * screenWidth / 55,
+        obstacles3.add(new Obstacle((double) 27 * screenWidth / 55, (double) 28 * screenWidth / 55,
                 (double) 5 * screenHeight / 24, (double) 15 * screenHeight / 24));
 
         List<Obstacle> obstacles4 = new ArrayList<Obstacle>();
@@ -160,9 +160,9 @@ public class SelectionMenuActivity extends Activity{
         obstacles5.add(new Obstacle((double) 2 * screenWidth / 4, (double) 3 * screenWidth / 4,
                 (double) 145 * screenHeight / 240, (double) 155 * screenHeight / 240));
         obstacles5.add(new Obstacle((double) 53 * screenWidth / 220, (double) 57 * screenWidth / 220,
-                (double) 5 * screenHeight / 24, (double) 10 * screenHeight / 24));
+                (double) 45 * screenHeight / 240, (double) 100 * screenHeight / 240));
         obstacles5.add(new Obstacle((double) 163 * screenWidth / 220, (double) 167 * screenWidth / 220,
-                (double) 10 * screenHeight / 24, (double) 15 * screenHeight / 24));
+                (double) 100 * screenHeight / 240, (double) 155 * screenHeight / 240));
 
         List<Obstacle> obstacles6 = new ArrayList<Obstacle>();
         obstacles6.add(new Obstacle((double) screenWidth / 5, (double) 2 * screenWidth / 5,
@@ -183,7 +183,7 @@ public class SelectionMenuActivity extends Activity{
         List<Obstacle> obstacles7 = new ArrayList<Obstacle>();
         obstacles7.add(new Obstacle((double) screenWidth / 4, (double) 3 * screenWidth / 4,
                 (double) 95 * screenHeight / 240, (double) 105 * screenHeight / 240));
-        obstacles7.add(new Obstacle((double) 22 * screenWidth / 55, (double) 23 * screenWidth / 55,
+        obstacles7.add(new Obstacle((double) 27 * screenWidth / 55, (double) 28 * screenWidth / 55,
                 (double) 5 * screenHeight / 24, (double) 15 * screenHeight / 24));
         obstacles7.add(new Obstacle((double) 2 * screenWidth / 8, (double) 3 * screenWidth / 8,
                 (double) 45 * screenHeight / 240, (double) 55 * screenHeight / 240));
@@ -195,7 +195,7 @@ public class SelectionMenuActivity extends Activity{
                 (double) 10 * screenHeight / 48, (double) 15 * screenHeight / 48));
         obstacles7.add(new Obstacle((double) 2 * screenWidth / 8, (double) 3 * screenWidth / 8,
                 (double) 145 * screenHeight / 240, (double) 155 * screenHeight / 240));
-        obstacles7.add(new Obstacle((double) 163 * screenWidth / 220, (double) 167 * screenWidth / 220,
+        obstacles7.add(new Obstacle((double) 53 * screenWidth / 220, (double) 57 * screenWidth / 220,
                 (double) 25 * screenHeight / 48, (double) 30 * screenHeight / 48));
         obstacles7.add(new Obstacle((double) 5 * screenWidth / 8, (double) 6 * screenWidth / 8,
                 (double) 145 * screenHeight / 240, (double) 155 * screenHeight / 240));
