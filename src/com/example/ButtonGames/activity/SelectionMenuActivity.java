@@ -129,8 +129,10 @@ public class SelectionMenuActivity extends Activity{
                 (double) 95 * buttonHeight / 240, (double) 105 * buttonHeight / 240));
 
         List<Obstacle> obstacles1 = new ArrayList<Obstacle>();
-        obstacles1.add(new Obstacle((double) 3 * buttonWidth / 8, (double) 5 * buttonWidth / 8,
-                (double) 15 * buttonHeight / 48, (double) 25 * buttonHeight / 48));
+        obstacles1.add(new Obstacle((double) 27 * buttonWidth / 55, (double) 28 * buttonWidth / 55,
+                (double) 24 * buttonHeight / 540, (double) 5 * buttonHeight / 18));
+        obstacles1.add(new Obstacle((double) 27 * buttonWidth / 55, (double) 28 * buttonWidth / 55,
+                (double) 10 * buttonHeight / 18, (double) 424 * buttonHeight / 540));
 
         List<Obstacle> obstacles2 = new ArrayList<Obstacle>();
         obstacles2.add(new Obstacle((double) 9 * buttonWidth / 40, (double) 11 * buttonWidth / 40,
@@ -187,20 +189,12 @@ public class SelectionMenuActivity extends Activity{
                 (double) 5 * buttonHeight / 24, (double) 15 * buttonHeight / 24));
         obstacles7.add(new Obstacle((double) 2 * buttonWidth / 8, (double) 3 * buttonWidth / 8,
                 (double) 45 * buttonHeight / 240, (double) 55 * buttonHeight / 240));
-        obstacles7.add(new Obstacle((double) 53 * buttonWidth / 220, (double) 57 * buttonWidth / 220,
-                (double) 10 * buttonHeight / 48, (double) 15 * buttonHeight / 48));
         obstacles7.add(new Obstacle((double) 5 * buttonWidth / 8, (double) 6 * buttonWidth / 8,
                 (double) 45 * buttonHeight / 240, (double) 55 * buttonHeight / 240));
-        obstacles7.add(new Obstacle((double) 163 * buttonWidth / 220, (double) 167 * buttonWidth / 220,
-                (double) 10 * buttonHeight / 48, (double) 15 * buttonHeight / 48));
         obstacles7.add(new Obstacle((double) 2 * buttonWidth / 8, (double) 3 * buttonWidth / 8,
                 (double) 145 * buttonHeight / 240, (double) 155 * buttonHeight / 240));
-        obstacles7.add(new Obstacle((double) 53 * buttonWidth / 220, (double) 57 * buttonWidth / 220,
-                (double) 25 * buttonHeight / 48, (double) 30 * buttonHeight / 48));
         obstacles7.add(new Obstacle((double) 5 * buttonWidth / 8, (double) 6 * buttonWidth / 8,
                 (double) 145 * buttonHeight / 240, (double) 155 * buttonHeight / 240));
-        obstacles7.add(new Obstacle((double) 163 * buttonWidth / 220, (double) 167 * buttonWidth / 220,
-                (double) 25 * buttonHeight / 48, (double) 30 * buttonHeight / 48));
 
         obstacles = new ArrayList<List<Obstacle>>();
         obstacles.add(obstacles0);
@@ -214,25 +208,43 @@ public class SelectionMenuActivity extends Activity{
 
     }
 
-    public void onMap0Button(View view){
+    public void onMapButton(View view){
         Intent i = new Intent(this, SimpleTagActivity.class);
-        i.putExtra("com.example.ButtonGames.obstacle", 0);
+        int obstacleMap;
+
+        switch(view.getId()) {
+            case R.id.imageButtonMap0:
+                obstacleMap = 0;
+                break;
+            case R.id.imageButtonMap1:
+                obstacleMap = 1;
+                break;
+            case R.id.imageButtonMap2:
+                obstacleMap = 2;
+                break;
+            case R.id.imageButtonMap3:
+                obstacleMap = 3;
+                break;
+            case R.id.imageButtonMap4:
+                obstacleMap = 4;
+                break;
+            case R.id.imageButtonMap5:
+                obstacleMap = 5;
+                break;
+            case R.id.imageButtonMap6:
+                obstacleMap = 6;
+                break;
+            case R.id.imageButtonMap7:
+                obstacleMap = 7;
+                break;
+            default:
+                obstacleMap = 0; // will never get here
+        }
+
+        i.putExtra("com.example.ButtonGames.obstacle", obstacleMap);
         i.putExtra("com.example.ButtonGames.theme", theme);
         startActivity(i);
         finish();
     }
-    public void onMap1Button(View view){
-        Intent i = new Intent(this, SimpleTagActivity.class);
-        i.putExtra("com.example.ButtonGames.obstacle", 1);
-        i.putExtra("com.example.ButtonGames.theme", theme);
-        startActivity(i);
-        finish();
-    }
-    public void onMap2Button(View view){
-        Intent i = new Intent(this, SimpleTagActivity.class);
-        i.putExtra("com.example.ButtonGames.obstacle", 2);
-        i.putExtra("com.example.ButtonGames.theme", theme);
-        startActivity(i);
-        finish();
-    }
+
 }
