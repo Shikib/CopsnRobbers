@@ -48,6 +48,9 @@ public class SimpleTagActivity extends Activity{
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+
+
         // Get width and height of board from display
         Point size = new Point();
             this.getWindowManager().getDefaultDisplay().getRealSize(size);
@@ -82,6 +85,7 @@ public class SimpleTagActivity extends Activity{
         if (resume && pauseView != null) {
             pauseView.setVisibility(View.VISIBLE);
             pause.setVisibility(View.GONE);
+            stSurfaceView.gameLoopThread.setRunning(true);
         }
         else
             resume = true;
