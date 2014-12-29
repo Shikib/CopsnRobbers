@@ -21,18 +21,22 @@ public class Sprite {
 
     private boolean spinning; // true is spinning, false is moving
 
+    private int rotDir; // 0 = counterclockwise, 1 = clockwise
 
 
-    public Sprite(Board board, boolean state, int score, double x, double y, double direction) {
+
+    public Sprite(Board board, boolean state, int score, double x, double y, double direction, int rotDir) {
         this.board = board;
         this.state = state;
         this.x = x;
         this.y = y;
+        this.rotDir = rotDir;
         this.direction = direction;
         this.score = score;
         this.spinning = true;
         this.speed = board.getHeight()/ 20;
         this.rspeed = 10;
+
     }
 
     public boolean getState() {
@@ -98,7 +102,11 @@ public class Sprite {
     }
 
     public void rotate() {
-        direction = (direction + rspeed) % 360;
+
+        if (rotDir == 0){
+            direction = (direction + rspeed) % 360;
+        } else
+            direction = (direction - rspeed) % 360;
     }
 
     // Some math thing to calculate and move sprite in x,y based on direction
