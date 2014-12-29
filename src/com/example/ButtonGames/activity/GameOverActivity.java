@@ -33,16 +33,6 @@ public class GameOverActivity extends Activity {
                         | View.SYSTEM_UI_FLAG_IMMERSIVE);
 
 
-        // Make button transparent
-        Button buttonRetry = (Button)findViewById(R.id.buttonRetry);
-        buttonRetry.setVisibility(View.VISIBLE);
-        buttonRetry.setBackgroundColor(Color.TRANSPARENT);
-
-        // Make button transparent
-        Button buttonMainMenu = (Button)findViewById(R.id.buttonHome);
-        buttonMainMenu.setVisibility(View.VISIBLE);
-        buttonMainMenu.setBackgroundColor(Color.TRANSPARENT);
-
         SharedPreferences stats = getApplicationContext().getSharedPreferences(
                 "com.example.ButtonGames", Context.MODE_PRIVATE);
 
@@ -64,6 +54,16 @@ public class GameOverActivity extends Activity {
         }
 
         editor.commit();
+
+        // Make button transparent
+        Button buttonRetry = (Button)findViewById(R.id.buttonRetry);
+        buttonRetry.setVisibility(View.VISIBLE);
+        buttonRetry.setBackgroundColor(Color.TRANSPARENT);
+
+        // Make button transparent
+        Button buttonMainMenu = (Button)findViewById(R.id.buttonHome);
+        buttonMainMenu.setVisibility(View.VISIBLE);
+        buttonMainMenu.setBackgroundColor(Color.TRANSPARENT);
     }
 
     public void onRetryButton(View view){
