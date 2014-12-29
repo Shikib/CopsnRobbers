@@ -380,7 +380,7 @@ public class SimpleTagActivity extends Activity{
             public boolean onTouch(View v, MotionEvent event) {
                 if (dialogShown)
                     return false;
-                AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+                AlertDialog.Builder builder = new AlertDialog.Builder( new ContextThemeWrapper(v.getContext(), android.R.style.Theme_Holo_Dialog));
                 final View view = v;
                 builder.setMessage("Are you sure you want quit the game?")
                         .setPositiveButton("Quit", new DialogInterface.OnClickListener() {
@@ -412,7 +412,7 @@ public class SimpleTagActivity extends Activity{
             public boolean onTouch(View v, MotionEvent event) {
                 if (dialogShown)
                     return false;
-                AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+                AlertDialog.Builder builder = new AlertDialog.Builder( new ContextThemeWrapper(v.getContext(), android.R.style.Theme_Holo_Dialog));
                 final View view = v;
                 builder.setMessage("Are you sure you want restart the game?")
                         .setPositiveButton("Restart", new DialogInterface.OnClickListener() {
