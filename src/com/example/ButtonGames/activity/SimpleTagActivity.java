@@ -226,19 +226,19 @@ public class SimpleTagActivity extends Activity{
         obstacles7.add(new Obstacle((double) 2 * screenWidth / 8, (double) 3 * screenWidth / 8,
                 (double) 45 * screenHeight / 240, (double) 55 * screenHeight / 240));
         obstacles7.add(new Obstacle((double) 53 * screenWidth / 220, (double) 57 * screenWidth / 220,
-                (double) 10 * screenHeight / 48, (double) 15 * screenHeight / 48));
+                (double) 45 * screenHeight / 240, (double) 75 * screenHeight / 240));
         obstacles7.add(new Obstacle((double) 5 * screenWidth / 8, (double) 6 * screenWidth / 8,
                 (double) 45 * screenHeight / 240, (double) 55 * screenHeight / 240));
         obstacles7.add(new Obstacle((double) 163 * screenWidth / 220, (double) 167 * screenWidth / 220,
-                (double) 10 * screenHeight / 48, (double) 15 * screenHeight / 48));
+                (double) 45 * screenHeight / 240, (double) 75 * screenHeight / 240));
         obstacles7.add(new Obstacle((double) 2 * screenWidth / 8, (double) 3 * screenWidth / 8,
                 (double) 145 * screenHeight / 240, (double) 155 * screenHeight / 240));
         obstacles7.add(new Obstacle((double) 53 * screenWidth / 220, (double) 57 * screenWidth / 220,
-                (double) 25 * screenHeight / 48, (double) 30 * screenHeight / 48));
+                (double) 125 * screenHeight / 240, (double) 155 * screenHeight / 240));
         obstacles7.add(new Obstacle((double) 5 * screenWidth / 8, (double) 6 * screenWidth / 8,
                 (double) 145 * screenHeight / 240, (double) 155 * screenHeight / 240));
         obstacles7.add(new Obstacle((double) 163 * screenWidth / 220, (double) 167 * screenWidth / 220,
-                (double) 25 * screenHeight / 48, (double) 30 * screenHeight / 48));
+                (double) 125 * screenHeight / 240, (double) 155 * screenHeight / 240));
 
         obstacles = new ArrayList<List<Obstacle>>();
         obstacles.add(obstacles0);
