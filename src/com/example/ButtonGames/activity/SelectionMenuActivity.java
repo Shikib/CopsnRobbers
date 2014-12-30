@@ -24,6 +24,7 @@ public class SelectionMenuActivity extends Activity{
 
     private int theme;
     private ArrayList<List<Obstacle>> obstacles;
+    private ArrayList<Bitmap> bitmaps;
     private int buttonHeight;
     private int buttonWidth;
 
@@ -58,7 +59,10 @@ public class SelectionMenuActivity extends Activity{
         text.setTextColor(Color.WHITE);
 
         ViewGroup group = (ViewGroup) findViewById(R.id.linearLayout1);
-        Bitmap bitmap = getBackgroundImage().copy(Bitmap.Config.ARGB_8888, true);
+        Bitmap bitmap = getBackgroundImage();
+
+        bitmaps = new ArrayList<Bitmap>();
+        bitmaps.add(bitmap);
 
         buttonHeight = bitmap.getHeight();
         buttonWidth = bitmap.getWidth();
@@ -85,7 +89,18 @@ public class SelectionMenuActivity extends Activity{
             Drawable background = new BitmapDrawable(getResources(), bitmap);
 
             button.setBackground(background);
+            bitmaps.add(bitmap);
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        for (int i = 0; i < bitmaps.size(); i++) {
+            bitmaps.get(i).recycle();
+            bitmaps.remove(i);
+        }
+        bitmaps = null;
+        super.onDestroy();
     }
 
     public Bitmap getBackgroundImage(){

@@ -123,21 +123,29 @@ public class SimpleTagSurfaceView extends SurfaceView{
                     }
                 }
 
-                inmate0.recycle();
+                if (inmate0 != null)
+                    inmate0.recycle();
                 inmate0 = null;
-                inmate1.recycle();
+                if (inmate1 != null)
+                    inmate1.recycle();
                 inmate1 = null;
-                inmate2.recycle();
+                if (inmate2 != null)
+                    inmate2.recycle();
                 inmate2 = null;
-                police0.recycle();
+                if (police0 != null)
+                    police0.recycle();
                 police0 = null;
-                police1.recycle();
+                if (police1 != null)
+                    police1.recycle();
                 police1 = null;
-                police2.recycle();
+                if (police2 != null)
+                    police2.recycle();
                 police2 = null;
-                deadSprite.recycle();
+                if (deadSprite != null)
+                    deadSprite.recycle();
                 deadSprite = null;
-                emptyBitmap.recycle();
+                if (emptyBitmap != null)
+                    emptyBitmap.recycle();
                 emptyBitmap = null;
             }
         });
