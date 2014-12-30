@@ -31,16 +31,16 @@ public class SimpleTagSurfaceView extends SurfaceView{
     private Bitmap background;
 
     // Bitmap of inmate sprites
-    private Bitmap inmate0 = BitmapFactory.decodeResource(getResources(), R.drawable.blinmate0);
-    private Bitmap inmate1 = BitmapFactory.decodeResource(getResources(), R.drawable.blinmate1);
-    private Bitmap inmate2 = BitmapFactory.decodeResource(getResources(), R.drawable.blinmate2);
+    private Bitmap inmate0;
+    private Bitmap inmate1;
+    private Bitmap inmate2;
 
     // Bitmap of police sprites
-    private Bitmap police0 = BitmapFactory.decodeResource(getResources(), R.drawable.blpolice0);
-    private Bitmap police1 = BitmapFactory.decodeResource(getResources(), R.drawable.blpolice1);
-    private Bitmap police2 = BitmapFactory.decodeResource(getResources(), R.drawable.blpolice2);
+    private Bitmap police0;
+    private Bitmap police1;
+    private Bitmap police2;
 
-    private Bitmap deadSprite = BitmapFactory.decodeResource(getResources(), R.drawable.dead_sprite);
+    private Bitmap deadSprite;
     private Bitmap emptyBitmap = Bitmap.createBitmap(1, 1, Bitmap.Config.ALPHA_8);
 
 
@@ -48,6 +48,14 @@ public class SimpleTagSurfaceView extends SurfaceView{
         super(context);
         this.background = background;
         this.theme = theme;
+
+        inmate0 = BitmapFactory.decodeResource(getResources(), R.drawable.blinmate0);
+        inmate1 = BitmapFactory.decodeResource(getResources(), R.drawable.blinmate1);
+        inmate2 = BitmapFactory.decodeResource(getResources(), R.drawable.blinmate2);
+        police0 = BitmapFactory.decodeResource(getResources(), R.drawable.blpolice0);
+        police1 = BitmapFactory.decodeResource(getResources(), R.drawable.blpolice1);
+        police2 = BitmapFactory.decodeResource(getResources(), R.drawable.blpolice2);
+        deadSprite = BitmapFactory.decodeResource(getResources(), R.drawable.dead_sprite);
 
         //Set up color/style of score text timer and obstacles
         textL.setColor(Color.RED);
@@ -143,9 +151,7 @@ public class SimpleTagSurfaceView extends SurfaceView{
                 if (deadSprite != null)
                     deadSprite.recycle();
                 deadSprite = null;
-                if (emptyBitmap != null)
-                    emptyBitmap.recycle();
-                emptyBitmap = null;
+
             }
         });
     }
