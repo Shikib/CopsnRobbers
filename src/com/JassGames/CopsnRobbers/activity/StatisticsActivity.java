@@ -100,7 +100,7 @@ public class StatisticsActivity extends Activity {
                         editor.putInt("average_capture_frame", 0);
                         editor.putInt("total_escapes", 0);
                         editor.putInt("left_escapes", 0);
-                        editor.putInt("right_captures", 0);
+                        editor.putInt("right_escapes", 0);
 
                         editor.commit();
                         initTextView();
