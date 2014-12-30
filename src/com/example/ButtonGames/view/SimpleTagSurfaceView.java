@@ -122,6 +122,23 @@ public class SimpleTagSurfaceView extends SurfaceView{
                         Thread.currentThread().interrupt();
                     }
                 }
+
+                inmate0.recycle();
+                inmate0 = null;
+                inmate1.recycle();
+                inmate1 = null;
+                inmate2.recycle();
+                inmate2 = null;
+                police0.recycle();
+                police0 = null;
+                police1.recycle();
+                police1 = null;
+                police2.recycle();
+                police2 = null;
+                deadSprite.recycle();
+                deadSprite = null;
+                emptyBitmap.recycle();
+                emptyBitmap = null;
             }
         });
     }

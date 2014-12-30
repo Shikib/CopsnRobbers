@@ -69,8 +69,10 @@ public class SimpleTagActivity extends Activity{
 
         // Make new surface view with correct background
         backgroundMap = getIntent().getIntExtra("com.example.ButtonGames.theme", 0);
-        stSurfaceView = new SimpleTagSurfaceView(this, board, initBackground(), backgroundMap);
 
+        Bitmap background = initBackground();
+        stSurfaceView = new SimpleTagSurfaceView(this, board, background, backgroundMap);
+        background = null;
 
         holder = new FrameLayout(this);
         buttons = new RelativeLayout(this);
