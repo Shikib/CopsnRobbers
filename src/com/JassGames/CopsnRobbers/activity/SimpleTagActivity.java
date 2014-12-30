@@ -87,21 +87,14 @@ public class SimpleTagActivity extends Activity{
     @Override
     protected void onResume() {
         super.onResume();
-        if (resume && pauseView != null) {
-            pauseView.setVisibility(View.VISIBLE);
-            pause.setVisibility(View.GONE);
-            stSurfaceView.gameLoopThread.setRunning(true);
-        }
-        else
-            resume = true;
-
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        if (stSurfaceView.gameLoopThread != null) {
-            stSurfaceView.gameLoopThread.setRunning(false);
+        if (pauseView != null) {
+            pauseView.setVisibility(View.VISIBLE);
+            pause.setVisibility(View.GONE);
         }
     }
 
@@ -110,6 +103,25 @@ public class SimpleTagActivity extends Activity{
         super.onDestroy();
         holder.removeView(buttons);
         holder.removeView(pauseView);
+
+        try {
+            stSurfaceView.inmate0.recycle();
+            stSurfaceView.inmate0 = null;
+            stSurfaceView.inmate1.recycle();
+            stSurfaceView.inmate1 = null;
+            stSurfaceView.inmate2.recycle();
+            stSurfaceView.inmate2 = null;
+            stSurfaceView.police0.recycle();
+            stSurfaceView.police0 = null;
+            stSurfaceView.police1.recycle();
+            stSurfaceView.police1 = null;
+            stSurfaceView.police2.recycle();
+            stSurfaceView.police2 = null;
+            stSurfaceView.deadSprite.recycle();
+            stSurfaceView.deadSprite = null;
+        } catch (NullPointerException e){
+            e.printStackTrace();
+        }
     }
 
     @Override

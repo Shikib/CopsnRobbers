@@ -30,17 +30,16 @@ public class SimpleTagSurfaceView extends SurfaceView{
     // Bitmap of background
     private Bitmap background;
 
-    // Bitmap of inmate sprites
-    private Bitmap inmate0;
-    private Bitmap inmate1;
-    private Bitmap inmate2;
+    public  Bitmap inmate0 = BitmapFactory.decodeResource(getResources(), R.drawable.blinmate0);
+    public  Bitmap inmate1 = BitmapFactory.decodeResource(getResources(), R.drawable.blinmate1);
+    public  Bitmap inmate2 = BitmapFactory.decodeResource(getResources(), R.drawable.blinmate2);
 
-    // Bitmap of police sprites
-    private Bitmap police0;
-    private Bitmap police1;
-    private Bitmap police2;
+    public Bitmap police0 = BitmapFactory.decodeResource(getResources(), R.drawable.blpolice0);
+    public Bitmap police1 = BitmapFactory.decodeResource(getResources(), R.drawable.blpolice1);
+    public Bitmap police2 = BitmapFactory.decodeResource(getResources(), R.drawable.blpolice2);
 
-    private Bitmap deadSprite;
+    public Bitmap deadSprite = BitmapFactory.decodeResource(getResources(), R.drawable.dead_sprite);
+
     private Bitmap emptyBitmap = Bitmap.createBitmap(1, 1, Bitmap.Config.ALPHA_8);
 
 
@@ -48,14 +47,6 @@ public class SimpleTagSurfaceView extends SurfaceView{
         super(context);
         this.background = background;
         this.theme = theme;
-
-        inmate0 = BitmapFactory.decodeResource(getResources(), R.drawable.blinmate0);
-        inmate1 = BitmapFactory.decodeResource(getResources(), R.drawable.blinmate1);
-        inmate2 = BitmapFactory.decodeResource(getResources(), R.drawable.blinmate2);
-        police0 = BitmapFactory.decodeResource(getResources(), R.drawable.blpolice0);
-        police1 = BitmapFactory.decodeResource(getResources(), R.drawable.blpolice1);
-        police2 = BitmapFactory.decodeResource(getResources(), R.drawable.blpolice2);
-        deadSprite = BitmapFactory.decodeResource(getResources(), R.drawable.dead_sprite);
 
         //Set up color/style of score text timer and obstacles
         textL.setColor(Color.RED);
@@ -129,29 +120,6 @@ public class SimpleTagSurfaceView extends SurfaceView{
                         Thread.currentThread().interrupt();
                     }
                 }
-
-                if (inmate0 != null)
-                    inmate0.recycle();
-                inmate0 = null;
-                if (inmate1 != null)
-                    inmate1.recycle();
-                inmate1 = null;
-                if (inmate2 != null)
-                    inmate2.recycle();
-                inmate2 = null;
-                if (police0 != null)
-                    police0.recycle();
-                police0 = null;
-                if (police1 != null)
-                    police1.recycle();
-                police1 = null;
-                if (police2 != null)
-                    police2.recycle();
-                police2 = null;
-                if (deadSprite != null)
-                    deadSprite.recycle();
-                deadSprite = null;
-
             }
         });
     }
