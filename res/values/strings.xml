@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+<<<<<<< HEAD
     <string name="app_name">ButtonGames</string>
 </resources>
+=======
+    <string name="app_name">CopsnRobbers</string>
+</resources>
+>>>>>>> b5a92cc5553e18e0dc2c27dda9b60dffe97dc65a
