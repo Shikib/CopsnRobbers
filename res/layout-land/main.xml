@@ -1,0 +1,40 @@
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" android:id="@+id/home_screen" android:background="@drawable/home"
+        android:clickable="false">
+        <Button
+                android:layout_width="180dp"
+                android:layout_height="75dp"
+                android:id="@+id/buttonPlay"
+                android:layout_gravity="center"
+                android:clickable="true"
+                android:text="PLAY!"
+                android:onClick="onPlayButton"
+                android:textSize="65sp" android:padding="0dp"
+                android:layout_centerVertical="true" android:layout_centerHorizontal="true"/>
+
+        <Button
+                android:layout_width="140dp"
+                android:layout_height="50dp"
+                android:text="THEMES"
+                android:id="@+id/buttonSettings"
+                android:onClick="onSettingsButton"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/buttonPlay" android:textSize="40sp" android:layout_marginTop="15dp"
+                android:padding="0dp" android:gravity="center" android:layout_alignParentTop="false"
+                android:layout_alignParentBottom="false"/>
+
+        <Button
+            android:layout_width="140dp"
+            android:layout_height="50dp"
+            android:id="@+id/buttonStats"
+            android:text="STATS"
+            android:onClick="onStatisticsButton"
+            android:layout_alignParentBottom="false"
+            android:layout_alignStart="@+id/buttonSettings"
+            android:layout_below="@+id/buttonSettings" android:layout_marginTop="10dp"
+            android:layout_centerHorizontal="true" android:layout_alignParentTop="false" android:textSize="40sp"
+            android:padding="0dp" android:gravity="center"/>
+</RelativeLayout>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/game_over_robber_left">
+
+    <Button
+            android:layout_width="180dp"
+            android:layout_height="70dp"
+            android:id="@+id/buttonRetry"
+            android:width="180dp"
+            android:layout_marginStart="67dp" android:height="70dp"
+            android:onClick="onRetryButton"
+            android:layout_alignTop="@+id/buttonHome"
+            android:layout_alignParentStart="true" android:textSize="60sp" android:text="RETRY" android:padding="0dp"/>
+    <Button
+            android:layout_width="180dp"
+            android:layout_height="70dp"
+            android:id="@+id/buttonHome"
+            android:layout_marginEnd="65dp" android:height="70dp"
+            android:width="180dp"
+            android:layout_marginBottom="100dp"
+            android:onClick="onHomeButton"
+            android:text="HOME" android:padding="0dp" android:textSize="60sp" android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"/>
+</RelativeLayout>
