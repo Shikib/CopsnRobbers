@@ -35,7 +35,7 @@ public class Board {
         this.height = height;
         this.spriteRadius = height / 24; // Based on resize of sprite in surface view
         initSprites(0,0,(int) (Math.random()* 2), (int) (Math.random()*2)); // Makes sprites with random sprite as hunter/hunted
-        winMethod = false; // (do we need this? idk scared of null pointers)
+        winMethod = false;
         timeToSwitch = false;
     }
 
@@ -175,7 +175,6 @@ public class Board {
 
         // Switch roles
         // If hunterState is true (left is hunter), make right hunter (1 = right is hunter, 0 = left is hunter)
-        // Consider putting a delay here
         initSprites(playerL.getScore(), playerR.getScore(), hunterState ?  1 : 0, (int) (Math.random()*2));
 
 

@@ -1,7 +1,6 @@
 package com.JassGames.CopsnRobbers.model;
 
 
-
 public class Obstacle {
 
     private double xLower;
