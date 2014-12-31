@@ -38,7 +38,7 @@ public class SimpleTagSurfaceView extends SurfaceView{
     public Bitmap police1 = BitmapFactory.decodeResource(getResources(), R.drawable.blpolice1);
     public Bitmap police2 = BitmapFactory.decodeResource(getResources(), R.drawable.blpolice2);
 
-    public Bitmap deadSprite = BitmapFactory.decodeResource(getResources(), R.drawable.dead_sprite);
+    public Bitmap deadSprite = BitmapFactory.decodeResource(getResources(), R.drawable.blinmate4);
 
     private Bitmap emptyBitmap = Bitmap.createBitmap(1, 1, Bitmap.Config.ALPHA_8);
 
