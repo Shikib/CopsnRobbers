@@ -40,11 +40,6 @@ public class Board {
     }
 
     public void initSprites(int scoreL, int scoreR, int rand, int rotDir) {
-        if (scoreL == winningScore || scoreR == winningScore) {
-            gameOver = true;
-            return;
-        }
-
         playerL = new Sprite(this, false, scoreL, 2*spriteRadius, height/2 - height/12, 0, rotDir); // Set left sprite on left side of board
         playerR = new Sprite(this, false, scoreR, width - 2*spriteRadius, height/2 - height/12, 180, rotDir); // Set right sprite on right side of board
 
@@ -203,6 +198,9 @@ public class Board {
     }
 
     public void updateBoard(){
+        if (getPlayerL().getScore() == winningScore || getPlayerR().getScore() == winningScore) {
+            gameOver = true;
+        }
         if (currentFrame != 0 && (currentFrame % switchRoleTime) == 0){
             timeToSwitch = true;
             if (hunterState)
@@ -218,6 +216,7 @@ public class Board {
         checkCollision();
         checkSwitchRoles();
         currentFrame++;
+
     }
 
 

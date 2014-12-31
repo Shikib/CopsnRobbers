@@ -45,8 +45,12 @@ public class GameLoopThread extends Thread {
             gameOverScreen.putExtra("com.example.ButtonGames.cop", board.getHunterState());
             gameOverScreen.putExtra("com.example.ButtonGames.oldObstacle", SimpleTagActivity.obstacleMap);
             gameOverScreen.putExtra("com.example.ButtonGames.oldTheme", SimpleTagActivity.backgroundMap);
+
+            SimpleTagActivity activity = (SimpleTagActivity) view.getContext();
+            activity.finish();
             view.getContext().startActivity(gameOverScreen);
-            ((Activity) view.getContext()).finish();
+
+            activity.pauseView.setVisibility(View.GONE);
             return;
         }
             if (((SimpleTagActivity) view.getContext()).pauseView.getVisibility() == View.GONE)

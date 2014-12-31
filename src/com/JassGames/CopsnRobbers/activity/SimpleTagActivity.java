@@ -100,6 +100,7 @@ public class SimpleTagActivity extends Activity{
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        pauseView.setVisibility(View.GONE);
         holder.removeView(buttons);
         holder.removeView(pauseView);
 
