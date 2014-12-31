@@ -13,8 +13,10 @@ public class Board {
     private List<Obstacle> obstacles;
     private boolean hunterState; // true = left is hunter, false = right is hunter
     private boolean winMethod; // true = win by collision, hunter wins, false = win my time runs out, hunted wins
+    private boolean gameOver;
     private boolean timeToSwitch;// true = time to switch
     private int spriteRadius;
+
 
     public static final int winningScore = 5;
 
@@ -38,6 +40,10 @@ public class Board {
     }
 
     public void initSprites(int scoreL, int scoreR, int rand, int rotDir) {
+        if (scoreL == winningScore || scoreR == winningScore) {
+            gameOver = true;
+            return;
+        }
 
         playerL = new Sprite(this, false, scoreL, 2*spriteRadius, height/2 - height/12, 0, rotDir); // Set left sprite on left side of board
         playerR = new Sprite(this, false, scoreR, width - 2*spriteRadius, height/2 - height/12, 180, rotDir); // Set right sprite on right side of board
@@ -84,6 +90,10 @@ public class Board {
 
     public List<Obstacle> getObstacles(){
         return obstacles;
+    }
+
+    public boolean getGameOver() {
+        return gameOver;
     }
 
     public void setObstacles(List<Obstacle> obstacles) {

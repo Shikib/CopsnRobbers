@@ -27,7 +27,6 @@ public class SimpleTagActivity extends Activity{
     private RelativeLayout buttons; // holder for the buttons
     public RelativeLayout pauseView;
     private Button pause;
-    private boolean resume = false;
     private boolean dialogShown = false;
 
     private int screenWidth;
@@ -92,7 +91,7 @@ public class SimpleTagActivity extends Activity{
     @Override
     protected void onPause() {
         super.onPause();
-        if (pauseView != null) {
+        if (pauseView != null || !board.getGameOver()) {
             pauseView.setVisibility(View.VISIBLE);
             pause.setVisibility(View.GONE);
         }
