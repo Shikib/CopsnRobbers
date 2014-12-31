@@ -11,10 +11,9 @@ import com.JassGames.CopsnRobbers.R;
 
 
 public class SplashScreenActivity extends Activity {
-    /** Duration of wait **/
+
     private final int SPLASH_DISPLAY_LENGTH = 1500;
 
-    /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,12 +33,10 @@ public class SplashScreenActivity extends Activity {
 
         setContentView(R.layout.splash_screen);
 
-        /* New Handler to start the Menu-Activity
-         * and close this Splash-Screen after some seconds.*/
+
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                /* Create an Intent that will start the Menu-Activity. */
                 Intent mainMenu = new Intent(SplashScreenActivity.this, MainMenuActivity.class);
                 SplashScreenActivity.this.startActivity(mainMenu);
                 SplashScreenActivity.this.finish();

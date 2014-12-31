@@ -7,7 +7,11 @@ import android.graphics.Canvas;
 import android.view.View;
 import com.JassGames.CopsnRobbers.model.Board;
 
-import java.lang.Boolean;import java.lang.InterruptedException;import java.lang.Override;import java.lang.System;import java.lang.Thread;
+import java.lang.Boolean;
+import java.lang.InterruptedException;
+import java.lang.Override;
+import java.lang.System;
+import java.lang.Thread;
 
 public class GameLoopThread extends Thread {
     static final long FPS = 10; // Frames per second --> IF CHANGE THIS MUST CHANGE DRAW TIMER

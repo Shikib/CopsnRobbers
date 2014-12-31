@@ -105,7 +105,7 @@ public class Sprite {
             direction = (direction - rspeed) % 360;
     }
 
-    // Some math thing to calculate and move sprite in x,y based on direction
+    // Calculate and move sprite in x,y based on direction
     public void move() {
         double vDistance = speed*Math.sin(direction*2*Math.PI/360);
         double hDistance = speed*Math.cos(direction*2*Math.PI/360);

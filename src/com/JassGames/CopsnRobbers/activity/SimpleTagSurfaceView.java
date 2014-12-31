@@ -30,15 +30,15 @@ public class SimpleTagSurfaceView extends SurfaceView{
     // Bitmap of background
     private Bitmap background;
 
-    public  Bitmap inmate0 = BitmapFactory.decodeResource(getResources(), R.drawable.blinmate0);
-    public  Bitmap inmate1 = BitmapFactory.decodeResource(getResources(), R.drawable.blinmate1);
-    public  Bitmap inmate2 = BitmapFactory.decodeResource(getResources(), R.drawable.blinmate2);
+    public  Bitmap inmate0 = BitmapFactory.decodeResource(getResources(), R.drawable.inmate0);
+    public  Bitmap inmate1 = BitmapFactory.decodeResource(getResources(), R.drawable.inmate1);
+    public  Bitmap inmate2 = BitmapFactory.decodeResource(getResources(), R.drawable.inmate2);
 
-    public Bitmap police0 = BitmapFactory.decodeResource(getResources(), R.drawable.blpolice0);
-    public Bitmap police1 = BitmapFactory.decodeResource(getResources(), R.drawable.blpolice1);
-    public Bitmap police2 = BitmapFactory.decodeResource(getResources(), R.drawable.blpolice2);
+    public Bitmap police0 = BitmapFactory.decodeResource(getResources(), R.drawable.police0);
+    public Bitmap police1 = BitmapFactory.decodeResource(getResources(), R.drawable.police1);
+    public Bitmap police2 = BitmapFactory.decodeResource(getResources(), R.drawable.police2);
 
-    public Bitmap deadSprite = BitmapFactory.decodeResource(getResources(), R.drawable.blinmate4);
+    public Bitmap deadSprite = BitmapFactory.decodeResource(getResources(), R.drawable.dead_sprite);
 
     private Bitmap emptyBitmap = Bitmap.createBitmap(1, 1, Bitmap.Config.ALPHA_8);
 
@@ -163,7 +163,7 @@ public class SimpleTagSurfaceView extends SurfaceView{
 
         // Make a matrix, get the correct left sprite for the frame
         Matrix leftMatrix = new Matrix();
-        // Resize the sprite -- MUST CHANGE RADIUS AND SPEED
+        // Resize the sprite
         Bitmap leftBitmap = Bitmap.createScaledBitmap(getCorrectSprite(true),
                 getCorrectSprite(true).getWidth() * (board.getHeight() / 10) / getCorrectSprite(true).getHeight(), board.getHeight() / 10, false);
 
@@ -175,7 +175,7 @@ public class SimpleTagSurfaceView extends SurfaceView{
 
         // Make a matrix, get the correct right sprite for the frame
         Matrix rightMatrix = new Matrix();
-        // Resize the sprite -- MUST CHANGE RADIUS AND SPEED
+        // Resize the sprite
         Bitmap rightBitmap = Bitmap.createScaledBitmap(getCorrectSprite(false),
                 getCorrectSprite(false).getWidth() * (board.getHeight() / 10) / getCorrectSprite(false).getHeight(), board.getHeight() / 10, false);
 
